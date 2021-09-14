@@ -119,4 +119,40 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     {
         return [];
     }
+
+    public static function rules(){
+        return [
+            'username' => 'required|unique:users',
+            'phone_user' => 'unique:users,phone|numeric|min:7|regex:/(0)[0-9]{9}/',
+            'email' => 'unique:users|regex:/(.+)@(.+)\.(.+)/i',
+            'password' => 'required|confirmed|min:6'
+        ];
+    }
+
+    public function checkRole($role){
+        return $this->role == $role;
+    }
+    public function isAdmin(){
+        return $this->role == 1;
+    }
+    public function isUser(){
+        return $this->role == 2;
+    }
+    public function isSupervisor(){
+        return $this->role == 3;
+    }
+    public function scopeAdmin($q){
+        return $q->where('role', 1);
+    }
+    public function scopeUser($q){
+        return $q->where('role', 2);
+    }
+    public function scopeSupervisor($q){
+        return $q->where('role', 3);
+    }
+
+    public function places(){
+        return $this->hasMany(Place::class, 'supervisor_id');
+    }
+
 }
