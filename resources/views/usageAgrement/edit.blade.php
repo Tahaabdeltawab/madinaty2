@@ -11,7 +11,7 @@
                     </div>
                     <div class="col-lg-7 col-md-4 col-sm-12">
                         <ul class="breadcrumb justify-content-end">
-                            <li class="breadcrumb-item"><a href="{{url('home')}}"><i class="icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{url('admin/home')}}"><i class="icon-home"></i></a></li>
                             <li class="breadcrumb-item"> اتفاقية الاستخدام</li>
                         </ul>
                     </div>
@@ -21,7 +21,7 @@
 
 
              <div class="body">
-                 <form id="basic-form" method="post"action="{{url('update_agreement')}}" novalidate enctype="multipart/form-data">
+                 <form id="basic-form" method="post"action="{{url('admin/update_agreement')}}" novalidate enctype="multipart/form-data">
                                            {{ csrf_field() }}
 
                         @foreach($data as $cat)

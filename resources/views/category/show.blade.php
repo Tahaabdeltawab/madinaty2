@@ -17,7 +17,7 @@
                     </div>
                     <div class="col-lg-7 col-md-4 col-sm-12 ">
                         <ul class="breadcrumb justify-content-end">
-                            <li class="breadcrumb-item"><a href="{{url('home')}}"><i class="icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{url('admin/home')}}"><i class="icon-home"></i></a></li>
                             <li class="breadcrumb-item">الاقسام الرئيسية</li>
                         </ul>
                     </div>
@@ -31,7 +31,7 @@
 
                             <ul class="nav nav-tabs-new ">
                                 <li ><h2 style="font-size: xx-large;">الاقسام الرئيسية :</h2> </li> &nbsp;&nbsp;
-                                <li class="nav-item" style="font-size: x-large;"><a class="nav-link"  href="{{url('categorynew')}}">اضافة أقسام رئيسية</a></li>
+                                <li class="nav-item" style="font-size: x-large;"><a class="nav-link"  href="{{url('admin/categorynew')}}">اضافة أقسام رئيسية</a></li>
                             </ul>
                         </div>
                         <div class="body">
@@ -67,7 +67,7 @@
                                                   <?php } ?>
                                             </td>
                                             <td>
-                                                <form action="{{url('subcategory')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
+                                                <form action="{{url('admin/subcategory')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
 
                                                     {{ csrf_field() }}
 
@@ -87,7 +87,7 @@
                                             <td>
 
 
-                                                <form action="{{url('editcategory')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
+                                                <form action="{{url('admin/editcategory')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
 
                                                     {{ csrf_field() }}
 
@@ -108,7 +108,7 @@
                                             <td>
 
 
-                                               <form action="{{url('delete_category')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
+                                               <form action="{{url('admin/delete_category')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
 
                                                    {{ csrf_field() }}
 

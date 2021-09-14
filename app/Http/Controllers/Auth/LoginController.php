@@ -20,7 +20,8 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:api')->except('logout');
+        $this->middleware('guest:web')->except('logout_web');
     }
 
     /**
@@ -107,10 +108,10 @@ class LoginController extends Controller
                     $user_status = $user->role;
 
                      if( $user_status === "1" || $user_status === "2"){
-                         auth('web')->loginUsingId($user->id);
-                         return redirect('/home');
+                         \Auth::guard('web')->loginUsingId($user->id);
+                         return redirect('admin/home');
                    }else{
-                        auth('web')->loginUsingId($user->id);
+                        \Auth::guard('web')->loginUsingId($user->id);
                         return redirect('/');
                      }
                 }else{
@@ -120,5 +121,27 @@ class LoginController extends Controller
             }else{
                 return back()->with('msg', 'اسم مستخدم أو كلمة مرور خاطئة');
             }
+    }
+
+    public function logout_web(Request $request)
+    {
+        try{
+            // $this->guard()->logout();
+            auth('web')->logout();
+            // \Auth::guard('api')->logout();
+            $request->session()->invalidate();
+    
+            $request->session()->regenerateToken();
+    
+            if ($response = $this->loggedOut($request)) {
+                return $response;
+            }
+    
+            return $request->wantsJson()
+                ? new JsonResponse([], 204)
+                : redirect('admin');
+        }catch(\Throwable $th){
+            throw $th;
+        }
     }
 }

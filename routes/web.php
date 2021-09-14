@@ -24,14 +24,32 @@ use App\Http\Controllers\AdminDash\SupervisorController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get("/", function () {
-    return redirect('login');
+Route::get("admin", function () {
+    return redirect('admin/login');
 });
+Route::prefix('admin')->group(function () {
+
 
 Auth::routes();
 
-Route::post('/login', [LoginController::class, 'postLogin']);
+// // // the extraction of Auth::routes();
+  // Authentication Routes...
+  // Route::get('login', [LoginController::class,'showLoginForm'])->name('login');
+  // Route::post('login', [LoginController::class,'login']);
+  // Route::post('logout', [LoginController::class,'logout'])->name('logout');
+
+  // Registration Routes...
+  // Route::get('register', [RegisterController::class,'showRegistrationForm'])->name('register');
+  // Route::post('register', [RegisterController::class,'register']);
+
+  // Password Reset Routes...
+  // Route::get('password/reset', [ForgotPasswordController::class,'showLinkRequestForm']);
+  // Route::post('password/email', [ForgotPasswordController::class,'sendResetLinkEmail']);
+  // Route::get('password/reset/{token}', [ResetPasswordController::class,'showResetForm']);
+  // Route::post('password/reset', [ResetPasswordController::class,'reset']);
+// // // // // // // // // // // // // // 
+Route::post('logout', [LoginController::class, 'logout_web'])->name('logout');
+Route::post('login', [LoginController::class, 'postLogin']);
 
 
 
@@ -167,4 +185,5 @@ Route::middleware('auth:web')->group(function () {
             return view('vue');
         });
 
+});
 });

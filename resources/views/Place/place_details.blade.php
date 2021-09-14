@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-lg-7 col-md-4 col-sm-12">
                         <ul class="breadcrumb justify-content-end">
-                            <li class="breadcrumb-item"><a href="{{url('home')}}"><i class="icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{url('admin/home')}}"><i class="icon-home"></i></a></li>
                             <li class="breadcrumb-item">تفاصيل المكان </li>
                         </ul>
                     </div>
@@ -59,7 +59,7 @@
 
                                                         {{--  <td>
 
-                                                            <form action="{{url('editCity')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
+                                                            <form action="{{url('admin/editCity')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
 
                                                                 {{ csrf_field() }}
 
@@ -77,7 +77,7 @@
                                                          </td>
 
                                                         <td>
-                                                           <form action="{{url('delete_city')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
+                                                           <form action="{{url('admin/delete_city')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
 
                                                                {{ csrf_field() }}
 
@@ -128,7 +128,7 @@
 
                                                         {{--  <td>
 
-                                                            <form action="{{url('editCity')}}" method="GET"  id="sub_{{$serv->id}}" enctype="multipart/form-data">
+                                                            <form action="{{url('admin/editCity')}}" method="GET"  id="sub_{{$serv->id}}" enctype="multipart/form-data">
 
                                                                 {{ csrf_field() }}
 
@@ -146,7 +146,7 @@
                                                          </td>
 
                                                         <td>
-                                                           <form action="{{url('delete_city')}}" method="GET"  id="sub_{{$serv->id}}" enctype="multipart/form-data">
+                                                           <form action="{{url('admin/delete_city')}}" method="GET"  id="sub_{{$serv->id}}" enctype="multipart/form-data">
 
                                                                {{ csrf_field() }}
 
@@ -212,7 +212,7 @@
 
                                                         {{--  <td>
 
-                                                            <form action="{{url('editCity')}}" method="GET"  id="sub_{{$pro->id}}" enctype="multipart/form-data">
+                                                            <form action="{{url('admin/editCity')}}" method="GET"  id="sub_{{$pro->id}}" enctype="multipart/form-data">
 
                                                                 {{ csrf_field() }}
 
@@ -230,7 +230,7 @@
                                                          </td>
 
                                                         <td>
-                                                           <form action="{{url('delete_city')}}" method="GET"  id="sub_{{$pro->id}}" enctype="multipart/form-data">
+                                                           <form action="{{url('admin/delete_city')}}" method="GET"  id="sub_{{$pro->id}}" enctype="multipart/form-data">
 
                                                                {{ csrf_field() }}
 
@@ -284,7 +284,7 @@
 
                                                         {{--  <td>
 
-                                                            <form action="{{url('editCity')}}" method="GET"  id="sub_{{$offer->id}}" enctype="multipart/form-data">
+                                                            <form action="{{url('admin/editCity')}}" method="GET"  id="sub_{{$offer->id}}" enctype="multipart/form-data">
 
                                                                 {{ csrf_field() }}
 
@@ -302,7 +302,7 @@
                                                          </td>
 
                                                         <td>
-                                                           <form action="{{url('delete_city')}}" method="GET"  id="sub_{{$offer->id}}" enctype="multipart/form-data">
+                                                           <form action="{{url('admin/delete_city')}}" method="GET"  id="sub_{{$offer->id}}" enctype="multipart/form-data">
 
                                                                {{ csrf_field() }}
 

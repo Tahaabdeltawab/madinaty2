@@ -17,7 +17,7 @@
                     </div>
                     <div class="col-lg-7 col-md-4 col-sm-12">
                         <ul class="breadcrumb justify-content-end">
-                            <li class="breadcrumb-item"><a href="{{url('home')}}"><i class="icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{url('admin/home')}}"><i class="icon-home"></i></a></li>
                             <li class="breadcrumb-item">الاماكن</li>
                         </ul>
                     </div>
@@ -31,7 +31,7 @@
 
                             <ul class="nav nav-tabs-new ">
                                 <li ><h2 style="font-size: xx-large;">الاقسام الرئيسية :</h2> </li> &nbsp;&nbsp;
-                                <li class="nav-item" style="margin-top: -5px;font-size: x-large;"><a class="nav-link"  href="{{url('newPlace')}}">اضافة مكان</a></li>
+                                <li class="nav-item" style="margin-top: -5px;font-size: x-large;"><a class="nav-link"  href="{{url('admin/newPlace')}}">اضافة مكان</a></li>
                             </ul>
                         </div>
                         <div class="body">
@@ -80,7 +80,7 @@
                                                 <?php } ?>
                                             </td>
                                             {{--  <td>
-                                                <form action="{{url('subcategory')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
+                                                <form action="{{url('admin/subcategory')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
 
                                                     {{ csrf_field() }}
 
@@ -106,7 +106,7 @@
                                             <td>{{$cat->created_at}}</td>
                                             <td>
 
-                                                <form action="{{url('placeDetails')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data" style="display:inline;">
+                                                <form action="{{url('admin/placeDetails')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data" style="display:inline;">
                                                     {{ csrf_field() }}
                                                     <input type="hidden" name="place_id" value="{{$cat->id}}">
                                                     <a  onclick="$('#sub_{{$cat->id}}').submit();">

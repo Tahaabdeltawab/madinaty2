@@ -12,24 +12,24 @@
 <title>سياسة الخصوصية</title>
 
 <!-- Main Styles
-<link rel="stylesheet" href="assets/styles/style.min.css">
-<link rel="stylesheet" href="assets/styles/style-rtl.min.css">
+<link rel="stylesheet" href="{{asset('assets/styles/style.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/styles/style-rtl.min.css')}}">
 
 <!-- Material Design Icon -->
-<link rel="stylesheet" href="assets/fonts/material-design/css/materialdesignicons.css">
+<link rel="stylesheet" href="{{asset('assets/fonts/material-design/css/materialdesignicons.css')}}">
 
 <!-- mCustomScrollbar -->
-<link rel="stylesheet" href="assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="{{asset('assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css')}}">
 
 <!-- Waves Effect -->
-<link rel="stylesheet" href="assets/plugin/waves/waves.min.css">
+<link rel="stylesheet" href="{{asset('assets/plugin/waves/waves.min.css')}}">
 
 <!-- Sweet Alert -->
-<link rel="stylesheet" href="assets/plugin/sweet-alert/sweetalert.css">
+<link rel="stylesheet" href="{{asset('assets/plugin/sweet-alert/sweetalert.css')}}">
 
 <!-- Table Responsive -->
-<link rel="stylesheet" href="assets/plugin/RWD-table-pattern/css/rwd-table.min.css">
-<script src="assets/scripts/jquery.min.js"></script>
+<link rel="stylesheet" href="{{asset('assets/plugin/RWD-table-pattern/css/rwd-table.min.css')}}">
+<script src="{{asset('assets/scripts/jquery.min.js')}}"></script>
  
 </head>
 
@@ -186,21 +186,21 @@ background-image:url("assets/images/privacy_bg.svg");
 
 </div>
 
-<script src="assets/scripts/modernizr.min.js"></script>
-<script src="assets/plugin/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="assets/plugin/nprogress/nprogress.js"></script>
-<script src="assets/plugin/sweet-alert/sweetalert.min.js"></script>
-<script src="assets/plugin/waves/waves.min.js"></script>
+<script src="{{asset('assets/scripts/modernizr.min.js')}}"></script>
+<script src="{{asset('assets/plugin/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+<script src="{{asset('assets/plugin/nprogress/nprogress.js')}}"></script>
+<script src="{{asset('assets/plugin/sweet-alert/sweetalert.min.js')}}"></script>
+<script src="{{asset('assets/plugin/waves/waves.min.js')}}"></script>
 <!-- Full Screen Plugin -->
-<script src="assets/plugin/fullscreen/jquery.fullscreen-min.js"></script>
+<script src="{{asset('assets/plugin/fullscreen/jquery.fullscreen-min.js')}}"></script>
 
 <!-- Responsive Table -->
-<script src="assets/plugin/RWD-table-pattern/js/rwd-table.min.js"></script>
-<script src="assets/scripts/rwd.demo.min.js"></script>
+<script src="{{asset('assets/plugin/RWD-table-pattern/js/rwd-table.min.js')}}"></script>
+<script src="{{asset('assets/scripts/rwd.demo.min.js')}}"></script>
 
-<script src="assets/scripts/main.min.js"></script>
-<script src="assets/color-switcher/color-switcher.min.js"></script>
+<script src="{{asset('assets/scripts/main.min.js')}}"></script>
+<script src="{{asset('assets/color-switcher/color-switcher.min.js')}}"></script>
 
 </body>
 </html>

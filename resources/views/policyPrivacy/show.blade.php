@@ -17,7 +17,7 @@
                     </div>
                     <div class="col-lg-7 col-md-4 col-sm-12">
                         <ul class="breadcrumb justify-content-end">
-                            <li class="breadcrumb-item"><a href="{{url('home')}}"><i class="icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{url('admin/home')}}"><i class="icon-home"></i></a></li>
                             <li class="breadcrumb-item">سياسه الخصوصية</li>
                         </ul>
                     </div>
@@ -31,7 +31,7 @@
 
                             <ul class="nav nav-tabs-new ">
                                 <li ><h2 style="font-size: xx-large;">سياسه الخصوصية :</h2> </li> &nbsp;&nbsp;
-                                <li class="nav-item" style="margin-top: -5px;font-size: x-large;"><a class="nav-link"  href="{{url('newPolicy')}}">اضافة سياسة الخصوصية</a></li>
+                                <li class="nav-item" style="margin-top: -5px;font-size: x-large;"><a class="nav-link"  href="{{url('admin/newPolicy')}}">اضافة سياسة الخصوصية</a></li>
                             </ul>
                         </div>
                         <div class="body">
@@ -61,7 +61,7 @@
                                             <td>
 
 
-                                                <form action="{{url('editPolicy')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
+                                                <form action="{{url('admin/editPolicy')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
 
                                                     {{ csrf_field() }}
 
@@ -82,7 +82,7 @@
                                             <td>
 
 
-                                               <form action="{{url('delete_policy')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
+                                               <form action="{{url('admin/delete_policy')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
 
                                                    {{ csrf_field() }}
 

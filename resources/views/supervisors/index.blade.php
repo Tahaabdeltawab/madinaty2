@@ -17,7 +17,7 @@
             </div>
             <div class="col-lg-7 col-md-4 col-sm-12">
               <ul class="breadcrumb justify-content-end">
-                <li class="breadcrumb-item"><a href="{{ url('home') }}"><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="{{url('admin/home') }}"><i class="icon-home"></i></a></li>
                 <li class="breadcrumb-item">المشرفين</li>
               </ul>
             </div>
@@ -34,7 +34,7 @@
                     <h2 style="font-size: xx-large;">المشرفين :</h2>
                   </li> &nbsp;&nbsp;
                   <li class="nav-item" style="margin-top: -5px;font-size: x-large;"><a class="nav-link"
-                      href="{{ url('supervisors_create') }}">اضافة مشرف</a></li>
+                      href="{{url('admin/supervisors_create') }}">اضافة مشرف</a></li>
                 </ul>
               </div>
               <div class="body">

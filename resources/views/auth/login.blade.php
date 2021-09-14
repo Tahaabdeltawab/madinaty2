@@ -11,13 +11,13 @@
 
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <!-- VENDOR CSS -->
-<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/vendor/animate-css/animate.min.css">
-<link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/animate-css/animate.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/font-awesome/css/font-awesome.min.css')}}">
 
 <!-- MAIN CSS -->
-<link rel="stylesheet" href="assets/css/main.css">
-<link rel="stylesheet" href="assets/css/color_skins.css">
+<link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/color_skins.css')}}">
 </head>
 
 <body class="theme-blue rtl">
@@ -26,16 +26,16 @@
 		<div class="vertical-align-wrap">
 			<div class="vertical-align-middle auth-main">
 				<div class="auth-box">
-                    <div class="mobile-logo"><a href="index"><img src="assets/images/logo-icon.png" alt="Madienty"></a></div>
+                    <div class="mobile-logo"><a href="index"><img src="{{asset('assets/images/logo-icon.png')}}" alt="Madienty"></a></div>
                     <div class="auth-left">
                         <div class="left-top">
                             <a href="index.html">
-                                <img src="uploads/Logo.png" alt="Madienty" style="margin-top: -13px;">
+                                <img src="{{asset('uploads/Logo.png')}}" alt="Madienty" style="margin-top: -13px;">
                                 <span>مدينتى</span>
                             </a>
                         </div>
                         <div class="left-slider">
-                            <img src="assets/images/login/1.jpg" class="img-fluid" alt="">
+                            <img src="{{asset('assets/images/login/1.jpg')}}" class="img-fluid" alt="">
                         </div>
                     </div>
                     <div class="auth-right">

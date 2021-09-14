@@ -257,7 +257,7 @@
                             <div class="msg">error<span class="triangle"></span></div>
                         </div>
                         <h2 class="h1">Sorry! You must Login First.</h2>
-                        <a href="{{url('login')}}" class="btn btn-primary btn-lg" role="button" style ="color: cadetblue;font-size: x-large;background: aliceblue;">Back To Login</a>
+                        <a href="{{url('admin/login')}}" class="btn btn-primary btn-lg" role="button" style ="color: cadetblue;font-size: x-large;background: aliceblue;">Back To Login</a>
                     </div>
                 </div>
             </div>
