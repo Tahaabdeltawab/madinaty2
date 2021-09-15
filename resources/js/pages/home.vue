@@ -13,6 +13,9 @@
 export default {
   middleware: 'auth',
 
+  // set the page layout by naming the coming property
+  // layout: 'basic',
+  
   // async asyncData () {
   //   const { data: projects } = await axios.get('/api/projects')
 

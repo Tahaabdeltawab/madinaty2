@@ -12,16 +12,17 @@
 import Loading from './Loading'
 
 // Load layout components dynamically.
+const layoutsReducer = (components, [name, component]) => {
+    components[name] = component.default || component
+    return components
+  }
 const requireContext = require.context('~/layouts', false, /.*\.vue$/)
 
 const layouts = requireContext.keys()
   .map(file =>
     [file.replace(/(^.\/)|(\.vue$)/g, ''), requireContext(file)]
   )
-  .reduce((components, [name, component]) => {
-    components[name] = component.default || component
-    return components
-  }, {})
+  .reduce(layoutsReducer, {})
 
 export default {
   el: '#app',
@@ -54,8 +55,9 @@ export default {
      *
      * @param {String} layout
      */
+    // the layout is coming from any pageComponent.layout prop or the default layout 'default' see home.vue {layout: basic}
+    // this method is called from router/index.js line 84
     setLayout (layout) {
-      console.log(layouts[layout]);
       if (!layout || !layouts[layout]) {
         layout = this.defaultLayout
       }
