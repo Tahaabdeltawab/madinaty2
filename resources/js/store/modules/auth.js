@@ -49,6 +49,12 @@ export const actions = {
         commit(types.SAVE_TOKEN, payload)
     },
 
+    async guser({ commit }) {
+        try {
+            const { data } = await axios.get('/api/user')
+            return data;
+        } catch (e) {}
+    },
     async fetchUser({ commit }) {
         try {
             const { data } = await axios.get('/api/user')

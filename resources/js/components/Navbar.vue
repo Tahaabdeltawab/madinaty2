@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import LocaleDropdown from './LocaleDropdown'
 
 export default {
@@ -75,11 +75,8 @@ export default {
   computed: mapGetters({
     user: 'auth/user'
   }),
-  created() {
-    this.getUser;
-  },
+
   methods: {
-    ...mapActions(['getUser']),
     async logout () {
       // Log out the user.
       await this.$store.dispatch('auth/logout')
