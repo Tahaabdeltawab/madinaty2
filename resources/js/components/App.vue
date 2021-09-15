@@ -55,6 +55,7 @@ export default {
      * @param {String} layout
      */
     setLayout (layout) {
+      console.log(layouts[layout]);
       if (!layout || !layouts[layout]) {
         layout = this.defaultLayout
       }
