@@ -9,44 +9,52 @@
 </template>
 
 <script>
-import Loading from './Loading'
+import Loading from "./Loading";
+// css
+import "../../../public/q/assets/css/bootstrap.min.css";
+import "../../../public/q/assets/css/font-awesome.css";
+import "../../../public/q/assets/css/flaticon.css";
+import "../../../public/q/assets/css/responsive.css";
+import "../../../public/q/assets/css/nice-select.css";
+import "../../../public/q/assets/css/magnific-popup.css";
+import "../../../public/q/assets/css/ion.rangeSlider.min.css";
+import "../../../public/q/assets/css/style.css";
 
 // Load layout components dynamically.
 const layoutsReducer = (components, [name, component]) => {
-    components[name] = component.default || component
-    return components
-  }
-const requireContext = require.context('~/layouts', false, /.*\.vue$/)
+  components[name] = component.default || component;
+  return components;
+};
+const requireContext = require.context("~/layouts", false, /.*\.vue$/);
 
-const layouts = requireContext.keys()
-  .map(file =>
-    [file.replace(/(^.\/)|(\.vue$)/g, ''), requireContext(file)]
-  )
-  .reduce(layoutsReducer, {})
+const layouts = requireContext
+  .keys()
+  .map((file) => [file.replace(/(^.\/)|(\.vue$)/g, ""), requireContext(file)])
+  .reduce(layoutsReducer, {});
 
 export default {
-  el: '#app',
+  el: "#app",
 
   components: {
-    Loading
+    Loading,
   },
 
   data: () => ({
     layout: null,
-    defaultLayout: 'default'
+    defaultLayout: "default",
   }),
 
-  metaInfo () {
-    const { appName } = window.config
+  metaInfo() {
+    const { appName } = window.config;
 
     return {
       title: appName,
-      titleTemplate: `%s · ${appName}`
-    }
+      titleTemplate: `%s · ${appName}`,
+    };
   },
 
-  mounted () {
-    this.$loading = this.$refs.loading
+  mounted() {
+    this.$loading = this.$refs.loading;
   },
 
   methods: {
@@ -57,13 +65,13 @@ export default {
      */
     // the layout is coming from any pageComponent.layout prop or the default layout 'default' see home.vue {layout: basic}
     // this method is called from router/index.js line 84
-    setLayout (layout) {
+    setLayout(layout) {
       if (!layout || !layouts[layout]) {
-        layout = this.defaultLayout
+        layout = this.defaultLayout;
       }
 
-      this.layout = layouts[layout]
-    }
-  }
-}
+      this.layout = layouts[layout];
+    },
+  },
+};
 </script>

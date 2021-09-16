@@ -1,3 +1,11 @@
 import './axios'
 import './fontawesome'
 import 'bootstrap'
+
+// import 'jquery/dist/jquery'
+// import 'popper.js/dist/popper'
+// import 'sticksy'
+// import 'swiper/js/swiper'
+// import 'magnific-popup/dist/jquery.magnific-popup'
+// import 'ion-rangeslider/js/ion.rangeSlider'
+// import 'jquery-nice-select/js/jquery.nice-select'

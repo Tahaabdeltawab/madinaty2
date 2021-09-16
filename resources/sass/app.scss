@@ -1,12 +1,15 @@
 @import 'variables';
-
 @import '~bootstrap/scss/bootstrap';
 @import '~sweetalert2/dist/sweetalert2';
 @import '~@fortawesome/fontawesome-svg-core/styles';
-
+// @import '~swiper/css/swiper.min.css';
+// @import '~jquery-nice-select/scss/nice-select.scss';
+// @import '~magnific-popup/dist/magnific-popup.css';
+// @import '~ion-rangeslider/css/ion.rangeSlider.min.css';
 @import 'elements/card';
 @import 'elements/navbar';
 @import 'elements/buttons';
 @import 'elements/transitions';
-
 @import 'components/server-error';
+// @import 'pages/home/qstyle';
+// @import 'pages/home/qresponsive.scss';
