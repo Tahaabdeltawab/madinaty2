@@ -105,9 +105,9 @@ class LoginController extends Controller
         {
                 if($user->status){
 
-                    $user_status = $user->role;
+                    $user_role = $user->role;
 
-                     if( $user_status === "1" || $user_status === "2"){
+                     if( $user_role == "1" || $user_role == "3"){
                          \Auth::guard('web')->loginUsingId($user->id);
                          return redirect('admin/home');
                    }else{

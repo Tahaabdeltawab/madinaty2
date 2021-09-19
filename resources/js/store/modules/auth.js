@@ -69,6 +69,17 @@ export const actions = {
         commit(types.UPDATE_USER, payload)
     },
 
+    async updateUserLocation({ commit }, { city_id, area_id }) {
+        try {
+            const { data } = await axios.get('/api/update_CityArea?city_id=' + city_id + '&area_id=' + area_id + '&src=web')
+            console.log(data.data);
+            let payload = { user: data.data };
+            commit(types.UPDATE_USER, payload)
+        } catch (e) {
+            // commit(types.UPDATE_USER)
+        }
+    },
+
     async logout({ commit }) {
         try {
             await axios.post('/api/logout')

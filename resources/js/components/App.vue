@@ -10,15 +10,6 @@
 
 <script>
 import Loading from "./Loading";
-// css
-import "../../../public/q/assets/css/bootstrap.min.css";
-import "../../../public/q/assets/css/font-awesome.css";
-import "../../../public/q/assets/css/flaticon.css";
-import "../../../public/q/assets/css/responsive.css";
-import "../../../public/q/assets/css/nice-select.css";
-import "../../../public/q/assets/css/magnific-popup.css";
-import "../../../public/q/assets/css/ion.rangeSlider.min.css";
-import "../../../public/q/assets/css/style.css";
 
 // Load layout components dynamically.
 const layoutsReducer = (components, [name, component]) => {

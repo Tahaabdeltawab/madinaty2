@@ -1,28 +1,34 @@
 <template>
   <div>
     <slider />
-    <category />
-    <prevOrder />
-    <exCollection />
+    <category-slider />
+    <popular />
+    <categories />
   </div>
 </template>
 
 <script>
 import Slider from "~/components/home/Slider";
-import Category from "~/components/home/Category";
-import PrevOrder from "~/components/home/PrevOrder";
-import ExCollection from "~/components/home/ExCollection";
+import CategorySlider from './CategorySlider.vue';
+import Popular from "~/components/home/Popular";
+import Categories from "~/components/home/Categories";
 export default {
   name: "Home",
   components: {
     Slider,
-    Category,
-    PrevOrder,
-    ExCollection,
+    CategorySlider,
+    Popular,
+    Categories,
   },
 };
 </script>
 
 <style>
-
+.swiper-button-next::after, .swiper-button-prev::after {
+    font-size: 15px!important;
+}
+.swiper-button-next, .swiper-button-prev {
+    width: 30px!important;
+    height: 30px!important;
+}
 </style>

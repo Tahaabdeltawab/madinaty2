@@ -49,7 +49,7 @@
                             if( $image == '' && $image == NULL){
 
                             }else{?>
-                                    &nbsp;  &nbsp;<img src="uploads/category/{{$cat->image}}" width="280" height="100"><br><br><br>
+                                    &nbsp;  &nbsp;<img src="{{asset('uploads/category/' . $cat->image)}}" width="280" height="100"><br><br><br>
                             <?php } ?>
 
                         <br>
@@ -65,7 +65,7 @@
                             if( $subimage == '' && $subimage == NULL){
 
                             }else{?>
-                                    &nbsp;  &nbsp;<img src="uploads/category/{{$cat->sub_image}}" width="280" height="100"><br><br><br>
+                                    &nbsp;  &nbsp;<img src="{{asset('uploads/category/' . $cat->sub_image)}}" width="280" height="100"><br><br><br>
                             <?php } ?>
 
 

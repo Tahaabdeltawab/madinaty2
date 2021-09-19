@@ -201,7 +201,7 @@
                                                               if( $image == '' && $image == NULL){?>
                                                                     <h5>لا يوجد</h5>
                                                               <?php }else{?>
-                                                              <img src="uploads/products/{{$pro->image}}" width="80" height="80">
+                                                              <img src="{{asset('uploads/products/' . $pro->image)}}" width="80" height="80">
                                                               <?php } ?>
                                                         </td>
                                                         <td>{{$pro->name_ar}}</td>

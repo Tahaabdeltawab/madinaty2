@@ -4,13 +4,13 @@ $config = [
     'locale' => ($locale = app()->getLocale()),
     'locales' => config('app.locales'),
     'githubAuth' => config('services.github.client_id'),
-    // 'asset' => asset('')
+    'asset' => asset('')
 ];
 $appJs = mix('dist/js/app.js');
 $appCss = mix('dist/css/app.css');
 @endphp
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" dir="rtl">
 
 <head>
   <meta charset="utf-8">
@@ -21,7 +21,7 @@ $appCss = mix('dist/css/app.css');
   <link rel="stylesheet" href="{{ (str_starts_with($appCss, '//') ? 'http:' : '') . $appCss }}">
 </head>
 
-<body>
+<body dir="rtl">
   <div id="app"></div>
 
   <script>

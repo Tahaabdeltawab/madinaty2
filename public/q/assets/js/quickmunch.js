@@ -276,6 +276,7 @@ Version: 1.0.0
             $('.md-modal').removeClass('md-show');
         }
     });
+    //
     $('.parent-megamenu').click(function() {
         $('.parent-megamenu>a>i').toggleClass('fa-bars');
         $('.parent-megamenu>a>i').toggleClass('fa-times');
@@ -289,6 +290,7 @@ Version: 1.0.0
     $(".header .right-side .cart-btn.cart-dropdown").click(function() {
         $(".cart-dropdown .cart-detail-box").toggleClass("show");
     });
+    //
     $(".delivery-add").click(function() {
         $(".location-picker").toggleClass("open");
         $(".delivery-add").toggleClass("open");

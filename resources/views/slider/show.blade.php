@@ -55,7 +55,7 @@
                                                   if( $image == '' && $image == NULL){
 
                                                   }else{?>
-                                                  <img src="uploads/slider/{{$img->image}}" width="100" height="80">
+                                                  <img src="{{asset('uploads/slider/' . $img->image)}}" width="100" height="80">
                                                   <?php } ?>
                                             </td>
 

@@ -8,3 +8,11 @@ export const UPDATE_USER = 'UPDATE_USER'
 
 // lang.js
 export const SET_LOCALE = 'SET_LOCALE'
+
+// home.js
+export const FETCH_HOME_SUCCESS = 'FETCH_HOME_SUCCESS'
+
+// location.js
+export const FETCH_CITIES_SUCCESS = 'FETCH_CITIES_SUCCESS'
+export const FETCH_AREAS_SUCCESS = 'FETCH_AREAS_SUCCESS'
+export const UPDATE_USER_LOCATION_SUCCESS = 'UPDATE_USER_LOCATION_SUCCESS'

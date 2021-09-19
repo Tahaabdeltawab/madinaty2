@@ -13,7 +13,14 @@ export default {
 components: {
     Home
   },
-
+methods: {
+    async home(){
+      await this.$store.dispatch('home/fetchHome')
+    }
+  },
+  created() {
+    this.home()
+  },
   metaInfo () {
     return { title: this.$t('home') }
   },

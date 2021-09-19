@@ -214,7 +214,9 @@ class AuthController extends Controller
                                                                         ]);
 
             $msg = $lang == 'ar' ? " تم تغير مكانك بنجاح" : "Location is updated";
-
+            
+            if($request->src == 'web')
+            return $this->apiResponseData(  UserResource::make(User::where('id' , auth()->User()->id)->first()) , $msg);
             return $this->apiResponseMessage( 0, $msg);
                                                             
                                                                         

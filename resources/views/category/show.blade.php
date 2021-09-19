@@ -63,7 +63,7 @@
                                                   if( $image == '' && $image == NULL){
 
                                                   }else{?>
-                                                  <img src="uploads/category/{{$cat->image}}" width="80" height="80">
+                                                  <img src="{{asset('uploads/category/' . $cat->image)}}" width="80" height="80">
                                                   <?php } ?>
                                             </td>
                                             <td>

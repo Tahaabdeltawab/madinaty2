@@ -1,150 +1,31 @@
 <template>
   <!-- footer -->
   <div>
-    <!-- <div class="footer-top section-padding bg-black">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-2 col-sm-4 col-6 mb-sm-20">
-            <div class="icon-box">
-              <span class="text-light-green"
-                ><i class="flaticon-credit-card-1"></i
-              ></span>
-              <span class="text-custom-white">100% Payment<br />Secured</span>
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-4 col-6 mb-sm-20">
-            <div class="icon-box">
-              <span class="text-light-green"
-                ><i class="flaticon-wallet-1"></i
-              ></span>
-              <span class="text-custom-white"
-                >Support lots<br />
-                of Payments</span
-              >
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-4 col-6 mb-sm-20">
-            <div class="icon-box">
-              <span class="text-light-green"
-                ><i class="flaticon-help"></i
-              ></span>
-              <span class="text-custom-white"
-                >24 hours / 7 days<br />Support</span
-              >
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-4 col-6">
-            <div class="icon-box">
-              <span class="text-light-green"
-                ><i class="flaticon-truck"></i
-              ></span>
-              <span class="text-custom-white">Free Delivery<br />with $50</span>
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-4 col-6">
-            <div class="icon-box">
-              <span class="text-light-green"
-                ><i class="flaticon-guarantee"></i
-              ></span>
-              <span class="text-custom-white">Best Price<br />Guaranteed</span>
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-4 col-6">
-            <div class="icon-box">
-              <span class="text-light-green"
-                ><i class="flaticon-app-file-symbol"></i
-              ></span>
-              <span class="text-custom-white">Mobile Apps<br />Ready</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <footer class="section-padding bg-light-theme pt-0 u-line bg-black">
-      <!-- <div class="u-line instagram-slider swiper-container">
-        <ul class="hm-list hm-instagram swiper-wrapper">
-          <li class="swiper-slide">
-            <a href="#"
-              ><img
-                src="q/assets/img/restaurants/250x200/insta-3.jpg"
-                alt="instagram"
-            /></a>
-          </li>
-          <li class="swiper-slide">
-            <a href="#"
-              ><img
-                src="q/assets/img/restaurants/250x200/insta-1.jpg"
-                alt="instagram"
-            /></a>
-          </li>
-          <li class="swiper-slide">
-            <a href="#"
-              ><img
-                src="q/assets/img/restaurants/250x200/insta-2.jpg"
-                alt="instagram"
-            /></a>
-          </li>
-          <li class="swiper-slide">
-            <a href="#"
-              ><img
-                src="q/assets/img/restaurants/250x200/insta-4.jpg"
-                alt="instagram"
-            /></a>
-          </li>
-          <li class="swiper-slide">
-            <a href="#"
-              ><img
-                src="q/assets/img/restaurants/250x200/insta-5.jpg"
-                alt="instagram"
-            /></a>
-          </li>
-          <li class="swiper-slide">
-            <a href="#"
-              ><img
-                src="q/assets/img/restaurants/250x200/insta-6.jpg"
-                alt="instagram"
-            /></a>
-          </li>
-          <li class="swiper-slide">
-            <a href="#"
-              ><img
-                src="q/assets/img/restaurants/250x200/insta-7.jpg"
-                alt="instagram"
-            /></a>
-          </li>
-          <li class="swiper-slide">
-            <a href="#"
-              ><img
-                src="q/assets/img/restaurants/250x200/insta-8.jpg"
-                alt="instagram"
-            /></a>
-          </li>
-        </ul>
-      </div> -->
       <div class="container-fluid">
         <div class="row">
           <div class="col-xl col-lg-4 col-md-4 col-sm-6">
             <div class="footer-contact">
-              <h6 class="text-custom-white">Need Help</h6>
+              <h6 class="text-custom-white">{{$t('Need Help')}}</h6>
               <ul>
                 <li class="fw-600">
-                  <span class="text-light-white">Call Us</span>
+                  <span class="text-light-white">{{$t('Call Us')}}</span>
                   <a href="tel:" class="text-custom-white"
                     >+(347) 123 456 789</a
                   >
                 </li>
                 <li class="fw-600">
-                  <span class="text-light-white">Email Us</span>
+                  <span class="text-light-white">{{$t('Email Us')}}</span>
                   <a href="mailto:" class="text-custom-white"
-                    >demo@domain.com</a
+                    >{{$t('demo@domain.com')}}</a
                   >
                 </li>
                 <li class="fw-600">
-                  <span class="text-light-white">Join our twitter</span>
+                  <span class="text-light-white">{{$t('Join our twitter')}}</span>
                   <a href="#" class="text-custom-white">@quickmunch</a>
                 </li>
                 <li class="fw-600">
-                  <span class="text-light-white">Join our instagram</span>
+                  <span class="text-light-white">{{$t('Join our instagram')}}</span>
                   <a href="#" class="text-custom-white">@quickmunch</a>
                 </li>
               </ul>
@@ -152,76 +33,76 @@
           </div>
           <div class="col-xl col-lg-4 col-md-4 col-sm-6">
             <div class="footer-links">
-              <h6 class="text-custom-white">Get to Know Us</h6>
+              <h6 class="text-custom-white">{{$t('Get to Know Us')}}</h6>
               <ul>
                 <li>
-                  <a href="#" class="text-light-white fw-600">About Us</a>
+                  <a href="#" class="text-light-white fw-600">{{$t('About Us')}}</a>
                 </li>
-                <li><a href="#" class="text-light-white fw-600">Blog</a></li>
+                <li><a href="#" class="text-light-white fw-600">{{$t('Blog')}}</a></li>
                 <li>
-                  <a href="#" class="text-light-white fw-600">Socialize</a>
+                  <a href="#" class="text-light-white fw-600">{{$t('Socialize')}}</a>
                 </li>
                 <li>
-                  <a href="#" class="text-light-white fw-600">Quickmunch</a>
+                  <a href="#" class="text-light-white fw-600">{{$t('Quickmunch')}}</a>
                 </li>
-                <li><a href="#" class="text-light-white fw-600">Perks</a></li>
+                <li><a href="#" class="text-light-white fw-600">{{$t('Perks')}}</a></li>
               </ul>
             </div>
           </div>
           <div class="col-xl col-lg-4 col-md-4 col-sm-6">
             <div class="footer-links">
-              <h6 class="text-custom-white">Let Us Help You</h6>
+              <h6 class="text-custom-white">{{$t('Let Us Help You')}}</h6>
               <ul>
                 <li>
                   <a href="#" class="text-light-white fw-600"
-                    >Account Details</a
+                    >{{$t('Account Details')}}</a
                   >
                 </li>
                 <li>
-                  <a href="#" class="text-light-white fw-600">Order History</a>
+                  <a href="#" class="text-light-white fw-600">{{$t('Order History')}}</a>
                 </li>
                 <li>
                   <a href="#" class="text-light-white fw-600"
-                    >Find restaurant</a
+                    >{{$t('Find restaurant')}}</a
                   >
                 </li>
-                <li><a href="#" class="text-light-white fw-600">Login</a></li>
+                <li><a href="#" class="text-light-white fw-600">{{$t('Login')}}</a></li>
                 <li>
-                  <a href="#" class="text-light-white fw-600">Track order</a>
+                  <a href="#" class="text-light-white fw-600">{{$t('Track order')}}</a>
                 </li>
               </ul>
             </div>
           </div>
           <div class="col-xl col-lg-4 col-md-4 col-sm-6">
             <div class="footer-links">
-              <h6 class="text-custom-white">Doing Business</h6>
+              <h6 class="text-custom-white">{{$t('Doing Business')}}</h6>
               <ul>
                 <li>
                   <a href="#" class="text-light-white fw-600"
-                    >Suggest an Idea</a
+                    >{{$t('Suggest an Idea')}}</a
                   >
                 </li>
                 <li>
                   <a href="#" class="text-light-white fw-600"
-                    >Be a Partner restaurant</a
+                    >{{$t('Be a Partner restaurant')}}</a
                   >
                 </li>
                 <li>
                   <a href="#" class="text-light-white fw-600"
-                    >Create an Account</a
+                    >{{$t('Create an Account')}}</a
                   >
                 </li>
-                <li><a href="#" class="text-light-white fw-600">Help</a></li>
+                <li><a href="#" class="text-light-white fw-600">{{$t('Help')}}</a></li>
               </ul>
             </div>
           </div>
           <div class="col-xl col-lg-4 col-md-4 col-sm-6">
             <div class="footer-links">
-              <h6 class="text-custom-white">Download Apps</h6>
+              <h6 class="text-custom-white">{{$t('Download Apps')}}</h6>
               <div class="appimg">
                 <a href="#">
                   <img
-                    src="q/assets/img/playstore.jpg"
+                    :src="asset('q/assets/img/playstore.jpg')"
                     class="img-fluid"
                     alt="app logo"
                   />
@@ -230,7 +111,7 @@
               <div class="appimg">
                 <a href="#">
                   <img
-                    src="q/assets/img/appstore.jpg"
+                    :src="asset('q/assets/img/appstore.jpg')"
                     class="img-fluid"
                     alt="app logo"
                   />
@@ -240,7 +121,7 @@
           </div>
           <div class="col-xl col-lg-4 col-md-4 col-sm-6">
             <div class="footer-contact">
-              <h6 class="text-custom-white">Newsletter</h6>
+              <h6 class="text-custom-white">{{$t('Newsletter')}}</h6>
               <form class="subscribe_form">
                 <div class="input-group">
                   <input
@@ -260,7 +141,7 @@
           </div>
           <div class="col-md-12">
             <div class="ft-social-media">
-              <h6 class="text-center text-light-black">Follow us</h6>
+              <h6 class="text-center text-light-black">{{$t('Follow us')}}</h6>
               <ul>
                 <li>
                   <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -288,18 +169,18 @@
         <div class="row">
           <div class="col-lg-4">
             <div class="payment-logo mb-md-20">
-              <span class="text-light-white fs-14 mr-3">We are accept</span>
+              <span class="text-light-white fs-14 mr-3">{{$t('We are accept')}}</span>
               <div class="payemt-icon">
-                <img src="q/assets/img/card-front.jpg" alt="#" />
-                <img src="q/assets/img/visa.jpg" alt="#" />
-                <img src="q/assets/img/amex-card-front.png" alt="#" />
-                <img src="q/assets/img/mastercard.png" alt="#" />
+                <img :src="asset('q/assets/img/card-front.jpg')" alt="#" />
+                <img :src="asset('q/assets/img/visa.jpg')" alt="#" />
+                <img :src="asset('q/assets/img/amex-card-front.png')" alt="#" />
+                <img :src="asset('q/assets/img/mastercard.png')" alt="#" />
               </div>
             </div>
           </div>
           <div class="col-lg-4 text-center medewithlove align-self-center">
             <a href="https://metropolitanhost.com/" class="text-custom-white"
-              >Made with Real <i class="fas fa-heart"></i> Metropolitanthemes</a
+              >{{$t('Made with Real ')}}<i class="fas fa-heart"></i> Metropolitanthemes</a
             >
           </div>
           <div class="col-lg-4">
@@ -307,7 +188,7 @@
               <span class="text-light-white"
                 >©
                 <a href="https://metropolitanhost.com/" class="text-light-white"
-                  >Metropolitanthemes</a
+                  >{{$t('Metropolitanthemes')}}</a
                 >
                 - 2020 | All Right Reserved</span
               >

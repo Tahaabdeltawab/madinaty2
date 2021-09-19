@@ -87,7 +87,7 @@ Route::get('allCategory_places' , [PlaceController::class , 'allCategory_places'
 
 
 Route::group([
-    'middleware' => 'jwt.auth', 
+    'middleware' => 'auth:api', 
 ], function($router) {
 
     Route::get('show_user_ByID' , [AuthController::class , 'show_user_ByID']);
@@ -130,7 +130,7 @@ Route::group([
 
 
 Route::group([
-    'middleware' => 'jwt.auth', 
+    'middleware' => 'auth:api', 
     'prefix'  => "Product"
 ], function($router) {
 
@@ -142,7 +142,7 @@ Route::group([
 
 
 Route::group([
-    'middleware' => 'jwt.auth', 
+    'middleware' => 'auth:api', 
     'prefix'  => "Service"
 ], function($router) {
 
@@ -154,7 +154,7 @@ Route::group([
 
 
 Route::group([
-    'middleware' => 'jwt.auth', 
+    'middleware' => 'auth:api', 
     'prefix'  => "Offer"
 ], function($router) {
 
@@ -166,7 +166,7 @@ Route::group([
 
 
 Route::group([
-    'middleware' => 'jwt.auth', 
+    'middleware' => 'auth:api', 
     'prefix'  => "AboutUs"
 ], function($router) {
 

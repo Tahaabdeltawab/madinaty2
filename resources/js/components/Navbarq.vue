@@ -8,8 +8,9 @@
           <div class="col-12 mainNavCol">
             <!-- logo -->
             <div class="logo mainNavCol">
-              <a routerLink="/">
-                <img src="q/assets/img/logo.png" class="img-fluid" alt="Logo" />
+              <a href="#">
+                <!-- <img :src="asset('q/assets/img/logo.png')" class="img-fluid" alt="Logo" /> -->
+                <img :src="asset('q/assets/img/logo.png')" class="img-fluid" alt="Logo" />
               </a>
             </div>
             <!-- logo -->
@@ -20,14 +21,15 @@
                   <div class="col-lg-6 col-md-5">
                     <a
                       href="javascript:void(0)"
-                      class="delivery-add p-relative"
+                      @click="location"
+                      :class="locationPickerClass + ' p-relative'"
                     >
                       <span class="icon"
                         ><i class="fas fa-map-marker-alt"></i
                       ></span>
-                      <span class="address">Brooklyn, NY</span>
+                      <span class="address">{{$t('Brooklyn, NY')}}</span>
                     </a>
-                    <div class="location-picker">
+                    <div :class="locationPickerClass + ' location-picker'">
                       <input
                         type="text"
                         class="form-control"
@@ -51,18 +53,18 @@
               </form>
             </div>
             <div class="right-side fw-700 mainNavCol">
-              <div class="gem-points">
+               <!--   <div class="gem-points">
                 <a href="javascript:void(0)">
                   <i class="fas fa-concierge-bell"></i>
-                  <span>Order Now</span>
+                  <span>{{$t('Order Now')}}</span>
                 </a>
-              </div>
+              </div> -->
               <div class="catring parent-megamenu">
-                <a href="javascript:void(0)">
-                  <span>Pages <i class="fas fa-caret-down"></i></span>
-                  <i class="fas fa-bars"></i>
+                <a href="javascript:void(0)" @click="megamenu">
+                  <span>{{$t('Pages ')}}<i class="fas fa-caret-down"></i></span>
+                  <i :class="'fas ' + megamenuIClass"></i>
                 </a>
-                <div class="megamenu">
+                <div :class="megamenuClass + ' megamenu'">
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="row">
@@ -70,14 +72,14 @@
                           <div class="ex-collection-box h-100">
                             <a href="#">
                               <img
-                                src="q/assets/img/nav-1.jpg"
+                                :src="asset('q/assets/img/nav-1.jpg')"
                                 class="img-fluid full-width h-100"
                                 alt="image"
                               />
                             </a>
                             <div class="category-type overlay padding-15">
-                              <a routerLink="/restaurant" class="category-btn"
-                                >Top rated</a
+                              <a href="#" class="category-btn"
+                                >{{$t('Top rated')}}</a
                               >
                             </div>
                           </div>
@@ -89,54 +91,54 @@
                                 <div class="menu-title">
                                   <h6 class="cat-name">
                                     <a href="#" class="text-light-black"
-                                      >Home Pages</a
+                                      >{{$t('Home Pages')}}</a
                                     >
                                   </h6>
                                 </div>
                                 <ul>
                                   <li>
                                     <a
-                                      routerLink="/"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Landing Page</a
+                                      >{{$t('Landing Page')}}</a
                                     >
                                   </li>
                                   <li>
                                     <a
-                                      routerLink="/homepage1"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Home Page 1</a
+                                      >{{$t('Home Page 1')}}</a
                                     >
                                   </li>
                                   <li>
                                     <a
-                                      routerLink="/homepage2"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Home Page 2</a
+                                      >{{$t('Home Page 2')}}</a
                                     >
                                   </li>
                                   <li>
                                     <a
-                                      routerLink="/homepage3"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Home Page 3</a
+                                      >{{$t('Home Page 3')}}</a
                                     >
                                   </li>
                                   <li>
                                     <a
-                                      routerLink="/homepage4"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Home Page 4</a
+                                      >{{$t('Home Page 4')}}</a
                                     >
                                   </li>
                                 </ul>
@@ -147,54 +149,54 @@
                                 <div class="menu-title">
                                   <h6 class="cat-name">
                                     <a href="#" class="text-light-black"
-                                      >Inner Pages</a
+                                      >{{$t('Inner Pages')}}</a
                                     >
                                   </h6>
                                 </div>
                                 <ul>
                                   <li>
                                     <a
-                                      routerLink="/blog"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Blog Grid View</a
+                                      >{{$t('Blog Grid View')}}</a
                                     >
                                   </li>
                                   <li>
                                     <a
-                                      routerLink="/blog-style-2"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Blog Grid View 2</a
+                                      >{{$t('Blog Grid View 2')}}</a
                                     >
                                   </li>
                                   <li>
                                     <a
-                                      routerLink="/blog-details"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Blog Details</a
+                                      >{{$t('Blog Details')}}</a
                                     >
                                   </li>
                                   <li>
                                     <a
-                                      routerLink="/ex-deals"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Ex Deals</a
+                                      >{{$t('Ex Deals')}}</a
                                     >
                                   </li>
                                   <li>
                                     <a
-                                      routerLink="/about"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >About Us</a
+                                      >{{$t('About Us')}}</a
                                     >
                                   </li>
                                 </ul>
@@ -205,54 +207,54 @@
                                 <div class="menu-title">
                                   <h6 class="cat-name">
                                     <a href="#" class="text-light-black"
-                                      >Related Pages</a
+                                      >{{$t('Related Pages')}}</a
                                     >
                                   </h6>
                                 </div>
                                 <ul>
                                   <li>
                                     <a
-                                      routerLink="/restaurant"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Restaurant</a
+                                      >{{$t('Restaurant')}}</a
                                     >
                                   </li>
                                   <li>
                                     <a
-                                      routerLink="/restaurant-style-1"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Restaurant 1</a
+                                      >{{$t('Restaurant 1')}}</a
                                     >
                                   </li>
                                   <li>
                                     <a
-                                      routerLink="/restaurant-style-2"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Restaurant 2</a
+                                      >{{$t('Restaurant 2')}}</a
                                     >
                                   </li>
                                   <li>
                                     <a
-                                      routerLink="/add-restaurant"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Add Restaurant</a
+                                      >{{$t('Add Restaurant')}}</a
                                     >
                                   </li>
                                   <li>
                                     <a
-                                      routerLink="/listview"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >List View</a
+                                      >{{$t('List View')}}</a
                                     >
                                   </li>
                                 </ul>
@@ -263,54 +265,54 @@
                                 <div class="menu-title">
                                   <h6 class="cat-name">
                                     <a href="#" class="text-light-black"
-                                      >Additional Pages</a
+                                      >{{$t('Additional Pages')}}</a
                                     >
                                   </h6>
                                 </div>
                                 <ul>
                                   <li>
                                     <a
-                                      routerLink="/login"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Login & Signup</a
+                                      >{{$t('Login & Signup')}}</a
                                     >
                                   </li>
                                   <li>
                                     <a
-                                      routerLink="/contact"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Contact</a
+                                      >{{$t('Contact')}}</a
                                     >
                                   </li>
                                   <li>
                                     <a
-                                      routerLink="/checkout"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Checkout</a
+                                      >{{$t('Checkout')}}</a
                                     >
                                   </li>
                                   <li>
                                     <a
-                                      routerLink="/orderdetails"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Order Details</a
+                                      >{{$t('Order Details')}}</a
                                     >
                                   </li>
                                   <li>
                                     <a
-                                      routerLink="/geolocator"
+                                      href="#"
                                       class="text-light-white fw-500"
                                       routerLinkActive="active"
                                       
-                                      >Geo Locator</a
+                                      >{{$t('Geo Locator')}}</a
                                     >
                                   </li>
                                 </ul>
@@ -332,28 +334,28 @@
               <!-- mobile search -->
               <!-- user account -->
               <div class="user-details p-relative">
-                <a href="javascript:void(0)" class="text-light-white fw-500">
+                <a href="javascript:void(0)" @click="userDropdownClass = userDropdownClass == 'show' ? '' : 'show'" class="text-light-white fw-500">
                   <img
-                    src="q/assets/img/user-1.png"
+                    :src="asset('q/assets/img/user-1.png')"
                     class="rounded-circle"
                     alt="userimg"
                   />
-                  <span>Hi, Kate</span>
+                  <span>{{$t('Hi, Kate')}}</span>
                 </a>
-                <div class="user-dropdown">
+                <div :class="userDropdownClass + ' user-dropdown'">
                   <ul>
                     <li>
-                      <a routerLink="/orderdetails">
+                      <a href="#">
                         <div class="icon"><i class="flaticon-rewind"></i></div>
-                        <span class="details">Past Orders</span>
+                        <span class="details">{{$t('Past Orders')}}</span>
                       </a>
                     </li>
                     <li>
-                      <a routerLink="/orderdetails">
+                      <a href="#">
                         <div class="icon">
                           <i class="flaticon-takeaway"></i>
                         </div>
-                        <span class="details">Upcoming Orders</span>
+                        <span class="details">{{$t('Upcoming Orders')}}</span>
                       </a>
                     </li>
                     <li>
@@ -361,31 +363,31 @@
                         <div class="icon">
                           <i class="flaticon-breadbox"></i>
                         </div>
-                        <span class="details">Saved</span>
+                        <span class="details">{{$t('Saved')}}</span>
                       </a>
                     </li>
                     <li>
                       <a href="javascript:void(0)">
                         <div class="icon"><i class="flaticon-gift"></i></div>
-                        <span class="details">Gift cards</span>
+                        <span class="details">{{$t('Gift cards')}}</span>
                       </a>
                     </li>
                     <li>
                       <a href="javascript:void(0)">
                         <div class="icon"><i class="flaticon-refer"></i></div>
-                        <span class="details">Refer a friend</span>
+                        <span class="details">{{$t('Refer a friend')}}</span>
                       </a>
                     </li>
                     <li>
                       <a href="javascript:void(0)">
                         <div class="icon"><i class="flaticon-diamond"></i></div>
-                        <span class="details">Perks</span>
+                        <span class="details">{{$t('Perks')}}</span>
                       </a>
                     </li>
                     <li>
                       <a href="javascript:void(0)">
                         <div class="icon"><i class="flaticon-user"></i></div>
-                        <span class="details">Account</span>
+                        <span class="details">{{$t('Account')}}</span>
                       </a>
                     </li>
                     <li>
@@ -393,41 +395,41 @@
                         <div class="icon">
                           <i class="flaticon-board-games-with-roles"></i>
                         </div>
-                        <span class="details">Help</span>
+                        <span class="details">{{$t('Help')}}</span>
                       </a>
                     </li>
                   </ul>
                   <div class="user-footer">
-                    <span class="text-light-black">Not Jhon?</span>
-                    <a href="javascript:void(0)">Sign Out</a>
+                    <span class="text-light-black">{{$t('Not Jhon?')}}</span>
+                    <a href="javascript:void(0)">{{$t('Sign Out')}}</a>
                   </div>
                 </div>
               </div>
               <!-- mobile search -->
               <!-- user notification -->
               <div class="cart-btn notification-btn">
-                <a href="javascript:void(0)" class="text-light-green fw-700">
+                <a href="javascript:void(0)" @click="notificationDropdownClass = notificationDropdownClass == 'show' ? '' : 'show'" class="text-light-green fw-700">
                   <i class="fas fa-bell"></i>
                   <span class="user-alert-notification"></span>
                 </a>
-                <div class="notification-dropdown">
+                <div :class="notificationDropdownClass + ' notification-dropdown'">
                   <div class="product-detail">
                     <a href="javascript:void(0)">
                       <div class="img-box">
                         <img
-                          src="q/assets/img/shop-1.png"
+                          :src="asset('q/assets/img/shop-1.png')"
                           class="rounded"
                           alt="image"
                         />
                       </div>
                       <div class="product-about">
-                        <p class="text-light-black">Lil Johnny’s</p>
-                        <p class="text-light-white">Spicy Maxican Grill</p>
+                        <p class="text-light-black">{{$t('Lil Johnny’s')}}</p>
+                        <p class="text-light-white">{{$t('Spicy Maxican Grill')}}</p>
                       </div>
                     </a>
                   </div>
                   <div class="rating-box">
-                    <p class="text-light-black">How was your last order ?.</p>
+                    <p class="text-light-black">{{$t('How was your last order ?.')}}</p>
                     <span class="text-dark-white"
                       ><i class="fas fa-star"></i
                     ></span>
@@ -443,31 +445,31 @@
                     <span class="text-dark-white"
                       ><i class="fas fa-star"></i
                     ></span>
-                    <cite class="text-light-white">Ordered 2 days ago</cite>
+                    <cite class="text-light-white">{{$t('Ordered 2 days ago')}}</cite>
                   </div>
                 </div>
               </div>
               <!-- user notification -->
               <!-- user cart -->
               <div class="cart-btn cart-dropdown">
-                <a href="javascript:void(0)" class="text-light-green fw-700">
+                <a href="javascript:void(0)" @click="cartDetailBoxClass = cartDetailBoxClass == 'show' ? '' : 'show'" class="text-light-green fw-700">
                   <i class="fas fa-shopping-bag"></i>
-                  <span class="user-alert-cart">3</span>
+                  <span class="user-alert-cart">{{$t('3')}}</span>
                 </a>
-                <div class="cart-detail-box">
+                <div :class="cartDetailBoxClass + ' cart-detail-box'">
                   <div class="card">
-                    <div class="card-header padding-15">Your Order</div>
+                    <div class="card-header padding-15">{{$t('Your Order')}}</div>
                     <div class="card-body no-padding">
                       <div class="cat-product-box">
                         <div class="cat-product">
                           <div class="cat-name">
                             <a href="javascript:void(0)">
                               <p class="text-light-green">
-                                <span class="text-dark-white">1</span> Chilli
+                                <span class="text-dark-white">{{$t('1')}}</span> Chilli
                                 Chicken
                               </p>
                               <span class="text-light-white"
-                                >small, chilli chicken</span
+                                >{{$t('small, chilli chicken')}}</span
                               >
                             </a>
                           </div>
@@ -494,11 +496,11 @@
                           <div class="cat-name">
                             <a href="javascript:void(0)">
                               <p class="text-light-green">
-                                <span class="text-dark-white">1</span> loaded
+                                <span class="text-dark-white">{{$t('1')}}</span> loaded
                                 cheese
                               </p>
                               <span class="text-light-white"
-                                >small, chilli chicken</span
+                                >{{$t('small, chilli chicken')}}</span
                               >
                             </a>
                           </div>
@@ -525,11 +527,11 @@
                           <div class="cat-name">
                             <a href="javascript:void(0)">
                               <p class="text-light-green">
-                                <span class="text-dark-white">1</span> Tortia
+                                <span class="text-dark-white">{{$t('1')}}</span> Tortia
                                 Chicken
                               </p>
                               <span class="text-light-white"
-                                >small, chilli chicken</span
+                                >{{$t('small, chilli chicken')}}</span
                               >
                             </a>
                           </div>
@@ -554,20 +556,20 @@
                       <div class="item-total">
                         <div class="total-price border-0">
                           <span class="text-dark-white fw-700"
-                            >Items subtotal:</span
+                            >{{$t('Items subtotal:')}}</span
                           >
                           <span class="text-dark-white fw-700">$9.99</span>
                         </div>
                         <div class="empty-bag padding-15">
-                          <a href="javascript:void(0)">Empty bag</a>
+                          <a href="javascript:void(0)">{{$t('Empty bag')}}</a>
                         </div>
                       </div>
                     </div>
                     <div class="card-footer padding-15">
                       <a
-                        routerLink="/checkout"
+                        href="#"
                         class="btn-first green-btn text-custom-white full-width fw-500"
-                        >Proceed to Checkout</a
+                        >{{$t('Proceed to Checkout')}}</a
                       >
                     </div>
                   </div>
@@ -580,29 +582,30 @@
             <div class="mobile-address">
               <a
                 href="javascript:void(0)"
-                class="delivery-add"
+                :class="deliveryAddClass + ' delivery-add'"
+                @click="location"
                 data-toggle="modal"
                 data-target="#address-box"
               >
-                <span class="address">Brooklyn, NY</span>
+                <span class="address">{{$t('Brooklyn, NY')}}</span>
               </a>
             </div>
             <div class="sorting-addressbox">
               <span class="full-address text-light-green"
-                >Brooklyn, NY 10041</span
+                >{{$t('Brooklyn, NY 10041')}}</span
               >
               <div class="btns">
                 <div class="filter-btn">
                   <button type="button">
                     <i class="fas fa-sliders-h text-light-green fs-18"></i>
                   </button>
-                  <span class="text-light-green">Sort</span>
+                  <span class="text-light-green">{{$t('Sort')}}</span>
                 </div>
                 <div class="filter-btn">
                   <button type="button">
                     <i class="fas fa-filter text-light-green fs-18"></i>
                   </button>
-                  <span class="text-light-green">Filter</span>
+                  <span class="text-light-green">{{$t('Filter')}}</span>
                 </div>
               </div>
             </div>
@@ -627,6 +630,13 @@ export default {
 
   data: () => ({
     appName: window.config.appName,
+    locationPickerClass: '',
+    deliveryAddClass: '',
+    megamenuClass: '',
+    userDropdownClass: '',
+    cartDetailBoxClass: '',
+    notificationDropdownClass: '',
+    megamenuIClass: 'fa-bars',
   }),
 
   computed: mapGetters({
@@ -634,6 +644,9 @@ export default {
   }),
 
   methods: {
+    asset(url){
+      return window.config.asset + url;
+    },
     async logout() {
       // Log out the user.
       await this.$store.dispatch("auth/logout");
@@ -641,9 +654,18 @@ export default {
       // Redirect to login.
       this.$router.push({ name: "login" });
     },
+    megamenu(){
+      this.megamenuIClass = this.megamenuIClass == 'fa-bars' ? 'fa-times' : 'fa-bars';
+      this.megamenuClass = this.megamenuClass == 'show' ? '' : 'show';
+    },
+    location(){
+      this.locationPickerClass = this.locationPickerClass == 'open' ? '' : 'open';
+      this.deliveryAddClass = this.deliveryAddClass == 'open' ? '' : 'open';
+    },
   },
 };
 </script>
+
 
 <style scoped>
 </style>

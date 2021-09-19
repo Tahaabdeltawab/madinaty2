@@ -63,7 +63,7 @@
                                                   if( $image == '' && $image == NULL){
 
                                                   }else{?>
-                                                  <img src="uploads/category/{{$cat->image}}" width="80" height="80">
+                                                  <img src="{{asset('uploads/category/' . $cat->image)}}" width="80" height="80">
                                                   <?php } ?>
                                             </td>
                                             <td>
@@ -72,7 +72,7 @@
                                                   if( $subimage == '' && $subimage == NULL){
 
                                                   }else{?>
-                                                  <img src="uploads/category/{{$cat->sub_image}}" width="80" height="80">
+                                                  <img src="{{asset('uploads/category/' . $cat->sub_image)}}" width="80" height="80">
                                                   <?php } ?>
                                             </td>
                                             <td>{{$cat->created_at}}</td>
