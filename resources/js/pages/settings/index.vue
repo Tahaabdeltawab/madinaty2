@@ -1,11 +1,11 @@
 <template>
-  <div class="row justify-content-center">
+  <div class="row justify-content-center profile-page">
     <div class="col-md-3 mb-3">
       <card :title="$t('settings')" class="settings-card">
         <ul class="nav flex-column nav-pills">
           <li v-for="tab in tabs" :key="tab.route" class="nav-item">
             <router-link :to="{ name: tab.route }" class="nav-link" active-class="active">
-              <fa :icon="tab.icon" fixed-width />
+                <b-icon :icon="tab.icon" fixed-width font-scale="1.5"></b-icon>
               {{ tab.name }}
             </router-link>
           </li>
@@ -29,12 +29,17 @@ export default {
     tabs () {
       return [
         {
-          icon: 'user',
+          icon: 'person-fill',
           name: this.$t('profile'),
           route: 'settings.profile'
         },
         {
-          icon: 'lock',
+          icon: 'map-fill',
+          name: this.$t('location'),
+          route: 'settings.location'
+        },
+        {
+          icon: 'lock-fill',
           name: this.$t('password'),
           route: 'settings.password'
         }
@@ -48,4 +53,8 @@ export default {
 .settings-card .card-body {
   padding: 0;
 }
+ .profile-page {
+    margin-top: 10%;
+    margin-bottom: 10%;
+  }
 </style>

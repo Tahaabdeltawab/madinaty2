@@ -52,9 +52,14 @@ export default {
 
   methods: {
     async update () {
-      await this.form.patch('/api/settings/password')
+      if(this.form.password === this.form.password_confirmation){
+        await this.form.patch('/api/settings/password')
+        this.form.reset()
+      }
+      else{
+        alert(this.$t('Password and password confirmation are not identical'));
+      }
 
-      this.form.reset()
     }
   }
 }

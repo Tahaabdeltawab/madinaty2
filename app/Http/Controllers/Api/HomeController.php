@@ -18,30 +18,34 @@ class HomeController extends Controller
     public function Home(Request $request){
         $lang = $request->header('lang');
         $area_id = $request->area_id;
-
-        if($request->has('area_id')){
-
-            $subcategory =  SubCategory::select('id' , 'name_ar', 'name_en' , 'image')->get();
-
-            $places = Place::select('id' , 'name_ar','name_en' , 'image')->where([['area_id' , $area_id],['popular_section' , 1]])->limit(6)->get();
-        
-            $subcategory_data = SubCategory::all();
-
+        $needs = explode(',', $request->needs);
+        if($request->needs && array_intersect(['Slider', 'subcategory', 'popular_section', 'all_category'], $needs) ){
+            if(in_array('Slider', $needs))
+            $all["Slider"] = SliderResource::collection(Slider::all());
+            
+            if(in_array('all_category', $needs))
+            $all["all_category"] = SubCategoryResource::collection(SubCategory::select('id' , 'name_ar', 'name_en' , 'image')->get());
+            
+            if(in_array('popular_section', $needs))
+            $all["popular_section"] = PopularPlaceResource::collection(Place::select('id' , 'name_ar','name_en' , 'image')->when($area_id, function ($q) use($area_id){
+                return $q->where('area_id' , $area_id);
+            })->where('popular_section' , 1)->limit(6)->get());
+            
+            if(in_array('subcategory', $needs))
+            $all["subcategory"] = SubCategoryResource::collection(SubCategory::all());
         }else{
-
-            $subcategory = SubCategory::select('id' , 'name_ar','name_en' , 'image')->get();
-
-            $places = Place::select('id' ,'name_ar','name_en' , 'image')->where([['popular_section' , 1]])->limit(6)->get();
-        
-            $subcategory_data = SubCategory::all();
-;
+            $all = [
+                "Slider" => SliderResource::collection(Slider::all()),
+    
+                "all_category" => SubCategoryResource::collection(SubCategory::select('id' , 'name_ar', 'name_en' , 'image')->get()),
+    
+                "popular_section" => PopularPlaceResource::collection(Place::select('id' , 'name_ar','name_en' , 'image')->when($area_id, function ($q) use($area_id){
+                    return $q->where('area_id' , $area_id);
+                })->where('popular_section' , 1)->limit(6)->get()),
+    
+                "subcategory" => SubCategoryResource::collection(SubCategory::all()),
+            ];
         }
-        $all = [
-            "Slider" => SliderResource::collection(Slider::all()),
-            "all_category" => SubCategoryResource::collection($subcategory),
-            "popular_section" => PopularPlaceResource::collection($places),
-            "subcategory" => SubCategoryResource::collection($subcategory_data),
-        ];
         return $this->apiResponseData(  $all , "Home data");
 
     }

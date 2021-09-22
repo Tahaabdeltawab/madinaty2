@@ -55,11 +55,17 @@ export const actions = {
             return data;
         } catch (e) {}
     },
-    async fetchUser({ commit }) {
+    async fetchUser({ commit }, payload = null) {
         try {
-            const { data } = await axios.get('/api/user')
-
-            commit(types.FETCH_USER_SUCCESS, { user: data })
+            let user = null;
+            if(payload == null){
+                
+                const { data } = await axios.get('/api/user')
+                user = data.data;
+            }else{
+                user = payload.user;
+            }
+            commit(types.FETCH_USER_SUCCESS, { user })
         } catch (e) {
             commit(types.FETCH_USER_FAILURE)
         }
@@ -72,7 +78,6 @@ export const actions = {
     async updateUserLocation({ commit }, { city_id, area_id }) {
         try {
             const { data } = await axios.get('/api/update_CityArea?city_id=' + city_id + '&area_id=' + area_id + '&src=web')
-            console.log(data.data);
             let payload = { user: data.data };
             commit(types.UPDATE_USER, payload)
         } catch (e) {

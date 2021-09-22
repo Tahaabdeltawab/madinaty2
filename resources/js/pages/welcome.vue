@@ -1,48 +1,68 @@
 <template>
   <div>
-    <home />
+    <slider />
+    <category-slider />
+    <popular />
+    <categories />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import Home from '~/components/home/Home'
+import { mapGetters } from "vuex";
+import Slider from "~/components/home/Slider";
+import CategorySlider from "~/components/home/CategorySlider.vue";
+import Popular from "~/components/home/Popular";
+import Categories from "~/components/home/Categories";
+
 export default {
   // layout: 'basic',
-
-components: {
-    Home
+  // waitForMe: true => indicates this page should await for a request before rendering. Here the request is fetchHome(). this requires a way to disable the wait after the request finishes which is this.$store.dispatch("general/changeWait", { wait: false });
+  waitForMe: true,
+  middleware: "auth",
+  components: {
+    Slider,
+    CategorySlider,
+    Popular,
+    Categories,
   },
-methods: {
-    async home(){
-      await this.$store.dispatch('home/fetchHome')
-    }
+  methods: {
+    async fetchHome() {
+      // if the home is already loaded in vuex, show the home instantly and don't wait for the request to be finished.
+      if (this.sliders.length) {
+        this.$store.dispatch("general/changeWait", { wait: false });
+        await this.$store.dispatch("home/fetchHome", {area_id: this.user.area_id,});
+      } else {
+        await this.$store.dispatch("home/fetchHome", {area_id: this.user.area_id,});
+        this.$store.dispatch("general/changeWait", { wait: false });
+      }
+    },
   },
-  created() {
-    this.home()
+  async created() {
+    await this.fetchHome();
   },
-  metaInfo () {
-    return { title: this.$t('home') }
+  metaInfo() {
+    return { title: this.$t("home") };
   },
 
   data: () => ({
-    title: window.config.appName
+    title: window.config.appName,
   }),
 
   computed: mapGetters({
-    authenticated: 'auth/check'
-  })
-}
+    user: "auth/user",
+    sliders: "home/sliders",
+  }),
+};
 </script>
 
-<style scoped>
-.top-right {
-  position: absolute;
-  right: 10px;
-  top: 18px;
+<style>
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 15px !important;
 }
-
-.title {
-  font-size: 85px;
+.swiper-button-next,
+.swiper-button-prev {
+  width: 30px !important;
+  height: 30px !important;
 }
 </style>

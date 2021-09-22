@@ -67,7 +67,10 @@ async function beforeEach(to, from, next) {
     }
 
     // Start the loading bar.
-    if (components[components.length - 1].loading !== false) {
+    if (components[0].loading !== false) {
+        if (components[0].waitForMe == true) {
+            store.dispatch("general/changeWait", { wait: true })
+        }
         router.app.$nextTick(() => router.app.$loading.start())
     }
 

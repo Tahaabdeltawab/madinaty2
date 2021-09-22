@@ -29,17 +29,6 @@ $appCss = mix('dist/css/app.css');
 
   </script>
 
-  {{-- <script src="{{ asset('q/assets/js/jquery.min.js') }}"></script>
-  <script src="{{ asset('q/assets/js/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('q/assets/js/jquery.magnific-popup.min.js') }}"></script>
-  <script src="{{ asset('q/assets/js/jquery.nice-select.min.js') }}"></script>
-  <script src="{{ asset('q/assets/js/popper.min.js') }}"></script>
-  <script src="{{ asset('q/assets/js/sticksy.js') }}"></script>
-  <script src="{{ asset('q/assets/js/quickmunch.js') }}"></script> --}}
-  
-  {{-- <script src="{{ asset('q/assets/js/map.js') }}"></script> --}}
-  {{-- <script src="{{ asset('q/assets/js/ion.rangeSlider.min.js') }}"></script> --}}
-  {{-- <script src="{{ asset('q/assets/js/swiper.min.js') }}"></script> --}}
 
   <script src="{{ (str_starts_with($appJs, '//') ? 'http:' : '') . $appJs }}"></script>
 </body>

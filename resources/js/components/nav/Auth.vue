@@ -1,34 +1,55 @@
 <template>
-    <!-- Authenticated -->
-    <li v-if="user" class="nav-item dropdown">
-      <a
-        class="nav-link dropdown-toggle text-dark"
-        href="#"
-        role="button"
-        data-bs-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
+  <!-- Authenticated -->
+  <li v-if="user" class="nav-item dropdown">
+    <a
+      class="nav-link dropdown-toggle text-dark"
+      href="#"
+      role="button"
+      data-bs-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      <!-- <img :src="user.photo_url" class="rounded-circle profile-photo me-1" /> -->
+      {{ user.username }}
+    </a>
+    <div class="dropdown-menu">
+      <router-link
+        :to="{ name: 'settings.profile' }"
+        class="dropdown-item ps-3"
       >
-        <img :src="user.photo_url" class="rounded-circle profile-photo me-1" />
-        {{ user.username }}
-      </a>
-      <div class="dropdown-menu">
-        <router-link
-          :to="{ name: 'settings.profile' }"
-          class="dropdown-item ps-3"
-        >
-          <fa icon="cog" fixed-width />
-          {{ $t("settings") }}
-        </router-link>
+        <fa icon="cog" fixed-width />
+        {{ $t("settings") }}
+      </router-link>
 
-        <div class="dropdown-divider" />
-        <a href="#" class="dropdown-item ps-3" @click.prevent="logout">
-          <fa icon="sign-out-alt" fixed-width />
-          {{ $t("logout") }}
-        </a>
-      </div>
+      <div class="dropdown-divider" />
+      <a href="#" class="dropdown-item ps-3" @click.prevent="logout">
+        <fa icon="sign-out-alt" fixed-width />
+        {{ $t("logout") }}
+      </a>
+    </div>
+  </li>
+  <!-- Guest -->
+  <ul v-else class="navbar-nav mt-2 mt-lg-0">
+    <li class="nav-item">
+      <router-link
+        :to="{ name: 'login' }"
+        class="nav-link"
+        active-class="active"
+      >
+        {{ $t("login") }}
+      </router-link>
     </li>
-   
+    <li class="nav-item">
+      <router-link
+        :to="{ name: 'register' }"
+        class="nav-link"
+        active-class="active"
+      >
+        {{ $t("register") }}
+      </router-link>
+    </li>
+  </ul>
+  <!-- Guest -->
 </template>
 
 <script>
@@ -39,7 +60,7 @@ export default {
   computed: mapGetters({
     user: "auth/user",
   }),
-  mounted(){
+  mounted() {
     // console.log(this.user);
   },
   methods: {
@@ -60,7 +81,8 @@ export default {
   height: 2rem;
   margin: -0.375rem 0;
 }
-li,a{
+li,
+a {
   text-align: right;
 }
 </style>

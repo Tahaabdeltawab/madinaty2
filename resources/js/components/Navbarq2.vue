@@ -28,7 +28,7 @@
           <!-- search -->
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{$t('Search')}}</button>
+            <button class="btn search-button text-custom-white bg-gradient-green my-2 my-sm-0" type="submit"> <i class="fa fa-search"></i></button>
           </form>
           <!-- search -->
 
@@ -38,14 +38,16 @@
             <locale-dropdown />
             <!-- locale -->
 
-            <!-- modal -->
-            <li v-b-modal.locationModal class="nav-item btn location-modal-btn" >{{$t('City')}}</li>
-            <location-modal />
-            <!-- modal -->
-            
-            <!-- notification -->
-            <notifications-dropdown />
-            <!-- notification -->
+            <template v-if="user">
+              <!-- modal -->
+              <li v-b-modal.locationModal class="nav-item btn location-modal-btn" >{{user.area_name || $t('City')}}</li>
+              <location-modal />
+              <!-- modal -->
+              
+              <!-- notification -->
+              <notifications-dropdown />
+              <!-- notification -->  
+            </template>
             
             <auth />
           </ul>
@@ -98,9 +100,9 @@ export default {
 }
 
 .header2{
-  position: fixed;
+  position: relative;
   left: 0;
-  z-index: 10;
+  z-index: 10000;
   width: 100%;
   height: 60px;
   transform: translateZ(0);

@@ -56,22 +56,22 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
      *
      * @var array
      */
-    protected $appends = [
-        'photo_url',
-    ];
+    // protected $appends = [
+    //     'photo_url',
+    // ];
 
     /**
      * Get the profile photo URL attribute.
      *
      * @return string
      */
-    public function getPhotoUrlAttribute()
+    /* public function getPhotoUrlAttribute()
     {
         return vsprintf('https://www.gravatar.com/avatar/%s.jpg?s=200&d=%s', [
             md5(strtolower($this->email)),
             $this->name ? urlencode("https://ui-avatars.com/api/$this->name") : 'mp',
         ]);
-    }
+    } */
 
     /**
      * Get the oauth providers.

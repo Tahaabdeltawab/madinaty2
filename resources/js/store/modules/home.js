@@ -20,19 +20,18 @@ export const getters = {
 // mutations
 export const mutations = {
     [types.FETCH_HOME_SUCCESS](state, { home }) {
-        state.sliders = home.Slider
-        state.categories = home.all_category
-        state.populars = home.popular_section
-        state.subcategories = home.subcategory
+        state.sliders = home.Slider || state.sliders
+        state.categories = home.all_category || state.categories
+        state.populars = home.popular_section || state.populars
+        state.subcategories = home.subcategory || state.subcategories
     },
 }
 
 // actions
 export const actions = {
-    async fetchHome({ commit }) {
+    async fetchHome({ commit }, {area_id, needs}) {
         try {
-            const { data } = await axios.get('/api/Home')
-            console.log(data.data);
+            const { data } = await axios.get('/api/Home?area_id=' + area_id + (needs ? '&needs=' + needs : ''))
             commit(types.FETCH_HOME_SUCCESS, { home: data.data })
         } catch (e) {
             // commit(types.FETCH_HOME_FAILURE)

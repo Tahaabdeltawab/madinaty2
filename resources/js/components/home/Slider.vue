@@ -40,13 +40,13 @@ export default {
         autoplay: {
           delay: 3500,
           stopOnLastSlide: false,
-          disableOnInteraction: true
+          // disableOnInteraction: true
         },
-        slidesPerView: "auto",
+        // slidesPerView: "auto",
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
-        },
+        }, 
       },
     };
   },

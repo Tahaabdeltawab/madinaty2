@@ -22,16 +22,6 @@
                 {{category.name_ar}}
               </span>
             </a>
-           <!--  <a href="#" class="categories">
-              <div class="icon text-custom-white bg-light-green">
-                <img
-                  :src="category.sub_image"
-                  class="rounded-circle"
-                  alt="categories"
-                />
-              </div>
-              <span class="text-light-black cat-name">{{category.name_ar}}</span>
-            </a> -->
           </swiper-slide>
           <div class="swiper-button-next" slot="button-next"></div>
           <div class="swiper-button-prev" slot="button-prev"></div>
@@ -103,22 +93,20 @@ export default {
 .tab {
   width: auto!important;
 }
-.tab a.active {
-
-}
 .tab a:hover {
-    background-color: #367bd6;
+    background-image: linear-gradient(to bottom, #499a14, #476d2d);
     color: #fff;
+    /* transition: 0.3s !important; */
 }
 .tab a {
-   background-color: #ccc;
+   background-color: #eee;
     color: #000;
     float: left;
     border: none;
     outline: none;
     cursor: pointer;
     padding: 13px 24px;
-    transition: 0.3s;
+    /* transition: 0.3s !important; */
     font-size: 15px;
     font-weight: 600;
     margin: 5px;
@@ -127,7 +115,6 @@ export default {
   width: 24px!important;
 }
 .spann {
-    /* width: 169px; */
     text-align: center;
     font-size: 15px;
     color: #141515;

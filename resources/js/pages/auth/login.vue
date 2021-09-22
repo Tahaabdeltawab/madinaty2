@@ -1,14 +1,14 @@
 <template>
-  <div class="row">
+  <div class="row login-page">
     <div class="col-lg-7 m-auto">
       <card :title="$t('login')">
         <form @submit.prevent="login" @keydown="form.onKeydown($event)">
           <!-- Email -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">{{ $t('email') }}</label>
+            <label class="col-md-3 col-form-label text-md-end">{{ $t('email or phone') }}</label>
             <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
-              <has-error :form="form" field="email" />
+              <input v-model="form.phone" :class="{ 'is-invalid': form.errors.has('phone') }" class="form-control" type="text" name="phone">
+              <has-error :form="form" field="phone" />
             </div>
           </div>
 
@@ -31,6 +31,10 @@
 
               <router-link :to="{ name: 'password.request' }" class="small ms-auto my-auto">
                 {{ $t('forgot_password') }}
+              </router-link>
+
+              <router-link :to="{ name: 'register' }" class="small mr-auto my-auto">
+                {{ $t("Don't have an account? register a new one") }}
               </router-link>
             </div>
           </div>
@@ -70,7 +74,7 @@ export default {
 
   data: () => ({
     form: new Form({
-      email: '',
+      phone: '',
       password: ''
     }),
     remember: false
@@ -79,19 +83,24 @@ export default {
   methods: {
     async login () {
       // Submit the form.
-      const { data } = await this.form.post('/api/login')
+      const { data } = await this.form.post('/api/app_login')
+      if(data.error == 0){  
+        const user = data.data;
+        // Save the token.
+        this.$store.dispatch('auth/saveToken', {
+          token: user.token,
+          remember: this.remember
+        })
 
-      // Save the token.
-      this.$store.dispatch('auth/saveToken', {
-        token: data.token,
-        remember: this.remember
-      })
+        // Fetch the user.
+        await this.$store.dispatch('auth/fetchUser', {user: user})
 
-      // Fetch the user.
-      await this.$store.dispatch('auth/fetchUser')
-
-      // Redirect home.
-      this.redirect()
+        // Redirect home.
+        this.redirect()
+        }
+        else{
+          alert(data.message);
+        }
     },
 
     redirect () {
@@ -101,9 +110,19 @@ export default {
         Cookies.remove('intended_url')
         this.$router.push({ path: intendedUrl })
       } else {
-        this.$router.push({ name: 'home' })
+        this.$router.push({ name: 'welcome' })
       }
     }
   }
 }
 </script>
+
+<style>
+  .login-page {
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  .form-check-label {
+    margin-right: 15px;
+  }
+</style>

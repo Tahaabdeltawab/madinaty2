@@ -20,6 +20,15 @@
           <has-error :form="form" field="email" />
         </div>
       </div>
+     
+      <!-- Phone -->
+      <div class="mb-3 row">
+        <label class="col-md-3 col-form-label text-md-end">{{ $t('phone') }}</label>
+        <div class="col-md-7">
+          <input v-model="form.phone" :class="{ 'is-invalid': form.errors.has('phone') }" class="form-control" type="number" name="phone">
+          <has-error :form="form" field="phone" />
+        </div>
+      </div>
 
       <!-- Submit Button -->
       <div class="mb-3 row">
@@ -47,7 +56,8 @@ export default {
   data: () => ({
     form: new Form({
       username: '',
-      email: ''
+      email: '',
+      phone: '',
     })
   }),
 
@@ -64,9 +74,10 @@ export default {
 
   methods: {
     async update () {
-      const { data } = await this.form.patch('/api/settings/profile')
+      // const { data } = await this.form.patch('/api/settings/profile')
+      const { data } = await this.form.post('/api/update_profile')
 
-      this.$store.dispatch('auth/updateUser', { user: data })
+      this.$store.dispatch('auth/updateUser', { user: data.data })
     }
   }
 }

@@ -175,12 +175,12 @@ class AuthController extends Controller
             $newpassword = $request->has('password') && $request->password != NULL ? bcrypt($request->password) : $data->password;
 
             $updateLocation = User::where('id' , auth()->User()->id)->update([
-                                                                           "username" => $username,
-                                                                           "email" => $email,
-                                                                           "phone" => $phone,
-                                                                           "password" =>$newpassword,
-                                                                           "updated_at" => $dateTime     
-                                                                        ]);
+                "username" => $username,
+                "email" => $email,
+                "phone" => $phone,
+                "password" =>$newpassword,
+                "updated_at" => $dateTime     
+            ]);
 
             $msg = $lang == 'ar' ? " تم تغير بياناتك بنجاح" : "profile is updated";
 

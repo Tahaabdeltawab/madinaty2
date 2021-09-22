@@ -9,8 +9,11 @@
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex';
 // https://github.com/nuxt/nuxt.js/blob/master/lib/app/components/nuxt-loading.vue
 export default {
+
   data: () => ({
     percent: 0,
     show: false,
@@ -20,7 +23,11 @@ export default {
     color: '#77b6ff',
     failedColor: 'red'
   }),
-
+   computed: {
+    ...mapGetters({
+      wait: 'general/wait',
+    }),
+  },
   methods: {
     start () {
       this.show = true
@@ -57,7 +64,14 @@ export default {
     },
     finish () {
       this.percent = 100
-      this.hide()
+      if (this.$route.matched[0].components.default.waitForMe){
+        if (!this.wait){
+          this.show = false // because without it the loader hides after the request finishes with some milliseconds which is bad in view
+          this.hide()
+        }
+      }else{
+        this.hide()
+      }
       return this
     },
     pause () {

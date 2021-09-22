@@ -18,9 +18,6 @@ import { HasError, AlertError, AlertSuccess } from 'vform/components/bootstrap5'
     Vue.component(Component.name, Component)
 })
 
-import VModal from 'vue-js-modal'
-Vue.use(VModal)
-
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 // Import Bootstrap an BootstrapVue CSS files (order is important)
