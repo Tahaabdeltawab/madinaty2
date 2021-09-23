@@ -11,6 +11,7 @@ define( 'API_ACCESS_KEY12', 'AAAAwMhS47g:APA91bGqo5zYMAsffvkHMsCVUwpo9-OwCh6NkWg
 class BaseController extends Controller
 {
     public  static function get_url(){
+        return url('');
         return 'http://app.madienty.com/';
     }
 
