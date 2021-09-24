@@ -1,56 +1,14 @@
 <template>
-<div>
-   <section class="active show tab-pane fade section-padding restaurent-meals bg-light-theme">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-12 col-lg-12">
-            <div class="row">
-              <div class="col-lg-12 restaurent-meal-head mb-md-40">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="section-header-left">
-                      <h3 class="text-light-black header-title">
-                        {{ $t('Privacy Policy') }}
-                      </h3>
-                    </div>
-                  </div>
-                  <div class="card-body no-padding">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <div class="restaurent-product-list">
-                          <div class="restaurent-product-detail">
-                            <div class="restaurent-product-left">
-                              <div class="restaurent-product-title-box">
-                                <div class="restaurent-product-box">
-                                  <div class="restaurent-product-title">
-                                    <h6 v-for="privacy in info.privacy" :key="privacy.id">
-                                      <p href="javascript:void(0)" class="text-light-black fw-600"> 
-                                        {{ privacy.description_ar }}
-                                      </p>
-                                    </h6>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+  <section class="active show tab-pane fade section-padding restaurent-meals bg-light-theme">
+    <about :infos="info.privacy" :title="$t('Privacy Policy')" />
+  </section>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-
+import About from "~/components/place/About.vue";
   export default {
+  components: { About },
     name: 'privacy',
     waitForMe: true,
     middleware: 'auth',

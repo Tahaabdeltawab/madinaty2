@@ -5,11 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <img
-              :src="place.details.image"
-              class="img-fluid full-height full-width"
-              alt="#"
-            />
+            <img :src="place.details.image" class="img-fluid full-height full-width" alt="#" />
           </div>
           <div class="col-md-8">
             <h3 class="text-light-black fw-700 title">
@@ -18,37 +14,7 @@
             <p class="text-light-white no-margin">
               {{ place.details.description_ar }}
             </p>
-            <div class="pl-social-media">
-              <ul>
-                <li>
-                  <a @click="$bvToast.show('phone-toast')" class="rect-tag phone" href="javascript:void(0)">
-                    <img :src="asset('q/assets/img/svg/phone.svg')">
-                    <span>{{$t('Call us')}}</span>
-                  </a>
-                    <b-toast id="phone-toast" :title="$t('Phone')" static no-auto-hide><a :href="`tel:${place.details.phone}`" class="text-light-white">{{ place.details.phone }}</a></b-toast>
-                </li>
-                   <li>
-                  <a class="rect-tag fav" href="javascript:void(0)" @click="toggleFav">
-                    <img :src="asset(`q/assets/img/svg/${place.details.isFavorite ? 'favorite_fill.svg' : 'favorite.svg'}`)" alt="tag" />
-                    </a>
-                </li>
-                <li v-if="place.details.Latitude && place.details.Longitude">
-                  <a class="rect-tag map" target="_blank" :href="`https://maps.google.com/?q=${place.details.Latitude},${place.details.Longitude}`">
-                    <img :src="asset('q/assets/img/svg/google-maps.svg')">
-                  </a>
-                </li>
-                <li v-if="place.details.Facebook">
-                  <a class="rect-tag facebook" target="_blank" :href="place.details.Facebook">
-                    <img :src="asset('q/assets/img/svg/facebook.svg')">
-                  </a>
-                </li>
-                <li v-if="place.details.Twitter">
-                  <a class="rect-tag twitter" target="_blank" :href="place.details.Twitter">
-                    <img :src="asset('q/assets/img/svg/twitter.svg')">
-                  </a>
-                </li>
-              </ul>
-            </div>
+           <icons :place="place.details" />
           </div>
         </div>
       </div>
@@ -83,274 +49,28 @@
     <!-- restaurent tab content -->
     <div class="tab-content py-3">
       <!-- services -->
-      <section
-        :class="{ 'active show': isActive(tabs[0].name) }"
-        :id="tabs[0].name"
-        class="tab-pane fade section-padding restaurent-meals bg-light-theme"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-12 col-lg-12 mb-0">
-              <div class="row">
-                <div class="col-lg-12 restaurent-meal-head mb-md-40">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="section-header-left">
-                        <h3 class="text-light-black header-title">
-                          {{ tabs[0].title }}
-                        </h3>
-                      </div>
-                    </div>
-                    <div class="card-body no-padding">
-                      <div class="row">
-                        <div
-                          v-for="(service, index) in place.services"
-                          :key="service.id"
-                          class="col-lg-12"
-                        >
-                          <div class="restaurent-product-list">
-                            <div class="restaurent-product-detail">
-                              <div class="restaurent-product-left p-3">
-                                <div class="restaurent-product-title-box">
-                                  <div class="restaurent-product-box">
-                                    <div class="restaurent-product-title">
-                                      <h6
-                                        class="mb-0"
-                                        data-toggle="modal"
-                                        data-target="#restaurent-popup"
-                                      >
-                                        <a
-                                          href="javascript:void(0)"
-                                          class="text-light-black fw-600"
-                                          >{{ index + 1 }}-
-                                          {{ service.details_ar }}</a
-                                        >
-                                      </h6>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section :class="{ 'active show': isActive(tabs[0].name) }" :id="tabs[0].name" class="tab-pane fade section-padding restaurent-meals bg-light-theme">
+        <services :infos="place.services" :title="tabs[0].title" />
       </section>
       <!-- services -->
 
       <!-- products -->
-      <section
-        :class="{ 'active show': isActive(tabs[1].name) }"
-        :id="tabs[1].name"
-        class="tab-pane fade section-padding restaurent-meals bg-light-theme"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-12 col-lg-12">
-              <div class="row">
-                <div class="col-lg-12 restaurent-meal-head mb-md-40">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="section-header-left">
-                        <h3 class="text-light-black header-title">
-                          {{ tabs[1].title }}
-                        </h3>
-                      </div>
-                    </div>
-                    <div class="card-body no-padding">
-                      <div class="row">
-                        <div
-                          v-for="product in place.products"
-                          :key="product.id"
-                          class="col-lg-12"
-                        >
-                          <div class="restaurent-product-list">
-                            <div class="restaurent-product-detail">
-                              <div class="restaurent-product-img">
-                                <img
-                                  :src="product.image"
-                                  class="img-fluid"
-                                  :alt="product.name_ar"
-                                />
-                              </div>
-                              <div class="restaurent-product-left">
-                                <div class="restaurent-product-title-box">
-                                  <div class="restaurent-product-box">
-                                    <div class="restaurent-product-title">
-                                      <h6
-                                        class="mb-2"
-                                        data-toggle="modal"
-                                        data-target="#restaurent-popup"
-                                      >
-                                        <a
-                                          href="javascript:void(0)"
-                                          class="text-light-black fw-600"
-                                          >{{ product.name_ar }}</a
-                                        >
-                                      </h6>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="restaurent-product-caption-box">
-                                  <span class="text-light-white">{{
-                                    product.description_ar
-                                  }}</span>
-                                </div>
-                                <div class="restaurent-tags-price">
-                                  <div class="restaurent-product-price">
-                                    <h6 class="text-success fw-600 no-margin">
-                                      {{ product.price }}
-                                    </h6>
-                                  </div>
-                                </div>
-                              </div>
-                              
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section :class="{ 'active show': isActive(tabs[1].name) }" :id="tabs[1].name" class="tab-pane fade section-padding restaurent-meals bg-light-theme">
+        <products :infos="place.products" :title="tabs[1].title" />
       </section>
       <!-- products -->
 
       <!-- offers -->
-      <section
-        :class="{ 'active show': isActive(tabs[2].name) }"
-        :id="tabs[2].name"
-        class="tab-pane fade section-padding restaurent-meals bg-light-theme"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-12 col-lg-12">
-              <div class="row">
-                <div class="col-lg-12 restaurent-meal-head mb-md-40">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="section-header-left">
-                        <h3 class="text-light-black header-title">
-                          {{ tabs[2].title }}
-                        </h3>
-                      </div>
-                    </div>
-                    <div class="card-body no-padding">
-                      <div class="row">
-                        <div
-                          v-for="offer in place.offers"
-                          :key="offer.id"
-                          class="col-lg-12"
-                        >
-                          <div class="restaurent-product-list">
-                            <div class="restaurent-product-detail">
-                              <div class="restaurent-product-left">
-                                <div class="restaurent-product-title-box">
-                                  <div class="restaurent-product-box">
-                                    <div class="restaurent-product-title">
-                                      <h6
-                                        class="mb-2"
-                                        data-toggle="modal"
-                                        data-target="#restaurent-popup"
-                                      >
-                                        <a
-                                          href="javascript:void(0)"
-                                          class="text-light-black fw-600"
-                                          >{{ offer.title_ar }}</a
-                                        >
-                                      </h6>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="restaurent-offer-caption-box">
-                                  <h6 class="text-light-white offer-code">
-                                    {{ offer.code }}
-                                  </h6>
-                                  <h6 class="fw-600 no-margin offer-price">
-                                    {{ offer.present }}% {{$t('discount')}}
-                                  </h6>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section :class="{ 'active show': isActive(tabs[2].name) }" :id="tabs[2].name" class="tab-pane fade section-padding restaurent-meals bg-light-theme">
+        <offers :infos="place.offers" :title="tabs[2].title" />
       </section>
       <!-- offers -->
 
-      <!-- about us -->
-      <section
-        :class="{ 'active show': isActive(tabs[3].name) }"
-        :id="tabs[3].name"
-        class="tab-pane fade section-padding restaurent-meals bg-light-theme"
-      >
-         <div class="container">
-          <div class="row">
-            <div class="col-xl-12 col-lg-12">
-              <div class="row">
-                <div class="col-lg-12 restaurent-meal-head mb-md-40">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="section-header-left">
-                        <h3 class="text-light-black header-title">
-                          {{ tabs[3].title }}
-                        </h3>
-                      </div>
-                    </div>
-                    <div class="card-body no-padding">
-                      <div class="row">
-                        <div v-if="place.aboutus.length" class="col-lg-12">
-                          <div class="restaurent-product-list">
-                            <div class="restaurent-product-detail">
-                              <div class="restaurent-product-left">
-                                <div class="restaurent-product-title-box">
-                                  <div class="restaurent-product-box">
-                                    <div class="restaurent-product-title">
-                                      <h6
-                                        v-for="aboutus in place.aboutus"
-                                        :key="aboutus.id"
-                                        class="mb-2"
-                                        data-toggle="modal"
-                                        data-target="#restaurent-popup">
-                                        <a
-                                          href="javascript:void(0)"
-                                          class="text-light-black fw-600">
-                                          {{ aboutus.details_ar }}
-                                        </a>
-                                      </h6>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- about -->
+      <section :class="{ 'active show': isActive(tabs[3].name) }" :id="tabs[3].name" class="tab-pane fade section-padding restaurent-meals bg-light-theme">
+        <about :infos="place.aboutus" :title="tabs[3].title" />
       </section>
-      <!-- about us -->
+      <!-- about -->
     </div>
     <!-- restaurent tab content -->
   </div>
@@ -359,7 +79,14 @@
 <script>
 import axios from "axios";
 import { mapGetters } from "vuex";
+import About from '~/components/place/About.vue';
+import Offers from '~/components/place/Offers.vue';
+import Products from '~/components/place/Products.vue';
+import Services from '~/components/place/Services.vue';
+import Icons from '~/components/place/Icons.vue';
+
 export default {
+  components: { About,Offers,Products,Services, Icons },
   waitForMe: true,
   middleware: "auth",
   props: ["id"],
@@ -376,11 +103,6 @@ export default {
     },
     setActive(menuItem) {
       this.activeItem = menuItem;
-    },
-    async toggleFav() {
-      await this.$store.dispatch("place/toggleFav", {
-        id: this.place.details.id,
-      });
     },
   },
   async created() {
@@ -417,31 +139,11 @@ export default {
   },
   computed: mapGetters({
     place: "place/place",
-    place_details_keys: [
-      "my_place",
-      "Twitter",
-      "Facebook",
-      "isFavorite",
-      "Latitude",
-      "Longitude",
-      "phone",
-      "image",
-      "name_ar",
-      "name_en",
-      "description_ar",
-      "description_en",
-    ],
   }),
 };
 </script>
 
 <style>
-#phone-toast {
-  opacity: 1;
-  display: inline-block;
-  position: absolute;
-  left: 0;
-}
 .restaurent-offer-caption-box {
   display: flex;
   justify-content: space-between;
@@ -459,67 +161,5 @@ export default {
 .restaurent-product-caption-box,
 .restaurent-tags-price {
   margin-right: 15px;
-}
-.pl-social-media {
-  display: block;
-  align-items: center;
-  /* height: 100%; */
-  padding-top: 20px;
-}
-
-.pl-social-media ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.pl-social-media ul li {
-  margin-left: 15px;
-  transition: 0.3s;
-}
-.pl-social-media ul li>a i {
-  font-size: 18px;
-}
-.pl-social-media ul li img {
-  height: 20px;
-}
-
-.pl-social-media ul li:first-child {
-  margin-right: 0;
-}
-.pl-social-media ul li:hover {
-  transition: 0.3s;
-}
-
-.pl-social-media ul li:hover a {
-  transition: 0.3s;
-}
-.rect-tag {
-  height: 36px;
-  width: 36px;
-  border-radius: 10%;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 0 0 1px rgb(67 41 163 / 10%), 0 1px 5px 0 rgb(67 41 163 / 10%);
-}
-.rect-tag.phone {
-  color: white;
-  background: black;
-  width: auto;
-  padding: 10px;
-  border-radius: 5%;
-}
-.rect-tag.phone img {
-  height: 17px;
-  margin: 3px;
-}
-.rect-tag.phone span {
-  margin: 3px;
-}
-.rect-tag.twitter img {
-  height: 17px;
 }
 </style>
