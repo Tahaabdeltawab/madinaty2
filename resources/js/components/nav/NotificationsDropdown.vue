@@ -8,7 +8,8 @@
       aria-haspopup="true"
       aria-expanded="false"
     >
-      <i class="fa fa-bell notification-bell" aria-hidden="true"></i>
+     <b-icon icon="bell-fill" class="notification-bell"></b-icon>
+      <!-- <i class="fa fa-bell notification-bell" aria-hidden="true"></i> -->
       <span class="btn__badge pulse-button">{{$t('4')}}</span>
     </a>
     <ul class="dropdown-menu notify-drop">

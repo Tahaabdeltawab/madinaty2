@@ -7,7 +7,7 @@
       <!-- <component :style="{visibility: wait ? 'hidden' : 'visible'}" :is="layout" v-if="layout" /> -->
       <component :style="{opacity: wait ? 0 : 1}" :is="layout" v-if="layout" />
     </transition>
-    <!--  <h1 style="color:red; position:fixed; top:110px; right:0; z-index:111111">
+     <!-- <h1 style="color:red; position:fixed; top:110px; right:0; z-index:111111">
       {{wait ? 'wait true' : 'wait false'}}
     </h1> -->
   </div>

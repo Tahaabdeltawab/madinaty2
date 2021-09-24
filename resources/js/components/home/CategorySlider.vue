@@ -6,22 +6,20 @@
         <div class="col-12">
           <div class="section-header-left">
             <h3 class="text-light-black header-title title">
-              Browse by Categories
-              <span class="fs-14"
-                ><a href="#">{{$t('See all')}}</a></span
-              >
+              {{$t('Browse by Categories')}}
+              <span class="fs-14"><router-link :to="{name: 'categories'}">{{$t('See all')}}</router-link></span>
             </h3>
           </div>
         </div>
         <swiper :options="swiperOptions"
         >
           <swiper-slide v-for="category in categories" :key="category.id" class="swiper-slide slide-item tab">
-            <a href="#" class="tablinks spann slide active">
-              <span class=" ">
+            <router-link :to="{ name: 'category', params: { id: category.id } }" class="tablinks slide active">
+              <span>
                 <img :src="category.sub_image" class="img-responsive" alt="image">
                 {{category.name_ar}}
               </span>
-            </a>
+            </router-link>
           </swiper-slide>
           <div class="swiper-button-next" slot="button-next"></div>
           <div class="swiper-button-prev" slot="button-prev"></div>
@@ -33,12 +31,12 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.min.css";
 
 export default {
   name: "Slider",
+  props: ["categories"],
   data() {
     return {
       swiperOptions: {
@@ -57,14 +55,6 @@ export default {
         },
       },
     };
-  },
-  computed: {
-    ...mapGetters({
-      categories: "home/categories",
-    }),
-    swiper() {
-      return this.$refs.CategorySwiper.$swiper;
-    },
   },
   components: {
     Swiper,
@@ -93,36 +83,30 @@ export default {
 .tab {
   width: auto!important;
 }
-.tab a:hover {
-    background-image: linear-gradient(to bottom, #499a14, #476d2d);
-    color: #fff;
-    /* transition: 0.3s !important; */
+.tab .tablinks:hover {
+  background: rgba(0, 0, 0, .7);
+  color: #fff;
+  transition: 0.1s !important;
 }
-.tab a {
-   background-color: #eee;
-    color: #000;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 13px 24px;
-    /* transition: 0.3s !important; */
-    font-size: 15px;
-    font-weight: 600;
-    margin: 5px;
+.tab .tablinks {
+  background-color: #eee;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 13px 24px;
+  transition: 0.1s !important;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 5px;
+  text-align: center;
+  font-size: 15px;
+  color: #141515;
+  border-radius: 40px;
+  min-width: 75px;
+  direction: rtl;
 }
-.tab a img {
+.tab .tablinks img {
   width: 24px!important;
-}
-.spann {
-    text-align: center;
-    font-size: 15px;
-    color: #141515;
-    padding: 12px 4px;
-    border-radius: 40px;
-    cursor: pointer;
-    min-width: 75px;
-    background: white;
-    direction: rtl;
 }
 </style>

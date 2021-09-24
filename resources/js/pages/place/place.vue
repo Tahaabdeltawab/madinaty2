@@ -21,50 +21,31 @@
             <div class="pl-social-media">
               <ul>
                 <li>
-                  <i
-                    @click="$bvToast.show('phone-toast')"
-                    class="fas fa-phone-alt circle-tag text-custom-white bg-dark"
-                  ></i>
-                  <b-toast id="phone-toast" :title="$t('Phone')" static no-auto-hide><a :href="`tel:${place.details.phone}`" class="text-light-white">{{ place.details.phone }}</a></b-toast>
+                  <a @click="$bvToast.show('phone-toast')" class="rect-tag phone" href="javascript:void(0)">
+                    <img :src="asset('q/assets/img/svg/phone.svg')">
+                    <span>{{$t('Call us')}}</span>
+                  </a>
+                    <b-toast id="phone-toast" :title="$t('Phone')" static no-auto-hide><a :href="`tel:${place.details.phone}`" class="text-light-white">{{ place.details.phone }}</a></b-toast>
                 </li>
-                <li v-if="place.details.Facebook">
-                  <a
-                    class="brand-facebook circle-tag"
-                    target="_blank"
-                    :href="place.details.Facebook"
-                    ><i class="fab fa-facebook-f"></i
-                  ></a>
-                </li>
-                <li v-if="place.details.Twitter">
-                  <a
-                    class="brand-twitter circle-tag"
-                    target="_blank"
-                    :href="place.details.Twitter"
-                    ><i class="fab fa-twitter"></i
-                  ></a>
+                   <li>
+                  <a class="rect-tag fav" href="javascript:void(0)" @click="toggleFav">
+                    <img :src="asset(`q/assets/img/svg/${place.details.isFavorite ? 'favorite_fill.svg' : 'favorite.svg'}`)" alt="tag" />
+                    </a>
                 </li>
                 <li v-if="place.details.Latitude && place.details.Longitude">
-                  <a
-                    class="brand-google circle-tag"
-                    target="_blank"
-                    :href="`https://maps.google.com/?q=${place.details.Latitude},${place.details.Longitude}`"
-                    ><i class="fas fa-map-marker-alt"></i
-                  ></a>
+                  <a class="rect-tag map" target="_blank" :href="`https://maps.google.com/?q=${place.details.Latitude},${place.details.Longitude}`">
+                    <img :src="asset('q/assets/img/svg/google-maps.svg')">
+                  </a>
                 </li>
-                <li>
-                  <a href="javascript:void(0)" @click="toggleFav"
-                    ><img
-                      :src="
-                        asset(
-                          `q/assets/img/svg/${
-                            place.details.isFavorite
-                              ? '010-heart.svg'
-                              : '013-heart-1.svg'
-                          }`
-                        )
-                      "
-                      alt="tag"
-                  /></a>
+                <li v-if="place.details.Facebook">
+                  <a class="rect-tag facebook" target="_blank" :href="place.details.Facebook">
+                    <img :src="asset('q/assets/img/svg/facebook.svg')">
+                  </a>
+                </li>
+                <li v-if="place.details.Twitter">
+                  <a class="rect-tag twitter" target="_blank" :href="place.details.Twitter">
+                    <img :src="asset('q/assets/img/svg/twitter.svg')">
+                  </a>
                 </li>
               </ul>
             </div>
@@ -334,7 +315,7 @@
                     </div>
                     <div class="card-body no-padding">
                       <div class="row">
-                        <div class="col-lg-12">
+                        <div v-if="place.aboutus.length" class="col-lg-12">
                           <div class="restaurent-product-list">
                             <div class="restaurent-product-detail">
                               <div class="restaurent-product-left">
@@ -496,19 +477,11 @@ export default {
   margin-left: 15px;
   transition: 0.3s;
 }
-
-.pl-social-media ul li>a {
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s;
-  text-decoration: none;
-}
-
 .pl-social-media ul li>a i {
   font-size: 18px;
+}
+.pl-social-media ul li img {
+  height: 20px;
 }
 
 .pl-social-media ul li:first-child {
@@ -521,26 +494,32 @@ export default {
 .pl-social-media ul li:hover a {
   transition: 0.3s;
 }
-.brand-facebook {
-  color: #fff;
-  background: #3b5998;
-}
-.brand-twitter {
-  color: #fff;
-  background: #1da1f2;
-}
-.brand-google {
-  color: #fff;
-  background: #d80a0a;
-}
-.circle-tag {
+.rect-tag {
   height: 36px;
   width: 36px;
-  border-radius: 50%;
+  border-radius: 10%;
   font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  box-shadow: 0 0 0 1px rgb(67 41 163 / 10%), 0 1px 5px 0 rgb(67 41 163 / 10%);
+}
+.rect-tag.phone {
+  color: white;
+  background: black;
+  width: auto;
+  padding: 10px;
+  border-radius: 5%;
+}
+.rect-tag.phone img {
+  height: 17px;
+  margin: 3px;
+}
+.rect-tag.phone span {
+  margin: 3px;
+}
+.rect-tag.twitter img {
+  height: 17px;
 }
 </style>

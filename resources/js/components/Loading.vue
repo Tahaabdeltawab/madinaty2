@@ -64,7 +64,7 @@ export default {
     },
     finish () {
       this.percent = 100
-      if (this.$route.matched[0].components.default.waitForMe){
+      if (this.$route.matched[0] && this.$route.matched[0].components.default.waitForMe){
         if (!this.wait){
           this.show = false // because without it the loader hides after the request finishes with some milliseconds which is bad in view
           this.hide()

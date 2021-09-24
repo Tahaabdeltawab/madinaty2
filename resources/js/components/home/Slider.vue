@@ -22,12 +22,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.min.css";
 
 export default {
   name: "Slider",
+  props: ["sliders"],
   data() {
     return {
       swiperOptions: {
@@ -49,15 +49,6 @@ export default {
         }, 
       },
     };
-  },
-   computed: {
-  ...mapGetters({
-    sliders: 'home/sliders'
-  }),
-
-   swiper() {
-      return this.$refs.mySwiper.$swiper;
-    },
   },
     components: {
     Swiper,

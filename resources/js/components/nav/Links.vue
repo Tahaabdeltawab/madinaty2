@@ -1,30 +1,24 @@
 <template>
   <ul class="navbar-nav ml-auto mr-3 mt-2 mt-lg-0">
-    <li class="nav-item active">
-      <a class="nav-link" href="#"
-        >{{$t('Home ')}}<span class="sr-only">(current)</span></a
-      >
+    <li class="nav-item" :class="{active: this.routeName == 'welcome'}">
+      <router-link class="nav-link" :to="{name:'welcome'}">{{$t('Home')}}</router-link>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">{{$t('Features')}}</a>
+    <li class="nav-item" :class="{active: this.routeName == 'categories'}">
+      <router-link class="nav-link" :to="{name:'categories'}">{{$t('Categories')}}</router-link>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">{{$t('Pricing')}}</a>
+    <li class="nav-item" :class="{active: this.routeName == 'favorites'}">
+      <router-link class="nav-link" :to="{name:'favorites'}">{{$t('Favorites')}}</router-link>
     </li>
   </ul>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import { loadMessages } from "~/plugins/i18n";
 
 export default {
   computed: mapGetters({
-    locale: "lang/locale",
-    locales: "lang/locales",
+    routeName: "general/routeName",
   }),
-
-  methods: {},
 };
 </script>
 <style scoped>

@@ -2,7 +2,7 @@
   <!-- Authenticated -->
   <li v-if="user" class="nav-item dropdown">
     <a
-      class="nav-link dropdown-toggle text-dark"
+      class="nav-link dropdown-toggle"
       href="#"
       role="button"
       data-bs-toggle="dropdown"
@@ -14,6 +14,16 @@
     </a>
     <div class="dropdown-menu">
       <router-link
+        :to="{ name: 'favorites' }"
+        class="dropdown-item ps-3"
+      >
+        <b-icon icon="star-fill" fixed-width font-scale="1.2" ></b-icon>
+        {{ $t("Favorites") }}
+      </router-link>
+
+      <div class="dropdown-divider" />
+
+      <router-link
         :to="{ name: 'settings.profile' }"
         class="dropdown-item ps-3"
       >
@@ -22,6 +32,7 @@
       </router-link>
 
       <div class="dropdown-divider" />
+
       <a href="#" class="dropdown-item ps-3" @click.prevent="logout">
         <fa icon="sign-out-alt" fixed-width />
         {{ $t("logout") }}

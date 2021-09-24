@@ -389,7 +389,7 @@ p {
 
 a {
     /*     color: #ff0018; */
-    color: #195C1E;
+    color: inherit;
     text-decoration: none;
     transition: 0.5s;
 }
@@ -968,7 +968,6 @@ span.add-product i {
 span.type-tag {
     padding: 3px 15px;
     position: absolute;
-    bottom: 0;
     border-radius: 5px 5px 0px 0px;
     cursor: pointer;
 }

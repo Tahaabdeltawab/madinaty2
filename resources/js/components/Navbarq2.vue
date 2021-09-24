@@ -1,13 +1,13 @@
 <template>
   <!-- Navigation -->
       <div class="header2 container-fluid">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark" dir="rtl"> -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white" dir="rtl">
-          <!-- :to="{ name: user ? 'home' : 'welcome' }" -->
         <router-link
           :to="{ name: 'welcome' }"
           class="navbar-brand"
         >
-          {{ appName }}
+           <img :src="asset('uploads/Logo.png')" class="img-fluid nav-logo" alt="app logo" />
         </router-link>
 
         <button
@@ -28,7 +28,7 @@
           <!-- search -->
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search">
-            <button class="btn search-button text-custom-white bg-gradient-green my-2 my-sm-0" type="submit"> <i class="fa fa-search"></i></button>
+            <button class="btn btn-info search-button my-2 my-sm-0" type="submit"> <b-icon icon="search" fixed-width></b-icon></button>
           </form>
           <!-- search -->
 
@@ -40,7 +40,7 @@
 
             <template v-if="user">
               <!-- modal -->
-              <li v-b-modal.locationModal class="nav-item btn location-modal-btn" >{{user.area_name || $t('City')}}</li>
+              <a v-b-modal.locationModal class="nav-item btn location-modal-btn" >{{user.area_name || $t('City')}}</a>
               <location-modal />
               <!-- modal -->
               
@@ -115,5 +115,13 @@ export default {
 .location-modal-btn {
   margin-left:3px;
   cursor: pointer;
+}
+
+.nav-item.active .nav-link {
+  border-bottom: 3px solid #222;
+}
+
+.nav-logo {
+  height: 45px;
 }
 </style>

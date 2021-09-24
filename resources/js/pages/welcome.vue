@@ -1,24 +1,25 @@
 <template>
   <div>
-    <slider />
-    <category-slider />
-    <popular />
-    <categories />
+    <slider :sliders="home.sliders" />
+    <category-slider :categories="home.categories" />
+    <popular :populars="home.populars" />
+    <categories :categories="home.categories" />
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import Slider from "~/components/home/Slider";
-import CategorySlider from "~/components/home/CategorySlider.vue";
+import CategorySlider from "~/components/home/CategorySlider";
 import Popular from "~/components/home/Popular";
 import Categories from "~/components/home/Categories";
 
 export default {
+  name: 'welcome',
   // layout: 'basic',
   // waitForMe: true => indicates this page should await for a request before rendering. Here the request is fetchHome(). this requires a way to disable the wait after the request finishes which is this.$store.dispatch("general/changeWait", { wait: false });
   waitForMe: true,
-  middleware: "auth",
+  // middleware: "auth",
   components: {
     Slider,
     CategorySlider,
@@ -28,11 +29,11 @@ export default {
   methods: {
     async fetchHome() {
       // if the home is already loaded in vuex, show the home instantly and don't wait for the request to be finished.
-      if (this.sliders.length) {
+      if (this.home.sliders.length) {
         this.$store.dispatch("general/changeWait", { wait: false });
-        await this.$store.dispatch("home/fetchHome", {area_id: this.user.area_id,});
+        await this.$store.dispatch("home/fetchHome", this.user ? {area_id: this.user.area_id,} : {});
       } else {
-        await this.$store.dispatch("home/fetchHome", {area_id: this.user.area_id,});
+        await this.$store.dispatch("home/fetchHome", this.user ? {area_id: this.user.area_id,} : {});
         this.$store.dispatch("general/changeWait", { wait: false });
       }
     },
@@ -50,7 +51,7 @@ export default {
 
   computed: mapGetters({
     user: "auth/user",
-    sliders: "home/sliders",
+    home: "home/home",
   }),
 };
 </script>

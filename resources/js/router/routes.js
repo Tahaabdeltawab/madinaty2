@@ -13,7 +13,7 @@ export default [
     { path: '/email/verify/:id', name: 'verification.verify', component: page('auth/verification/verify.vue') },
     { path: '/email/resend', name: 'verification.resend', component: page('auth/verification/resend.vue') },
 
-    { path: '/home', name: 'home', component: page('home.vue') },
+    // { path: '/home', name: 'home', component: page('home.vue') },
     {
         path: '/settings',
         component: page('settings/index.vue'),
@@ -26,6 +26,13 @@ export default [
     },
 
     { path: '/place/:id', name: 'place', component: page('place/place.vue'), props: true },
+    { path: '/category/:id', name: 'category', component: page('place/category-places.vue'), props: true },
+    { path: '/favorites', name: 'favorites', component: page('place/favorites.vue') },
+
+    { path: '/categories', name: 'categories', component: page('categories/all-categories.vue') },
+    { path: '/notifications', name: 'notifications', component: page('notifications/notifications.vue') },
+    { path: '/agreement', name: 'agreement', component: page('info/agreement.vue') },
+    { path: '/privacy', name: 'privacy', component: page('info/privacy.vue') },
 
 
     { path: '*', component: page('errors/404.vue') }

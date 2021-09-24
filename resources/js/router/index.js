@@ -68,9 +68,14 @@ async function beforeEach(to, from, next) {
 
     // Start the loading bar.
     if (components[0].loading !== false) {
+        // we put else statement here because if someone not auth entered home page (which has auth middleware && waitForMe == true so wait will be true and child opacity is 0 (see App.vue)),
+        // he will be redirected to login page which has no statement to make wait = false so the child opacity will still 0
         if (components[0].waitForMe == true) {
             store.dispatch("general/changeWait", { wait: true })
+        } else {
+            store.dispatch("general/changeWait", { wait: false })
         }
+        store.dispatch("general/changeRouteName", { routeName: to.name })
         router.app.$nextTick(() => router.app.$loading.start())
     }
 
