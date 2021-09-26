@@ -17,8 +17,8 @@ class BaseController extends Controller
 
     public  static function getImageUrl($folder,$file){
         if($file)
-            return BaseController::get_url() . 'uploads/'.$folder .'/'.$file;
-        return BaseController::get_url() . 'uploads/Logo.png';
+            return BaseController::get_url() . '/uploads/'.$folder .'/'.$file;
+        return BaseController::get_url() . '/uploads/Logo.png';
 
     }
 
