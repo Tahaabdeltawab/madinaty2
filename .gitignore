@@ -15,4 +15,4 @@ phpunit.dusk.xml
 /public/dist
 /public/build
 /public/mix-manifest.json
-/resources/view/spa.blade.php
+/resources/views/spa.blade.php
