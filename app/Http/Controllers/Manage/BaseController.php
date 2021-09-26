@@ -12,22 +12,21 @@ class BaseController extends Controller
 {
     public  static function get_url(){
         return url('');
-        return 'http://app.madienty.com/';
+        // return 'http://app.madienty.com/';
     }
 
-    public  static function getImageUrl($folder,$image){
-        if($image)
-            return BaseController::get_url() . '/uploads/'.$folder .'/'.$image;
-        return BaseController::get_url() . '/uploads/Logo.png';
+    public  static function getImageUrl($folder,$file){
+        if($file)
+            return BaseController::get_url() . 'uploads/'.$folder .'/'.$file;
+        return BaseController::get_url() . 'uploads/Logo.png';
 
     }
 
     public static function saveImage($folder,$file)
     {
-        $image = $file;
-        $input['image'] = mt_rand(). time().'.'.$image->getClientOriginalExtension();
-        $destinationPath_id = 'uploads/'.$folder.'/';
-        $image->move($destinationPath_id, $input['image']);
+        $input['image'] = mt_rand(). time().'.'.$file->getClientOriginalExtension();
+        $destinationPath_id = public_path('uploads/'.$folder.'/');
+        $file->move($destinationPath_id, $input['image']);
         return $input['image'];
 
     }
@@ -36,8 +35,8 @@ class BaseController extends Controller
      */
     public static function deleteFile($folder,$file)
     {
-        $destinationPath_id = 'uploads/'.$folder.'/'.$file;
-        // $file = public_path('/uploads/'.$folder.'/'.$file);
+        // $destinationPath_id = 'uploads/'.$folder.'/'.$file;
+        $file = public_path('uploads/'.$folder.'/'.$file);
         if(file_exists($file))
         {
             File::delete($file);
