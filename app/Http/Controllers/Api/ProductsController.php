@@ -61,7 +61,6 @@ class ProductsController extends Controller
 
     public function add_product(Request $request){
         $lang = $request->header('lang');
-
         if(auth()->User()){
             
             $input = $request->all();
@@ -103,7 +102,8 @@ class ProductsController extends Controller
             $add->save();
 
             $msg = $lang == 'ar' ? " تم أضافه المنتج بنجاح" : "Product is add successfully";
-
+            if($request->header('src') == 'web')
+            return $this->apiResponseData( new ProductsResource($add), $msg);
             return $this->apiResponseMessage( 0, $msg);
 
         }else{

@@ -102,7 +102,7 @@ export default {
 .header2{
   position: relative;
   left: 0;
-  z-index: 10000;
+  z-index: 10;
   width: 100%;
   height: 60px;
   transform: translateZ(0);

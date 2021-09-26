@@ -8,9 +8,11 @@
               <div class="card">
                 <div class="card-header">
                   <div class="section-header-left">
-                    <h3 class="text-light-black header-title">
-                      {{ title }}
-                    </h3>
+                   <h3 class="text-light-black header-title title">
+                    {{ title }}
+                    <a v-if="myPlace" v-b-modal.addOfferModal class="btn btn-dark add-offer-modal-btn" href="javascript:void(0)" >{{ $t('Add Offer') }}</a>
+                    <add-offer-modal :place_id="place_id" />
+                  </h3>
                   </div>
                 </div>
                 <div class="card-body no-padding">
@@ -52,8 +54,10 @@
 </template>
 
 <script>
+import AddOfferModal from '~/components/place/AddOfferModal.vue'
   export default {
-    props: ['infos', 'title'],
+  components: { AddOfferModal },
+    props: ['infos', 'title', 'myPlace', 'place_id'],
   }
 </script>
 

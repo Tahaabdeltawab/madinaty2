@@ -82,7 +82,8 @@ class PlaceAboutUsController extends Controller
             $add->save();
 
             $msg = $lang == 'ar' ? " تم أضافه معلومات جديده" : "About us is inserted";
-
+            if($request->header('src') == 'web')
+            return $this->apiResponseData( new productAboutUSResource($add), $msg);
             return $this->apiResponseMessage( 0, $msg);
 
         }else{

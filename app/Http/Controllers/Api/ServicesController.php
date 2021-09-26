@@ -82,6 +82,8 @@ class ServicesController extends Controller
           
             $msg = $lang == 'ar' ? " تم أضافه خدمة جديده" : "new service is inserted";
 
+            if($request->header('src') == 'web')
+            return $this->apiResponseData( new ServicesResource($add), $msg);
             return $this->apiResponseMessage( 0, $msg);
 
         }else{

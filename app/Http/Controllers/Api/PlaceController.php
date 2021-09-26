@@ -59,7 +59,7 @@ class PlaceController extends Controller
             $place_id = $request->place_id;
 
 
-            $place =   Place::select('id', 'name_ar','name_en', 'image', 'description_ar','description_en', 'phone','Longitude', 'Latitude','Facebook','Twitter')->where('id' ,$place_id)->get();
+            $place =   Place::select('id', 'name_ar','name_en', 'image', 'description_ar','description_en', 'phone','Longitude', 'Latitude','Facebook','Twitter', 'user_id')->where('id' ,$place_id)->get();
 
             $services = Place_service::select('id' , 'details_ar', 'details_en')->where('place_id' , $place_id)->get();
         
@@ -109,7 +109,10 @@ class PlaceController extends Controller
             $phone = $request->has('phone') && $request->phone != NULL ? $request->phone : $place_data->phone;
             $Facebook = $request->has('Facebook') && $request->Facebook != NULL ? $request->Facebook : $place_data->Facebook;
             $Twitter = $request->has('Twitter') && $request->Twitter != NULL ? $request->Twitter : $place_data->Twitter;
-            $image = $request->has('image') && $request->image != NULL ? BaseController::saveImage("places" , $request->file('image')) : $place_data->image;
+            $image = $request->has('image')
+             && $request->image != NULL 
+             ? BaseController::saveImage("places" , $request->file('image')) 
+             : $place_data->image;
 
             $update_place = Place::where('id' , $place_id)->update([
                                                                 "name_en" => $name_en,

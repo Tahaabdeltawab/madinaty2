@@ -4,13 +4,17 @@
     <section class="section-padding restaurent-about smoothscroll" id="about">
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4 place-img">
             <img :src="place.details.image" class="img-fluid full-height full-width" alt="#" />
           </div>
           <div class="col-md-8">
+            
             <h3 class="text-light-black fw-700 title">
               {{ place.details.name_ar }}
+              <a v-if="place.details.my_place" v-b-modal.editPlaceModal class="btn btn-dark edit-place-modal-btn" href="javascript:void(0)" >{{ $t('Edit your data') }}</a>
+              <edit-place-modal v-if="modalReady" :place="place.details" />
             </h3>
+
             <p class="text-light-white no-margin">
               {{ place.details.description_ar }}
             </p>
@@ -50,25 +54,26 @@
     <div class="tab-content py-3">
       <!-- services -->
       <section :class="{ 'active show': isActive(tabs[0].name) }" :id="tabs[0].name" class="tab-pane fade section-padding restaurent-meals bg-light-theme">
-        <services :infos="place.services" :title="tabs[0].title" />
+        <services :infos="place.services" :myPlace="place.details.my_place" :place_id="place.details.id" :title="tabs[0].title" />
       </section>
       <!-- services -->
 
       <!-- products -->
       <section :class="{ 'active show': isActive(tabs[1].name) }" :id="tabs[1].name" class="tab-pane fade section-padding restaurent-meals bg-light-theme">
-        <products :infos="place.products" :title="tabs[1].title" />
+        <products :infos="place.products" :myPlace="place.details.my_place" :place_id="place.details.id" :title="tabs[1].title" />
       </section>
       <!-- products -->
 
       <!-- offers -->
       <section :class="{ 'active show': isActive(tabs[2].name) }" :id="tabs[2].name" class="tab-pane fade section-padding restaurent-meals bg-light-theme">
-        <offers :infos="place.offers" :title="tabs[2].title" />
+        <offers :infos="place.offers" :myPlace="place.details.my_place" :place_id="place.details.id" :title="tabs[2].title" />
       </section>
       <!-- offers -->
 
       <!-- about -->
       <section :class="{ 'active show': isActive(tabs[3].name) }" :id="tabs[3].name" class="tab-pane fade section-padding restaurent-meals bg-light-theme">
-        <about :infos="place.aboutus" :title="tabs[3].title" />
+        <!-- <about :infos="place.aboutus" :title="tabs[3].title" /> -->
+        <about :infos="[{id:1,details_ar:place.details.description_ar,details_en:place.details.description_en,}]" :title="tabs[3].title" />
       </section>
       <!-- about -->
     </div>
@@ -84,9 +89,10 @@ import Offers from '~/components/place/Offers.vue';
 import Products from '~/components/place/Products.vue';
 import Services from '~/components/place/Services.vue';
 import Icons from '~/components/place/Icons.vue';
+import EditPlaceModal from '~/components/place/EditPlaceModal.vue';
 
 export default {
-  components: { About,Offers,Products,Services, Icons },
+  components: { About,Offers,Products,Services, Icons, EditPlaceModal },
   waitForMe: true,
   middleware: "auth",
   props: ["id"],
@@ -107,6 +113,7 @@ export default {
   },
   async created() {
     await this.fetchPlace(this.id);
+    this.modalReady = true; // to let place fully loaded from the store
   },
   metaInfo() {
     return { title: this.$t("Place") };
@@ -134,12 +141,16 @@ export default {
     return {
       title: window.config.appName,
       tabs: tabs,
+      modalReady: false,
       activeItem: tabs[0].name,
     };
   },
-  computed: mapGetters({
+  computed: {
+    ...mapGetters({
     place: "place/place",
+    locale: "lang/locale"
   }),
+  }
 };
 </script>
 
@@ -161,5 +172,11 @@ export default {
 .restaurent-product-caption-box,
 .restaurent-tags-price {
   margin-right: 15px;
+}
+
+@media (max-width: 768px){
+  .place-img {
+      margin-bottom: 3rem!important;
+  }
 }
 </style>

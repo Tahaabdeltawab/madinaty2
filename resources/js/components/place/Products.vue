@@ -8,9 +8,11 @@
               <div class="card">
                 <div class="card-header">
                   <div class="section-header-left">
-                    <h3 class="text-light-black header-title">
-                      {{ title }}
-                    </h3>
+                    <h3 class="text-light-black header-title title">
+                    {{ title }}
+                    <a v-if="myPlace" v-b-modal.addProductModal class="btn btn-dark add-product-modal-btn" href="javascript:void(0)" >{{ $t('Add Product') }}</a>
+                    <add-product-modal :place_id="place_id" />
+                  </h3>
                   </div>
                 </div>
                 <div class="card-body no-padding">
@@ -57,8 +59,10 @@
 </template>
 
 <script>
+import AddProductModal from '~/components/place/AddProductModal.vue'
   export default {
-    props: ['infos', 'title'],
+  components: { AddProductModal },
+    props: ['infos', 'title', 'myPlace', 'place_id'],
   }
 </script>
 

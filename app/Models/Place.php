@@ -12,6 +12,9 @@ class Place extends Model
     public function supervisor(){
         return $this->belongsTo(User::class, 'supervisor_id');
     }
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     public function aboutuses(){
         return $this->hasMany(Place_aboutUs::class, 'place_id');

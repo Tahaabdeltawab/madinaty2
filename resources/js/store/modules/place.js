@@ -35,6 +35,20 @@ export const mutations = {
     [types.TOGGLE_FAV_SUCCESS](state) {
         state.place.details.isFavorite = !state.place.details.isFavorite;
     },
+    [types.UPDATE_PLACE_SUCCESS](state, { place }) {
+        place.keys().forEach(key => {
+            state.place.details[key] = place[key]
+        })
+    },
+    [types.ADD_PLACE_SERVICE_SUCCESS](state, { service }) {
+        state.place.services.push(service)
+    },
+    [types.ADD_PLACE_PRODUCT_SUCCESS](state, { product }) {
+        state.place.products.push(product)
+    },
+    [types.ADD_PLACE_OFFER_SUCCESS](state, { offer }) {
+        state.place.offers.push(offer)
+    },
 
     // category
     [types.FETCH_CATEGORY_PLACES_SUCCESS](state, { categoryPlaces }) {
@@ -82,6 +96,34 @@ export const actions = {
             // commit(types.TOGGLE_FAV_SUCCESS)
             await axios.get('/api/add_favorite?place_id=' + id)
             commit(types.TOGGLE_FAV_SUCCESS)
+        } catch (e) {}
+    },
+    async updatePlaceDetails({ commit }, { form }) {
+        try {
+            const { data } = await form.post('/api/update_myPlace')
+            if (data.error == 0)
+                commit(types.UPDATE_PLACE_SUCCESS, { place: form })
+        } catch (e) {}
+    },
+    async addPlaceService({ commit }, { form }) {
+        try {
+            const { data } = await form.post('/api/Service/add_services')
+            if (data.error == 0)
+                commit(types.ADD_PLACE_SERVICE_SUCCESS, { service: data.data })
+        } catch (e) {}
+    },
+    async addPlaceProduct({ commit }, { form }) {
+        try {
+            const { data } = await form.post('/api/Product/add_product')
+            if (data.error == 0)
+                commit(types.ADD_PLACE_PRODUCT_SUCCESS, { product: data.data })
+        } catch (e) {}
+    },
+    async addPlaceOffer({ commit }, { form }) {
+        try {
+            const { data } = await form.post('/api/Offer/add_offers')
+            if (data.error == 0)
+                commit(types.ADD_PLACE_OFFER_SUCCESS, { offer: data.data })
         } catch (e) {}
     },
 

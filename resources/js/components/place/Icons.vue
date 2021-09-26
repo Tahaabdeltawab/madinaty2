@@ -13,7 +13,7 @@
       </li>
           <li>
         <a class="rect-tag fav" href="javascript:void(0)" @click="fav(place.id)">
-          <img :src="asset(`q/assets/img/svg/${place.isFavorite ? 'favorite_fill.svg' : 'favorite.svg'}`)" alt="Favorite" />
+          <img :src="asset(`q/assets/img/svg/${place.isFavorite ? 'favorite_yellow.svg' : 'favorite.svg'}`)" alt="Favorite" />
         </a>
       </li>
       <li v-if="place.Latitude && place.Longitude">

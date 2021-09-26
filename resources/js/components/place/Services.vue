@@ -8,8 +8,10 @@
             <div class="card">
               <div class="card-header">
                 <div class="section-header-left">
-                  <h3 class="text-light-black header-title">
+                  <h3 class="text-light-black header-title title">
                     {{ title }}
+                    <a v-if="myPlace" v-b-modal.addServiceModal class="btn btn-dark add-service-modal-btn" href="javascript:void(0)" >{{ $t('Add Service') }}</a>
+                    <add-service-modal :place_id="place_id" />
                   </h3>
                 </div>
               </div>
@@ -44,8 +46,10 @@
 </template>
 
 <script>
+import AddServiceModal from '~/components/place/AddServiceModal.vue'
   export default {
-    props: ['infos', 'title'],
+  components: { AddServiceModal },
+    props: ['infos', 'title', 'myPlace', 'place_id'],
   }
 </script>
 

@@ -93,7 +93,8 @@ class OffersController extends Controller
             $add->save();
           
             $msg = $lang == 'ar' ? " تم أضافه عرض جديده" : "new Offer is inserted";
-
+            if($request->header('src') == 'web')
+            return $this->apiResponseData( new OffersResource($add), $msg);
             return $this->apiResponseMessage( 0, $msg);
 
         }else{

@@ -58,11 +58,11 @@ export const actions = {
     async fetchUser({ commit }, payload = null) {
         try {
             let user = null;
-            if(payload == null){
-                
+            if (payload == null) {
+
                 const { data } = await axios.get('/api/user')
                 user = data.data;
-            }else{
+            } else {
                 user = payload.user;
             }
             commit(types.FETCH_USER_SUCCESS, { user })
@@ -77,7 +77,7 @@ export const actions = {
 
     async updateUserLocation({ commit }, { city_id, area_id }) {
         try {
-            const { data } = await axios.get('/api/update_CityArea?city_id=' + city_id + '&area_id=' + area_id + '&src=web')
+            const { data } = await axios.get('/api/update_CityArea?city_id=' + city_id + '&area_id=' + area_id)
             let payload = { user: data.data };
             commit(types.UPDATE_USER, payload)
         } catch (e) {
