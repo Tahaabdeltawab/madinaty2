@@ -62,15 +62,15 @@
           </div>
            <div class="mb-3 row">
             <div class="col-md-12 d-flex">
-              <button type="submit" class="btn m-auto round btn-facebook">
-                <img :src="asset('q/assets/img/svg/login/facebook.svg')" alt="btn logo">{{$t('Continue with Facebook')}}
+              <button class="btn m-auto round btn-facebook">
+                <img :src="asset('q/assets/img/svg/login/facebook.svg')" alt="btn facebook">{{$t('Continue with Facebook')}}
               </button>
             </div>
           </div>
            <div class="mb-3 row">
             <div class="col-md-12 d-flex">
-              <button type="submit" class="btn m-auto round btn-google">
-                <img :src="asset('q/assets/img/svg/login/google.svg')" alt="btn logo">{{$t('Continue with Google')}}
+              <button class="btn m-auto round btn-google">
+                <img :src="asset('q/assets/img/svg/login/google.svg')" alt="btn google">{{$t('Continue with Google')}}
               </button>
             </div>
           </div>
