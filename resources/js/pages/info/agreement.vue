@@ -28,7 +28,7 @@ import About from '~/components/place/About.vue';
       await this.fetchAgreement();
     },
     metaInfo() {
-      return { title: this.$t("Usage Agreement") };
+      return { title: this.$t('Usage Agreement') };
     },
 
     data: () => ({

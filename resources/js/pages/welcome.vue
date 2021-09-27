@@ -3,6 +3,7 @@
     <slider :sliders="home.sliders" />
     <category-slider :categories="home.categories" />
     <popular :populars="home.populars" />
+    <hr style="border-top:1px solid rgba(0,0,0,0.15)">
     <categories :categories="home.categories" />
   </div>
 </template>
@@ -42,7 +43,7 @@ export default {
     await this.fetchHome();
   },
   metaInfo() {
-    return { title: this.$t("home") };
+    return { title: this.$t('Home') };
   },
 
   data: () => ({

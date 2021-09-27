@@ -17,8 +17,9 @@
         :to="{ name: 'favorites' }"
         class="dropdown-item ps-3"
       >
-        <b-icon icon="star-fill" fixed-width font-scale="1.2" ></b-icon>
-        {{ $t("Favorites") }}
+        <!-- <b-icon icon="star-fill" fixed-width font-scale="1.2" ></b-icon> -->
+        <img :src="asset('q/assets/img/svg/favorite_fill.svg')" alt="">
+        {{ $t('Favorites') }}
       </router-link>
 
       <div class="dropdown-divider" />
@@ -27,15 +28,17 @@
         :to="{ name: 'settings.profile' }"
         class="dropdown-item ps-3"
       >
-        <fa icon="cog" fixed-width />
-        {{ $t("settings") }}
+        <!-- <fa icon="cog" fixed-width /> -->
+        <img :src="asset('q/assets/img/svg/settings.svg')" alt="">
+        {{ $t('settings') }}
       </router-link>
 
       <div class="dropdown-divider" />
 
       <a href="#" class="dropdown-item ps-3" @click.prevent="logout">
-        <fa icon="sign-out-alt" fixed-width />
-        {{ $t("logout") }}
+        <!-- <fa icon="sign-out-alt" fixed-width /> -->
+        <img :src="asset('q/assets/img/svg/open-lock.svg')" alt="">
+        {{ $t('logout') }}
       </a>
     </div>
   </li>
@@ -47,7 +50,7 @@
         class="nav-link"
         active-class="active"
       >
-        {{ $t("login") }}
+        {{ $t('login') }}
       </router-link>
     </li>
     <li class="nav-item">
@@ -56,7 +59,7 @@
         class="nav-link"
         active-class="active"
       >
-        {{ $t("register") }}
+        {{ $t('register') }}
       </router-link>
     </li>
   </ul>

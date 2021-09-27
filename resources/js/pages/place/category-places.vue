@@ -23,7 +23,7 @@ export default {
     await this.fetchCategoryPlaces(this.id);
   },
   metaInfo() {
-    return { title: this.$t("Category") };
+    return { title: this.$t('Category') };
   },
   data() {
     return {

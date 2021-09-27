@@ -2,7 +2,7 @@
   <b-modal id="addProductModal"  ref="addProductModalRef">
     <!-- header -->
     <template #modal-header>
-      <h5>{{ $t("Add Product") }}</h5>
+      <h5>{{ $t('Add Product') }}</h5>
     </template>
     <!-- header -->
      <!-- body -->

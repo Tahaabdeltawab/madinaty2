@@ -6,7 +6,7 @@
           <div class="col-12">
             <div class="section-header-left">
               <h3 class="text-light-black header-title title">
-                {{user ? $t("Popular in")+ " " + user.area_name : $t("Popular")}}
+                {{user ? $t('Popular in')+ " " + (locale == 'ar' ? user.area_name_ar : user.area_name_en) : $t('Popular')}}
                 <span v-if="user" class="fs-14">
                   <a v-b-modal.locationModal href="javascript:void(0)">{{$t('Change city')}}</a>
                 </span>
@@ -24,7 +24,7 @@
                       <img :src="popular.image" class="img-fluid full-width" alt="product-img" />
                       <div class="overlay">
                         <div class="product-tags">
-                          <h6><span class="type-tag">{{popular.name_ar}}</span></h6>
+                          <h6><span class="type-tag">{{locale == 'ar' ? popular.name_ar : popular.name_en}}</span></h6>
                         </div>
                       </div>
                     </div>
@@ -47,6 +47,7 @@ export default {
   computed: {
     ...mapGetters({
       user: "auth/user",
+      locale: "lang/locale",
     }),
   },
 };

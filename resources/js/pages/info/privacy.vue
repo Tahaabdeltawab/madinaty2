@@ -27,7 +27,7 @@ import About from "~/components/place/About.vue";
     await this.fetchPrivacy();
   },
   metaInfo() {
-    return { title: this.$t("Privacy Policy") };
+    return { title: this.$t('Privacy Policy') };
   },
 
   data: () => ({

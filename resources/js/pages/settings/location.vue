@@ -1,5 +1,5 @@
 <template>
-  <card :title="$t('your location')">
+  <card :title="$t('location')">
     <form ref="locationFormRef" @submit.stop.prevent="handleSubmit">
     <b-alert v-model="showDismissibleAlert" variant="success" dismissible>{{$t('Updated successfully')}}</b-alert>
 
@@ -7,12 +7,12 @@
       <b-form-group
           :label="$t('Governorate')"
           label-for="city_id"
-          :invalid-feedback="$t('City is required')"
+          :invalid-feedback="$t('Governorate is required')"
           :state="cityState"
         >
         <select v-model="user.city_id" @change="fetchCityAreas" name="city_id" class="form-control" required>
           <option v-for="city in cities" :key="city.id" :value="city.id">
-            {{ city.name_ar }}
+            {{ locale == 'ar' ? city.name_ar : city.name_en }}
           </option>
         </select>
       </b-form-group>
@@ -21,12 +21,12 @@
       <b-form-group
           :label="$t('City')"
           label-for="area_id"
-          :invalid-feedback="$t('Area is required')"
+          :invalid-feedback="$t('City is required')"
           :state="areaState"
         >
         <select v-model="user.area_id" name="area_id" class="form-control" required>
           <option v-for="area in areas" :key="area.id" :value="area.id">
-            {{ area.name_ar }}
+            {{ locale == 'ar' ? area.name_ar : area.name_en }}
           </option>
         </select>
       </b-form-group>
@@ -61,6 +61,7 @@ export default {
     cities: "location/cities",
     areas: "location/areas",
     user: "auth/user",
+    locale: "lang/locale",
   }),
   async created() {
     // commented because already called from locationModal in navbarq2 which is present in all pages

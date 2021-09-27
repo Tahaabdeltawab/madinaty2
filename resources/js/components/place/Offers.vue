@@ -25,7 +25,7 @@
                               <div class="restaurent-product-box">
                                 <div class="restaurent-product-title">
                                   <h6 class="mb-2" data-toggle="modal" data-target="#restaurent-popup">
-                                    <p class="text-light-black fw-600">{{ offer.title_ar }}</p>
+                                    <p class="text-light-black fw-600">{{ locale == 'ar' ? offer.title_ar : offer.title_en }}</p>
                                   </h6>
                                 </div>
                               </div>
@@ -54,9 +54,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import AddOfferModal from '~/components/place/AddOfferModal.vue'
   export default {
   components: { AddOfferModal },
+    computed: mapGetters({
+    locale: 'lang/locale',
+  }),
     props: ['infos', 'title', 'myPlace', 'place_id'],
   }
 </script>

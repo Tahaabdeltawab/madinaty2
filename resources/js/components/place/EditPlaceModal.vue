@@ -2,7 +2,7 @@
   <b-modal id="editPlaceModal"  ref="editPlaceModalRef">
     <!-- header -->
     <template #modal-header>
-      <h5>{{ $t("Edit Place") }}</h5>
+      <h5>{{ $t('Edit Place') }}</h5>
     </template>
     <!-- header -->
      <!-- body -->
@@ -64,7 +64,7 @@
       <span></span>
       <!-- <b-button size="sm" variant="success" @click="ok();"> {{$t('OK')}} </b-button> -->
       <!-- <b-button size="sm" variant="danger" @click="cancel()">{{
-        $t("Cancel")
+        $t('Cancel')
       }}</b-button> -->
     </template>
     <!-- footer -->

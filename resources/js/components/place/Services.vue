@@ -25,7 +25,7 @@
                             <div class="restaurent-product-box">
                               <div class="restaurent-product-title">
                                 <h6 class="mb-0" data-toggle="modal" data-target="#restaurent-popup">
-                                  <p class="text-light-black fw-600">{{ index + 1 }}- {{ service.details_ar }}</p>
+                                  <p class="text-light-black fw-600">{{ index + 1 }}- {{ locale == 'ar' ? service.details_ar : service.details_en }}</p>
                                 </h6>
                               </div>
                             </div>
@@ -46,8 +46,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import AddServiceModal from '~/components/place/AddServiceModal.vue'
   export default {
+      computed: mapGetters({
+    locale: 'lang/locale',
+  }),
   components: { AddServiceModal },
     props: ['infos', 'title', 'myPlace', 'place_id'],
   }

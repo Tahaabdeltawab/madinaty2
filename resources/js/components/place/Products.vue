@@ -21,20 +21,20 @@
                       <div class="restaurent-product-list">
                         <div class="restaurent-product-detail">
                           <div class="restaurent-product-img">
-                            <img :src="product.image" class="img-fluid" :alt="product.name_ar" />
+                            <img :src="product.image" class="img-fluid" :alt="locale == 'ar' ? product.name_ar : product.name_en" />
                           </div>
                           <div class="restaurent-product-left">
                             <div class="restaurent-product-title-box">
                               <div class="restaurent-product-box">
                                 <div class="restaurent-product-title">
                                   <h6 class="mb-2" data-toggle="modal" data-target="#restaurent-popup">
-                                    <p class="text-light-black fw-600" >{{ product.name_ar }}</p>
+                                    <p class="text-light-black fw-600" >{{ locale == 'ar' ? product.name_ar : product.name_en }}</p>
                                   </h6>
                                 </div>
                               </div>
                             </div>
                             <div class="restaurent-product-caption-box">
-                              <span class="text-light-white">{{product.description_ar}}</span>
+                              <span class="text-light-white">{{locale == 'ar' ? product.description_ar : product.description_en}}</span>
                             </div>
                             <div class="restaurent-tags-price">
                               <div class="restaurent-product-price">
@@ -59,8 +59,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import AddProductModal from '~/components/place/AddProductModal.vue'
   export default {
+      computed: mapGetters({
+    locale: 'lang/locale',
+  }),
   components: { AddProductModal },
     props: ['infos', 'title', 'myPlace', 'place_id'],
   }

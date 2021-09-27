@@ -5,18 +5,18 @@
         <form @submit.prevent="login" @keydown="form.onKeydown($event)">
           <!-- Email -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">{{ $t('email or phone') }}</label>
+            <label class="col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/phone.svg')" alt="username">  {{ $t('Phone') }}</label>
             <div class="col-md-7">
-              <input v-model="form.phone" :class="{ 'is-invalid': form.errors.has('phone') }" class="form-control" type="text" name="phone">
+              <input v-model="form.phone" :class="{ 'is-invalid': form.errors.has('phone') }" class="form-control round" type="text" name="phone">
               <has-error :form="form" field="phone" />
             </div>
           </div>
 
           <!-- Password -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">{{ $t('password') }}</label>
+            <label class="col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/lock.svg')" alt="password">  {{ $t('password') }}</label>
             <div class="col-md-7">
-              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password">
+              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control round" type="password" name="password">
               <has-error :form="form" field="password" />
             </div>
           </div>
@@ -25,28 +25,58 @@
           <div class="mb-3 row">
             <div class="col-md-3" />
             <div class="col-md-7 d-flex">
-              <checkbox v-model="remember" name="remember">
+              <!-- <checkbox v-model="remember" name="remember">
                 {{ $t('remember_me') }}
-              </checkbox>
+              </checkbox> -->
 
               <router-link :to="{ name: 'password.request' }" class="small ms-auto my-auto">
                 {{ $t('forgot_password') }}
-              </router-link>
-
-              <router-link :to="{ name: 'register' }" class="small mr-auto my-auto">
-                {{ $t("Don't have an account? register a new one") }}
               </router-link>
             </div>
           </div>
 
           <div class="mb-3 row">
-            <div class="col-md-7 offset-md-3 d-flex">
+            <div class="col-md-12 d-flex">
               <!-- Submit Button -->
-              <v-button :loading="form.busy">
+              <v-button :loading="form.busy" class="btn-brand m-auto w-30 round">
                 {{ $t('login') }}
               </v-button>
-
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <div class="col-md-12 d-flex">
+              <router-link :to="{name: 'welcome'}" class="btn btn-brand-layout m-auto w-30 round">
+                {{ $t('Not now') }}
+              </router-link>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <div class="col-md-12 d-flex">
+                <router-link :to="{ name: 'register' }" class="m-auto my-auto">{{ $t("Dont have an account?") }} <span class="text-brand">{{ $t("register now") }}</span></router-link>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <div class="col-md-12 d-flex">
+                <p class="m-auto my-auto">{{ $t("OR Register by") }}</p>
+            </div>
+          </div>
+           <div class="mb-3 row">
+            <div class="col-md-12 d-flex">
+              <button type="submit" class="btn m-auto round btn-facebook">
+                <img :src="asset('q/assets/img/svg/login/facebook.svg')" alt="btn logo">{{$t('Continue with Facebook')}}
+              </button>
+            </div>
+          </div>
+           <div class="mb-3 row">
+            <div class="col-md-12 d-flex">
+              <button type="submit" class="btn m-auto round btn-google">
+                <img :src="asset('q/assets/img/svg/login/google.svg')" alt="btn logo">{{$t('Continue with Google')}}
+              </button>
+            </div>
+          </div>
               <!-- GitHub Login Button -->
+          <div class="mb-3 row">
+            <div class="col-md-12 m-auto d-flex">
               <login-with-github />
             </div>
           </div>
@@ -77,7 +107,7 @@ export default {
       phone: '',
       password: ''
     }),
-    remember: false
+    remember: true
   }),
 
   methods: {
@@ -124,5 +154,11 @@ export default {
   }
   .form-check-label {
     margin-right: 15px;
+  }
+  .round.btn-facebook,.round.btn-google {
+    padding: 6px 25px;
+  }
+  .round.btn-facebook img,.round.btn-google img {
+    margin-left: 15px;
   }
 </style>

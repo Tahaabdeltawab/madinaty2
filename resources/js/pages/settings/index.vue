@@ -35,7 +35,7 @@ export default {
         },
         {
           icon: 'map-fill',
-          name: this.$t('location'),
+          name: this.$t('Location'),
           route: 'settings.location'
         },
         {

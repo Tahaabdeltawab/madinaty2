@@ -23,7 +23,7 @@ export default {
     await this.fetchFavorites();
   },
   metaInfo() {
-    return { title: this.$t("Favorites") };
+    return { title: this.$t('Favorites') };
   },
   data() {
     return {

@@ -28,7 +28,7 @@ import Categories from '~/components/home/Categories';
     this.fetchAllCategories();
   },
   metaInfo() {
-    return { title: this.$t("Categories") };
+    return { title: this.$t('Categories') };
   },
 
   data: () => ({

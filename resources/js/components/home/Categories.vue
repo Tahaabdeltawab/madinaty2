@@ -6,7 +6,7 @@
         <div class="col-12">
           <div class="section-header-left">
             <h3 class="text-light-black header-title title">
-              {{$t('Explore our Categories')}}
+              {{$t('Categories')}}
               <span v-if="$parent.$options.name == 'welcome'" class="fs-14"><router-link :to="{name: 'categories'}">{{$t('See all')}}</router-link></span>
             </h3>
           </div>
@@ -22,7 +22,7 @@
                     <img :src="category.image" class="img-fluid full-width" alt="product-img" />
                     <div class="overlay">
                       <div class="product-tags">
-                        <h6><span class="type-tag">{{category.name_ar}}</span></h6>
+                        <h6><span class="type-tag">{{locale == 'ar' ? category.name_ar : category.name_en}}</span></h6>
                       </div>
                     </div>
                   </div>
@@ -38,11 +38,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
   export default {
     props: ["categories"],
-    computed: {
-      // seeAllShow: this.$parent.$options.name == 'welcome',
-    }
+    computed: mapGetters({
+      locale: 'lang/locale',
+    }),
   };
 </script>
 

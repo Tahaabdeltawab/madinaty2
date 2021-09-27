@@ -6,7 +6,7 @@
         <div class="col-12">
           <div class="section-header-left">
             <h3 class="text-light-black header-title title">
-              {{$t('Browse by Categories')}}
+              {{$t('Categories')}}
               <span class="fs-14"><router-link :to="{name: 'categories'}">{{$t('See all')}}</router-link></span>
             </h3>
           </div>
@@ -17,7 +17,7 @@
             <router-link :to="{ name: 'category', params: { id: category.id } }" class="tablinks slide active">
               <span>
                 <img :src="category.sub_image" class="img-responsive" alt="image">
-                {{category.name_ar}}
+                {{locale == 'ar' ? category.name_ar : category.name_en}}
               </span>
             </router-link>
           </swiper-slide>
@@ -31,11 +31,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.min.css";
 
 export default {
   name: "Slider",
+  computed: mapGetters({
+    locale: 'lang/locale',
+  }),
   props: ["categories"],
   data() {
     return {

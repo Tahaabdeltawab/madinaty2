@@ -2,7 +2,7 @@
   <b-modal id="locationModal" @ok="handleOk"  ref="locationModalRef">
     <!-- header -->
     <template #modal-header>
-      <h5>{{ $t("Location") }}</h5>
+      <h5>{{ $t('Location') }}</h5>
     </template>
     <!-- header -->
 
@@ -12,24 +12,24 @@
          <b-form-group
           :label="$t('Governorate')"
           label-for="city_id"
-          :invalid-feedback="$t('City is required')"
+          :invalid-feedback="$t('Governorate is required')"
           :state="cityState"
         >
         <select v-model="user.city_id" @change="fetchCityAreas" name="city_id" class="form-control" required>
           <option v-for="city in cities" :key="city.id" :value="city.id">
-            {{ city.name_ar }}
+            {{ locale == 'ar' ? city.name_ar : city.name_en }}
           </option>
         </select>
       </b-form-group>
       <b-form-group
           :label="$t('City')"
           label-for="area_id"
-          :invalid-feedback="$t('Area is required')"
+          :invalid-feedback="$t('City is required')"
           :state="areaState"
         >
         <select v-model="user.area_id" name="area_id" class="form-control" required>
           <option v-for="area in areas" :key="area.id" :value="area.id">
-            {{ area.name_ar }}
+            {{ locale == 'ar' ? area.name_ar : area.name_en }}
           </option>
         </select>
       </b-form-group>
@@ -41,7 +41,7 @@
     <template #modal-footer="{ ok }">
       <b-button size="sm" variant="success" @click="ok();"> {{$t('OK')}} </b-button>
       <!-- <b-button size="sm" variant="danger" @click="cancel()">{{
-        $t("Cancel")
+        $t('Cancel')
       }}</b-button> -->
     </template>
     <!-- footer -->
@@ -61,6 +61,7 @@ export default {
     cities: "location/cities",
     areas: "location/areas",
     user: "auth/user",
+    locale: "lang/locale",
   }),
   async created() {
     await this.fetchCities();

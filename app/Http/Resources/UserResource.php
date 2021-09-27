@@ -16,14 +16,16 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
+        $area = Area::find($this->area_id);
+        $city = City::find($this->city_id);
         if($this->lang == 'ar'){
-            $city_name = City::where('id' , $this->city_id)->value('name_ar');
-            $area_name = Area::where('id' , $this->area_id)->value('name_ar');
+            $area_name = $area->name_ar;
+            $city_name = $city->name_ar;
         }else{
-            $city_name = City::where('id' , $this->city_id)->value('name_en');  
-            $area_name = Area::where('id' , $this->area_id)->value('name_en');
+            $area_name = $area->name_en;
+            $city_name = $city->name_en;
         }
-        return [
+        $return = [
             "id" => $this->id,
             "username" => $this->username,
             'email' => $this->email,
@@ -34,5 +36,12 @@ class UserResource extends JsonResource
             "area_name" => $area_name,
             "token" => $this->userToken,
         ];
+        if($request->header('src') == 'web'){
+            $return['area_name_ar'] = $area->name_ar;
+            $return['area_name_en'] = $area->name_en;
+            $return['city_name_ar'] = $city->name_ar;
+            $return['city_name_en'] = $city->name_en;
+        }
+        return $return;
     }
 }

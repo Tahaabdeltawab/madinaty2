@@ -2,7 +2,7 @@
   <b-modal id="addServiceModal"  ref="addServiceModalRef">
     <!-- header -->
     <template #modal-header>
-      <h5>{{ $t("Add Service") }}</h5>
+      <h5>{{ $t('Add Service') }}</h5>
     </template>
     <!-- header -->
      <!-- body -->
@@ -39,7 +39,7 @@
       <span></span>
       <!-- <b-button size="sm" variant="success" @click="ok();"> {{$t('OK')}} </b-button> -->
       <!-- <b-button size="sm" variant="danger" @click="cancel()">{{
-        $t("Cancel")
+        $t('Cancel')
       }}</b-button> -->
     </template>
     <!-- footer -->

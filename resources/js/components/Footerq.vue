@@ -19,32 +19,28 @@
           </div>
           <div class="col-xl col-lg-4 col-md-4 col-sm-6">
             <div class="footer-contact">
-              <h6 class="text-custom-white">{{ $t("Need Help") }}</h6>
+              <h6 class="text-custom-white">{{ $t('Need Help?') }}</h6>
               <ul>
                 <li class="fw-600">
-                  <span class="text-light-white">{{ $t("Call Us") }}</span>
-                  <a href="tel:+9647730019492" class="text-custom-white"
-                    >+(964) 773 001 9492</a
-                  >
+                  <span class="text-light-white">{{ $t('Call Us') }}</span><br>
+                  <a href="tel:+9647730019492" class="text-custom-white">+(964) 773 001 9492</a>
                 </li>
                 <li class="fw-600">
-                  <span class="text-light-white">{{ $t("Email Us") }}</span>
-                  <a href="mailto:info@madinaty.com" class="text-custom-white"
-                    >info@madinaty.com</a
-                  >
+                  <span class="text-light-white">{{ $t('Email Us') }}</span><br>
+                  <a href="mailto:info@madinaty.com" class="text-custom-white">info@madinaty.com</a>
                 </li>
               </ul>
             </div>
           </div>
           <div class="col-xl col-lg-4 col-md-4 col-sm-6">
             <div class="footer-links">
-              <h6 class="text-custom-white">{{ $t("Get to Know Us") }}</h6>
+              <h6 class="text-custom-white">{{ $t('Get to Know Us') }}</h6>
               <ul>
                 <li>
-                  <router-link :to="{name: 'agreement'}" class="text-light-white fw-600">{{$t("Usage Agreement")}}</router-link>
+                  <router-link :to="{name: 'agreement'}" class="text-light-white fw-600">{{$t('Usage Agreement')}}</router-link>
                 </li>
                 <li>
-                  <router-link :to="{name: 'privacy'}" class="text-light-white fw-600">{{$t("Privacy Policy")}}</router-link>
+                  <router-link :to="{name: 'privacy'}" class="text-light-white fw-600">{{$t('Privacy Policy')}}</router-link>
                 </li>
                 <li>
                 </li>
@@ -53,20 +49,20 @@
           </div>
           <div class="col-xl col-lg-4 col-md-4 col-sm-6">
             <div class="footer-links">
-              <h6 class="text-custom-white">{{ $t("Download Apps") }}</h6>
+              <h6 class="text-custom-white">{{ $t('Download Apps') }}</h6>
               <div class="appimg">
-                <a href="#">
+                <a target="_blank" href="https://play.google.com/store/apps/details?id=com.madinatyapp.madinaty">
                   <img
-                    :src="asset('q/assets/img/playstore.jpg')"
+                    :src="asset('images/app-store/playstore.jpg')"
                     class="img-fluid"
                     alt="app logo"
                   />
                 </a>
               </div>
               <div class="appimg">
-                <a href="#">
+                <a target="_blank" href="https://play.google.com/store/apps/details?id=com.madinatyapp.madinaty">
                   <img
-                    :src="asset('q/assets/img/appstore.jpg')"
+                    :src="asset('images/app-store/appstore.jpg')"
                     class="img-fluid"
                     alt="app logo"
                   />
@@ -78,7 +74,7 @@
           <div class="col-md-12">
             <div class="ft-social-media">
               <h6 class="text-center text-light-black">
-                {{ $t("Follow us") }}
+                {{ $t('Follow us') }}
               </h6>
               <ul>
                 <li class="facebook">
@@ -120,7 +116,7 @@
           <div class="col-lg-12">
             <div class="copyright-text">
               <span class="text-light-white">
-                ©<a href="#" class="text-light-white">{{ $t("Madinaty") }}</a> - 2021 | All Right Reserved
+                ©<a href="#" class="text-light-white">{{ $t('Madinaty') }}</a> - 2021 | All Right Reserved
               </span>
             </div>
           </div>

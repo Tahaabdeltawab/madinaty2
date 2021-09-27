@@ -10,45 +10,45 @@
         <form @submit.prevent="register" @keydown="form.onKeydown($event)">
           <!-- Name -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">{{ $t('name') }}</label>
+            <label class="col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/user.svg')" alt="username">  {{ $t('name') }}</label>
             <div class="col-md-7">
-              <input v-model="form.username" :class="{ 'is-invalid': form.errors.has('username') }" class="form-control" type="text" name="username">
+              <input v-model="form.username" :class="{ 'is-invalid': form.errors.has('username') }" class="form-control" type="text" name="username" required>
               <has-error :form="form" field="username" />
             </div>
           </div>
 
           <!-- Email -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">{{ $t('email') }}</label>
+            <label class="col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/user.svg')" alt="email">  {{ $t('email') }}</label>
             <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
+              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email" required>
               <has-error :form="form" field="email" />
             </div>
           </div>
 
           <!-- Phone -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">{{ $t('phone') }}</label>
+            <label class="col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/phone.svg')" alt="phone">  {{ $t('Phone') }}</label>
             <div class="col-md-7">
-              <input v-model="form.phone" :class="{ 'is-invalid': form.errors.has('phone') }" class="form-control" name="phone">
+              <input v-model="form.phone" :class="{ 'is-invalid': form.errors.has('phone') }" class="form-control" name="phone" required>
               <has-error :form="form" field="phone" />
             </div>
           </div>
 
           <!-- Password -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">{{ $t('password') }}</label>
+            <label class="col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/lock.svg')" alt="password">  {{ $t('password') }}</label>
             <div class="col-md-7">
-              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password">
+              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password" required>
               <has-error :form="form" field="password" />
             </div>
           </div>
 
           <!-- Password Confirmation -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">{{ $t('confirm_password') }}</label>
+            <label class="col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/lock.svg')" alt="password confirmation">  {{ $t('confirm_password') }}</label>
             <div class="col-md-7">
-              <input v-model="form.password_confirmation" :class="{ 'is-invalid': form.errors.has('password_confirmation') }" class="form-control" type="password" name="password_confirmation">
+              <input v-model="form.password_confirmation" :class="{ 'is-invalid': form.errors.has('password_confirmation') }" class="form-control" type="password" name="password_confirmation" required>
               <has-error :form="form" field="password_confirmation" />
             </div>
           </div>
@@ -57,16 +57,16 @@
             <div class="col-md-3" />
             <div class="col-md-7 d-flex">
               <router-link :to="{ name: 'login' }" class="small mr-auto my-auto">
-                {{ $t("Already have an account? Login") }}
+                {{ $t('Already have an account? Login') }}
               </router-link>
             </div>
           </div>
 
           <div class="mb-3 row">
-            <div class="col-md-7 offset-md-3 d-flex">
+            <div class="col-md-12 d-flex">
               <!-- Submit Button -->
-              <v-button :loading="form.busy">
-                {{ $t('register') }}
+              <v-button type="submit" :loading="form.busy" class="btn-brand m-auto w-4">
+                {{ $t('register your account') }}
               </v-button>
 
               <!-- GitHub Register Button -->

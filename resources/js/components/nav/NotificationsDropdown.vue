@@ -10,7 +10,7 @@
     >
      <b-icon icon="bell-fill" class="notification-bell"></b-icon>
       <!-- <i class="fa fa-bell notification-bell" aria-hidden="true"></i> -->
-      <span class="btn__badge pulse-button">{{$t('4')}}</span>
+      <span class="btn__badge pulse-button">4</span>
     </a>
     <ul class="dropdown-menu notify-drop">
       <div class="notify-drop-title">
@@ -26,9 +26,9 @@
             </div>
           </div>
           <div class="col-md-9 col-sm-9 col-xs-9 pd-l0">
-            <a href="#">{{$t('Notification content lies here')}}</a>
-            <p>{{$t('Lorem ipsum sit dolor amet consilium.')}}</p>
-            <p class="time">{{$t('2 mins ago')}}</p>
+            <a href="#">Notification content lies here</a>
+            <p>Lorem ipsum sit dolor amet consilium.</p>
+            <p class="time">2 mins ago</p>
           </div>
         </li>
         <li class="row">
@@ -38,9 +38,9 @@
             </div>
           </div>
           <div class="col-md-9 col-sm-9 col-xs-9 pd-l0">
-            <a href="#">{{$t('Notification content lies here')}}</a>
-            <p>{{$t('Lorem ipsum sit dolor amet consilium.')}}</p>
-            <p class="time">{{$t('2 mins ago')}}</p>
+            <a href="#">Notification content lies here</a>
+            <p>Lorem ipsum sit dolor amet consilium.</p>
+            <p class="time">2 mins ago</p>
           </div>
         </li>
         <li class="row">
@@ -50,9 +50,9 @@
             </div>
           </div>
           <div class="col-md-9 col-sm-9 col-xs-9 pd-l0">
-            <a href="#">{{$t('Notification content lies here')}}</a>
-            <p>{{$t('Lorem ipsum sit dolor amet consilium.')}}</p>
-            <p class="time">{{$t('2 mins ago')}}</p>
+            <a href="#">Notification content lies here</a>
+            <p>Lorem ipsum sit dolor amet consilium.</p>
+            <p class="time">2 mins ago</p>
           </div>
         </li>
         <li class="row">
@@ -62,14 +62,14 @@
             </div>
           </div>
           <div class="col-md-9 col-sm-9 col-xs-9 pd-l0">
-            <a href="#">{{$t('Notification content lies here')}}</a>
-            <p>{{$t('Lorem ipsum sit dolor amet consilium.')}}</p>
-            <p class="time">{{$t('2 mins ago')}}</p>
+            <a href="#">Notification content lies here</a>
+            <p>Lorem ipsum sit dolor amet consilium.</p>
+            <p class="time">2 mins ago</p>
           </div>
         </li>
       </div>
       <div class="notify-drop-footer text-center">
-        <a href="#"><i class="fa fa-eye"></i> See all</a>
+        <a href="#"><i class="fa fa-eye"></i> {{$t('See all')}}</a>
       </div>
     </ul>
   </li>

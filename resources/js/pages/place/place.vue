@@ -10,13 +10,13 @@
           <div class="col-md-8">
             
             <h3 class="text-light-black fw-700 title">
-              {{ place.details.name_ar }}
+              {{ place.locale == 'ar' ? details.name_ar : details.name_en }}
               <a v-if="place.details.my_place" v-b-modal.editPlaceModal class="btn btn-dark edit-place-modal-btn" href="javascript:void(0)" >{{ $t('Edit your data') }}</a>
               <edit-place-modal v-if="modalReady" :place="place.details" />
             </h3>
 
             <p class="text-light-white no-margin">
-              {{ place.details.description_ar }}
+              {{ place.locale == 'ar' ? details.description_ar : details.description_en }}
             </p>
            <icons :place="place.details" />
           </div>
@@ -116,25 +116,25 @@ export default {
     this.modalReady = true; // to let place fully loaded from the store
   },
   metaInfo() {
-    return { title: this.$t("Place") };
+    return { title: this.$t('Place') };
   },
   data() {
     let tabs = [
       {
         name: "services",
-        title: this.$t("Services"),
+        title: this.$t('Services'),
       },
       {
         name: "products",
-        title: this.$t("Products"),
+        title: this.$t('Products'),
       },
       {
         name: "offers",
-        title: this.$t("Offers"),
+        title: this.$t('Offers'),
       },
       {
         name: "aboutus",
-        title: this.$t("About us"),
+        title: this.$t('About us'),
       },
     ];
 

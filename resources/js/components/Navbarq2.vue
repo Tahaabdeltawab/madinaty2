@@ -27,8 +27,8 @@
           
           <!-- search -->
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search">
-            <button class="btn btn-info search-button my-2 my-sm-0" type="submit"> <b-icon icon="search" fixed-width></b-icon></button>
+            <input class="form-control mr-sm-2" type="search" :placeholder="$t('Search')">
+            <button class="btn btn-brand search-button my-2 my-sm-0" type="submit"> <b-icon icon="search" fixed-width></b-icon></button>
           </form>
           <!-- search -->
 
@@ -40,7 +40,7 @@
 
             <template v-if="user">
               <!-- modal -->
-              <a v-b-modal.locationModal class="nav-item btn location-modal-btn" >{{user.area_name || $t('City')}}</a>
+              <a v-b-modal.locationModal class="nav-item btn location-modal-btn" >{{locale == 'ar' ? user.area_name_ar : user.area_name_en}}</a>
               <location-modal />
               <!-- modal -->
               
@@ -79,6 +79,7 @@ export default {
   }),
   computed: mapGetters({
     user: "auth/user",
+    locale: "lang/locale",
   }),
   methods: {
     async logout() {

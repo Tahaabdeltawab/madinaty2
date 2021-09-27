@@ -14,7 +14,7 @@
                         <div class="restaurent-product-detail">
                           <router-link :to="{ name: 'place', params: { id: place.id } }">
                             <div class="restaurent-product-img">
-                              <img :src="place.image" class="img-fluid" :alt="place.name_ar" />
+                              <img :src="place.image" class="img-fluid" :alt="locale == 'ar' ? place.name_ar : place.name_en" />
                             </div>
                           </router-link>
                           <div class="restaurent-product-left">
@@ -22,12 +22,12 @@
                               <div class="restaurent-product-title-box">
                                 <div class="restaurent-product-box">
                                   <div class="restaurent-product-title">
-                                    <h6 class="mb-2 text-light-black fw-600">{{ place.name_ar }}</h6>
+                                    <h6 class="mb-2 text-light-black fw-600">{{ locale == 'ar' ? place.name_ar : place.name_en }}</h6>
                                   </div>
                                 </div>
                               </div>
                               <div class="restaurent-product-caption-box">
-                                <span class="text-light-white">{{place.description_ar}}</span>
+                                <span class="text-light-white">{{locale == 'ar' ? place.description_ar : place.description_en}}</span>
                               </div>
                               </router-link>
                               <div class="restaurent-tags-price">
@@ -53,8 +53,11 @@
 
 <script>
 import Icons from '~/components/place/Icons.vue';
-
+import { mapGetters } from 'vuex'
   export default {
+      computed: mapGetters({
+    locale: 'lang/locale',
+  }),
   components: { Icons },
     props: ['places'],
   }
