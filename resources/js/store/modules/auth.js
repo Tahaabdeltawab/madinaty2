@@ -5,14 +5,16 @@ import * as types from '../mutation-types'
 // state
 export const state = {
     user: null,
-    token: Cookies.get('token')
+    token: Cookies.get('token'),
+    notifications: [],
 }
 
 // getters
 export const getters = {
     user: state => state.user,
     token: state => state.token,
-    check: state => state.user !== null
+    check: state => state.user !== null,
+    notifications: state => state.notifications,
 }
 
 // mutations
@@ -40,6 +42,10 @@ export const mutations = {
 
     [types.UPDATE_USER](state, { user }) {
         state.user = user
+    },
+
+    [types.FETCH_NOTIFICATIONS_SUCCESS](state, { notifications }) {
+        state.notifications = notifications
     }
 }
 
@@ -49,12 +55,6 @@ export const actions = {
         commit(types.SAVE_TOKEN, payload)
     },
 
-    async guser({ commit }) {
-        try {
-            const { data } = await axios.get('/api/user')
-            return data;
-        } catch (e) {}
-    },
     async fetchUser({ commit }, payload = null) {
         try {
             let user = null;
@@ -69,6 +69,14 @@ export const actions = {
         } catch (e) {
             commit(types.FETCH_USER_FAILURE)
         }
+    },
+    async fetchNotifications({ commit }) {
+        console.log('before call notifs api');
+        try {
+            const { data } = await axios.get('/api/show_all_notification')
+            let notifications = data.data;
+            commit(types.FETCH_NOTIFICATIONS_SUCCESS, { notifications })
+        } catch (e) {}
     },
 
     updateUser({ commit }, payload) {

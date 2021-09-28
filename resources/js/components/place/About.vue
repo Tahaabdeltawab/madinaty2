@@ -25,7 +25,8 @@
                                     <div class="restaurent-product-title">
                                       <h6 v-for="info in infos" :key="info.id" class="mb-2">
                                         <p class="text-light-black fw-600"> 
-                                         {{ locale == 'ar' ? info.details_ar : info.details_en || locale == 'ar' ? info.description_ar : info.description_en }} <!-- details for place, description for info pages(privacy, agreement) -->
+                                          <!-- details for place, description for info pages(privacy, agreement) -->
+                                         {{ (locale == 'ar' ? info.details_ar : info.details_en) || (locale == 'ar' ? info.description_ar : info.description_en) }}
                                         </p>
                                       </h6>
                                     </div>

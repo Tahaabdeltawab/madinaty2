@@ -9,8 +9,7 @@
       aria-expanded="false"
     >
      <b-icon icon="bell-fill" class="notification-bell"></b-icon>
-      <!-- <i class="fa fa-bell notification-bell" aria-hidden="true"></i> -->
-      <span class="btn__badge pulse-button">4</span>
+      <span class="btn__badge pulse-button">{{notifications.length}}</span>
     </a>
     <ul class="dropdown-menu notify-drop">
       <div class="notify-drop-title">
@@ -19,52 +18,16 @@
         </div>
       </div>
       <div class="drop-content">
-        <li class="row">
+        <li v-for="notification in notifications" :key="notification.id" class="row">
           <div class="col-md-3 col-sm-3 col-xs-3 notify-img-section">
             <div class="notify-img">
-              <img src="http://placehold.it/45x45" alt="" />
+              <img v-if="notification.image" :src="notification.image" alt="" />
             </div>
           </div>
           <div class="col-md-9 col-sm-9 col-xs-9 pd-l0">
-            <a href="#">Notification content lies here</a>
-            <p>Lorem ipsum sit dolor amet consilium.</p>
-            <p class="time">2 mins ago</p>
-          </div>
-        </li>
-        <li class="row">
-          <div class="col-md-3 col-sm-3 col-xs-3 notify-img-section">
-            <div class="notify-img">
-              <img src="http://placehold.it/45x45" alt="" />
-            </div>
-          </div>
-          <div class="col-md-9 col-sm-9 col-xs-9 pd-l0">
-            <a href="#">Notification content lies here</a>
-            <p>Lorem ipsum sit dolor amet consilium.</p>
-            <p class="time">2 mins ago</p>
-          </div>
-        </li>
-        <li class="row">
-          <div class="col-md-3 col-sm-3 col-xs-3 notify-img-section">
-            <div class="notify-img">
-              <img src="http://placehold.it/45x45" alt="" />
-            </div>
-          </div>
-          <div class="col-md-9 col-sm-9 col-xs-9 pd-l0">
-            <a href="#">Notification content lies here</a>
-            <p>Lorem ipsum sit dolor amet consilium.</p>
-            <p class="time">2 mins ago</p>
-          </div>
-        </li>
-        <li class="row">
-          <div class="col-md-3 col-sm-3 col-xs-3 notify-img-section">
-            <div class="notify-img">
-              <img src="http://placehold.it/45x45" alt="" />
-            </div>
-          </div>
-          <div class="col-md-9 col-sm-9 col-xs-9 pd-l0">
-            <a href="#">Notification content lies here</a>
-            <p>Lorem ipsum sit dolor amet consilium.</p>
-            <p class="time">2 mins ago</p>
+            <a href="#">{{notification.title_ar}}</a>
+            <p>{{notification.body_ar}}</p>
+            <!-- <p class="time">2 mins ago</p> -->
           </div>
         </li>
       </div>
@@ -80,9 +43,17 @@ import { mapGetters } from "vuex";
 import { loadMessages } from "~/plugins/i18n";
 
 export default {
-  computed: mapGetters({}),
-
-  methods: {},
+  computed: mapGetters({
+    notifications: 'auth/notifications'
+  }),
+   created() {
+     this.fetchNotifications()
+    },
+  methods: {
+    async fetchNotifications(){
+      await this.$store.dispatch('auth/fetchNotifications')
+    }
+  },
 };
 </script>
 <style scoped>

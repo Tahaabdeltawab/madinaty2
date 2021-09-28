@@ -10,13 +10,13 @@
           <div class="col-md-8">
             
             <h3 class="text-light-black fw-700 title">
-              {{ place.locale == 'ar' ? details.name_ar : details.name_en }}
+              {{ locale == 'ar' ? place.details.name_ar : place.details.name_en }}
               <a v-if="place.details.my_place" v-b-modal.editPlaceModal class="btn btn-dark edit-place-modal-btn" href="javascript:void(0)" >{{ $t('Edit your data') }}</a>
               <edit-place-modal v-if="modalReady" :place="place.details" />
             </h3>
 
             <p class="text-light-white no-margin">
-              {{ place.locale == 'ar' ? details.description_ar : details.description_en }}
+              {{ locale == 'ar' ? place.details.description_ar : place.details.description_en }}
             </p>
            <icons :place="place.details" />
           </div>
