@@ -6,10 +6,10 @@ $config = [
     'githubAuth' => config('services.github.client_id'),
     'asset' => asset('')
 ];
-// $appJs = asset('dist/js/app.60153f.js');
-// $appCss = asset('dist/css/app.5754da.css');
-$appJs = mix('dist/js/app.js');
-$appCss = mix('dist/css/app.css');
+$appJs = asset('dist/js/app.938b4e.js');
+$appCss = asset('dist/css/app.081156.css');
+// $appJs = mix('dist/js/app.js');
+// $appCss = mix('dist/css/app.css');
 @endphp
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" dir="rtl">
