@@ -3,11 +3,12 @@ $config = [
     'appName' => config('app.name'),
     'locale' => ($locale = app()->getLocale()),
     'locales' => config('app.locales'),
-    'githubAuth' => config('services.github.client_id'),
+    'facebookAuth' => config('services.facebook.client_id'),
+    'googleAuth' => config('services.google.client_id'),
     'asset' => asset('')
 ];
-$appJs = asset('dist/js/app.938b4e.js');
-$appCss = asset('dist/css/app.081156.css');
+$appJs = asset('dist/js/app.2c1969.js');
+$appCss = asset('dist/css/app.e15a30.css');
 // $appJs = mix('dist/js/app.js');
 // $appCss = mix('dist/css/app.css');
 @endphp

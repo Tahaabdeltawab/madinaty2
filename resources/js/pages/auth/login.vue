@@ -60,26 +60,10 @@
                 <p class="m-auto my-auto">{{ $t("OR Register by") }}</p>
             </div>
           </div>
-           <div class="mb-3 row">
-            <div class="col-md-12 d-flex">
-              <button class="btn m-auto round btn-facebook">
-                <img :src="asset('q/assets/img/svg/login/facebook.svg')" alt="btn facebook">{{$t('Continue with Facebook')}}
-              </button>
-            </div>
-          </div>
-           <div class="mb-3 row">
-            <div class="col-md-12 d-flex">
-              <button class="btn m-auto round btn-google">
-                <img :src="asset('q/assets/img/svg/login/google.svg')" alt="btn google">{{$t('Continue with Google')}}
-              </button>
-            </div>
-          </div>
-              <!-- GitHub Login Button -->
-          <div class="mb-3 row">
-            <div class="col-md-12 m-auto d-flex">
-              <login-with-github />
-            </div>
-          </div>
+          <!-- Facebook -->
+          <login-with-facebook />
+           <!-- Google -->
+            <login-with-google />
         </form>
       </card>
     </div>
@@ -89,11 +73,13 @@
 <script>
 import Form from 'vform'
 import Cookies from 'js-cookie'
-import LoginWithGithub from '~/components/LoginWithGithub'
+import LoginWithFacebook from '~/components/SocialLogin/LoginWithFacebook.vue'
+import LoginWithGoogle from '~/components/SocialLogin/LoginWithGoogle.vue'
 
 export default {
   components: {
-    LoginWithGithub
+    LoginWithFacebook,
+    LoginWithGoogle
   },
 
   middleware: 'guest',

@@ -68,9 +68,6 @@
               <v-button type="submit" :loading="form.busy" class="btn-brand m-auto w-4">
                 {{ $t('register your account') }}
               </v-button>
-
-              <!-- GitHub Register Button -->
-              <login-with-github />
             </div>
           </div>
         </form>
@@ -81,12 +78,9 @@
 
 <script>
 import Form from 'vform'
-import LoginWithGithub from '~/components/LoginWithGithub'
 
 export default {
-  components: {
-    LoginWithGithub
-  },
+  components: {},
 
   middleware: 'guest',
 
