@@ -43,7 +43,8 @@
               </v-button>
             </div>
           </div>
-          </form>
+        </form>
+
           <div class="mb-3 row">
             <div class="col-md-12 d-flex">
               <router-link :to="{name: 'welcome'}" class="btn btn-brand-layout m-auto w-30 round">
@@ -63,8 +64,8 @@
           </div>
           <!-- Facebook -->
           <login-with-facebook />
-           <!-- Google -->
-            <login-with-google />
+          <!-- Google -->
+          <login-with-google />
       </card>
     </div>
   </div>
