@@ -7,8 +7,8 @@ $config = [
     'googleAuth' => config('services.google.client_id'),
     'asset' => asset('')
 ];
-$appJs = asset('dist/js/app.2c1969.js');
-$appCss = asset('dist/css/app.e15a30.css');
+$appJs = asset('dist/js/app.2f350f.js');
+$appCss = asset('dist/css/app.2dbb0c.css');
 // $appJs = mix('dist/js/app.js');
 // $appCss = mix('dist/css/app.css');
 @endphp

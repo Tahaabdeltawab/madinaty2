@@ -7,7 +7,7 @@
           <div class="mb-3 row">
             <label class="col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/phone.svg')" alt="username">  {{ $t('Phone') }}</label>
             <div class="col-md-7">
-              <input v-model="form.phone" :class="{ 'is-invalid': form.errors.has('phone') }" class="form-control round" type="text" name="phone">
+              <input v-model="form.phone" :class="{ 'is-invalid': form.errors.has('phone') }" class="form-control round" type="text" name="phone" required>
               <has-error :form="form" field="phone" />
             </div>
           </div>
@@ -16,7 +16,7 @@
           <div class="mb-3 row">
             <label class="col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/lock.svg')" alt="password">  {{ $t('password') }}</label>
             <div class="col-md-7">
-              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control round" type="password" name="password">
+              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control round" type="password" name="password" required>
               <has-error :form="form" field="password" />
             </div>
           </div>
@@ -43,6 +43,7 @@
               </v-button>
             </div>
           </div>
+          </form>
           <div class="mb-3 row">
             <div class="col-md-12 d-flex">
               <router-link :to="{name: 'welcome'}" class="btn btn-brand-layout m-auto w-30 round">
@@ -64,7 +65,6 @@
           <login-with-facebook />
            <!-- Google -->
             <login-with-google />
-        </form>
       </card>
     </div>
   </div>

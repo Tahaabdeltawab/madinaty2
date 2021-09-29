@@ -8,6 +8,7 @@ use App\Models\OAuthProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Contracts\User as SocialiteUser;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -74,7 +75,7 @@ class OAuthController extends Controller
         }
 
         if (User::where('email', $user->getEmail())->exists()) {
-            throw new EmailTakenException;
+            // throw new EmailTakenException;
         }
 
         return $this->createUser($provider, $user);
@@ -85,20 +86,30 @@ class OAuthController extends Controller
      */
     protected function createUser(string $provider, SocialiteUser $sUser): User
     {
-        $user = User::create([
-            'username' => $sUser->getName(),
-            'email' => $sUser->getEmail(),
-            // 'email_verified_at' => now(),
-        ]);
-
-        $user->oauthProviders()->create([
-            'provider' => $provider,
-            'provider_user_id' => $sUser->getId(),
-            'access_token' => $sUser->token,
-            'refresh_token' => $sUser->refreshToken,
-        ]);
-
-        return $user;
+        try{
+            DB::beginTransaction();
+            $user = User::updateOrCreate(
+                [
+                    'email' => $sUser->getEmail(),
+                ],
+                [
+                    'username' => $sUser->getName(),
+                    // 'email_verified_at' => now(),
+                ]
+            );
+    
+            $user->oauthProviders()->create([
+                'provider' => $provider,
+                'provider_user_id' => $sUser->getId(),
+                'access_token' => $sUser->token,
+                'refresh_token' => $sUser->refreshToken,
+            ]);
+            DB::commit();
+    
+            return $user;
+        }catch(\Throwable $th){
+            DB::rollBack();
+        }
     }
 
 

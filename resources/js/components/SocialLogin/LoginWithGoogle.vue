@@ -1,7 +1,7 @@
 <template>
   <div class="mb-3 row">
     <div class="col-md-12 d-flex">
-      <button class="btn m-auto round btn-google" @click="login">
+      <button class="btn m-auto round btn-google" @click="social_login">
         <img :src="asset('q/assets/img/svg/login/google.svg')" alt="btn google">{{$t('Continue with Google')}}
       </button>
     </div>
@@ -26,7 +26,7 @@ export default {
   },
 
   methods: {
-    async login () {
+    async social_login () {
       const newWindow = openWindow('', this.$t('login'))
 
       const url = await this.$store.dispatch('auth/fetchOauthUrl', {
