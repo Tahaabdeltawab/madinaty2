@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
+
 export default {
   name: 'LoginWithGoogle',
 
@@ -48,7 +50,17 @@ export default {
         token: e.data.token
       })
 
-      this.$router.push({ name: 'home' })
+      this.redirect();
+    },
+    redirect () {
+      const intendedUrl = Cookies.get('intended_url')
+
+      if (intendedUrl) {
+        Cookies.remove('intended_url')
+        this.$router.push({ path: intendedUrl })
+      } else {
+        this.$router.push({ name: 'welcome' })
+      }
     }
   }
 }
