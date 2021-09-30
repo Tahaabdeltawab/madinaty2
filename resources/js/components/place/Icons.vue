@@ -4,7 +4,7 @@
       <li v-if="place.phone">
         <a @click="$bvToast.show(`phone-toast-${place.id}`)" class="rect-tag phone" href="javascript:void(0)">
           <img :src="asset('q/assets/img/svg/phone.svg')">
-          <span>{{$t('Call us')}}</span>
+          <span>{{$t('Call Us')}}</span>
         </a>
           <b-toast class="phone-toast" :id="'phone-toast-' + place.id" :title="$t('Phone')" static no-auto-hide>
             <a :href="`tel:${place.phone}`" class="text-light-white">{{ place.phone }}

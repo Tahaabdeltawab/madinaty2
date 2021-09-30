@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Exceptions\EmailTakenException;
 use App\Http\Controllers\Controller;
+use App\Models\Area;
+use App\Models\City;
 use App\Models\OAuthProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -42,12 +44,9 @@ class OAuthController extends Controller
      */
     public function handleCallback(string $provider)
     {
-        $user = Socialite::driver($provider)->stateless()->user();
-        $user = $this->findOrCreateUser($provider, $user);
-
-        $this->guard()->setToken(
-            $token = $this->guard()->login($user)
-        );
+        $sUser = Socialite::driver($provider)->stateless()->user();
+        $user = $this->findOrCreateUser($provider, $sUser);
+        $this->guard()->setToken( $token = $this->guard()->login($user) );
 
         return view('oauth/callback', [
             'token' => $token,
@@ -59,44 +58,46 @@ class OAuthController extends Controller
     /**
      * Find or create a user.
      */
-    protected function findOrCreateUser(string $provider, SocialiteUser $user): User
+    protected function findOrCreateUser(string $provider, SocialiteUser $sUser): User
     {
         $oauthProvider = OAuthProvider::where('provider', $provider)
-            ->where('provider_user_id', $user->getId())
+            ->where('provider_user_id', $sUser->getId())
             ->first();
 
         if ($oauthProvider) {
             $oauthProvider->update([
-                'access_token' => $user->token,
-                'refresh_token' => $user->refreshToken,
+                'access_token' => $sUser->token,
+                'refresh_token' => $sUser->refreshToken,
             ]);
 
             return $oauthProvider->user;
         }
 
-        if (User::where('email', $user->getEmail())->exists()) {
+        if ($dbUser = User::where('email', $sUser->getEmail())->first()) {
             // throw new EmailTakenException;
+            $dbUser->update(['username' => $sUser->getName()]);
+            return $dbUser;
         }
 
-        return $this->createUser($provider, $user);
+        return $this->createUser($provider, $sUser);
     }
 
     /**
      * Create a new user.
      */
-    protected function createUser(string $provider, SocialiteUser $sUser): User
+    protected function createUser(string $provider, SocialiteUser $sUser)
     {
         try{
             DB::beginTransaction();
-            $user = User::updateOrCreate(
-                [
-                    'email' => $sUser->getEmail(),
-                ],
-                [
-                    'username' => $sUser->getName(),
-                    // 'email_verified_at' => now(),
-                ]
-            );
+            $city   = City::first();
+            $area   = Area::where('city_id',$city->id)->first();
+            $user   = User::create([
+                'username'  => $sUser->getName(),
+                'email'     => $sUser->getEmail(),
+                'city_id'   => $city->id,
+                'area_id'   => $area->id,
+                // 'email_verified_at' => now(),
+            ]);
     
             $user->oauthProviders()->create([
                 'provider' => $provider,
