@@ -1,17 +1,25 @@
 <template>
-  <div class="row register-page">
+  <div class="row">
+    <div class="registration-img m-auto p-relative col-lg-7" style="width:56.4%; height:400px;">
+      <img :src="asset('images/registration/travel-image@2x.png')" class="full-width full-height">
+      <div class="center">
+      <img :src="asset('images/registration/white-logo.svg')">
+      <p class="mt-2 mr-2 text-custom-white">{{$t('Creating account')}}</p>
+      </div>
+
+    </div>
     <div class="col-lg-7 m-auto">
       <card v-if="mustVerifyEmail" :title="$t('register')">
         <div class="alert alert-success" role="alert">
           {{ $t('verify_email_address') }}
         </div>
       </card>
-      <card v-else :title="$t('register')">
-        <form @submit.prevent="register" @keydown="form.onKeydown($event)">
+      <card v-else >
+        <form @submit.prevent="register" @keydown="form.onKeydown($event)" class="registration-form">
           <!-- Name -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/user.svg')" alt="username">  {{ $t('name') }}</label>
-            <div class="col-md-7">
+            <label class="pull-md-1 col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/user.svg')" alt="username">  {{ $t('name') }}</label>
+            <div class="col-md-10 m-auto">
               <input v-model="form.username" :class="{ 'is-invalid': form.errors.has('username') }" class="form-control" type="text" name="username" required>
               <has-error :form="form" field="username" />
             </div>
@@ -19,8 +27,8 @@
 
           <!-- Email -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/user.svg')" alt="email">  {{ $t('email') }}</label>
-            <div class="col-md-7">
+            <label class="pull-md-1 col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/user.svg')" alt="email">  {{ $t('email') }}</label>
+            <div class="col-md-10 m-auto">
               <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email" required>
               <has-error :form="form" field="email" />
             </div>
@@ -28,8 +36,8 @@
 
           <!-- Phone -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/phone.svg')" alt="phone">  {{ $t('Phone') }}</label>
-            <div class="col-md-7">
+            <label class="pull-md-1 col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/phone.svg')" alt="phone">  {{ $t('Phone') }}</label>
+            <div class="col-md-10 m-auto">
               <input v-model="form.phone" :class="{ 'is-invalid': form.errors.has('phone') }" class="form-control" name="phone" required>
               <has-error :form="form" field="phone" />
             </div>
@@ -37,8 +45,8 @@
 
           <!-- Password -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/lock.svg')" alt="password">  {{ $t('password') }}</label>
-            <div class="col-md-7">
+            <label class="pull-md-1 col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/lock.svg')" alt="password">  {{ $t('password') }}</label>
+            <div class="col-md-10 m-auto">
               <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password" required>
               <has-error :form="form" field="password" />
             </div>
@@ -46,16 +54,16 @@
 
           <!-- Password Confirmation -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/lock.svg')" alt="password confirmation">  {{ $t('confirm_password') }}</label>
-            <div class="col-md-7">
+            <label class="pull-md-1 col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/lock.svg')" alt="password confirmation">  {{ $t('confirm_password') }}</label>
+            <div class="col-md-10 m-auto">
               <input v-model="form.password_confirmation" :class="{ 'is-invalid': form.errors.has('password_confirmation') }" class="form-control" type="password" name="password_confirmation" required>
               <has-error :form="form" field="password_confirmation" />
             </div>
           </div>
           <!-- Login -->
           <div class="mb-3 row">
-            <div class="col-md-3" />
-            <div class="col-md-7 d-flex">
+            <div class="pull-md-1 col-md-3" />
+            <div class="col-md-10 m-auto d-flex">
               <router-link :to="{ name: 'login' }" class="small mr-auto my-auto">
                 {{ $t('Already have an account? Login') }}
               </router-link>
@@ -65,7 +73,7 @@
           <div class="mb-3 row">
             <div class="col-md-12 d-flex">
               <!-- Submit Button -->
-              <v-button type="submit" :loading="form.busy" class="btn-brand m-auto w-4">
+              <v-button type="submit" :loading="form.busy" class="btn-brand m-auto col-sm-12">
                 {{ $t('register your account') }}
               </v-button>
             </div>
@@ -132,4 +140,15 @@ export default {
     margin-top: 5%;
     margin-bottom: 5%;
   }
+  .center {
+    position:absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+  }
+  .registration-forms .form-control{
+    background: #EBEEF3;
+    border-radius: 8px;
+  }
+  
   </style>

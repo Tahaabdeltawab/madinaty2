@@ -1,8 +1,11 @@
 <template>
   <div class="row login-page">
     <div class="col-lg-7 m-auto">
-      <card :title="$t('login')">
-        <form @submit.prevent="login" @keydown="form.onKeydown($event)">
+      <div class="logo p-relative">
+         <img :src="asset('uploads/Logo.png')" class="img-fluid footer-logo" alt="app logo" />
+      </div>
+      <card>
+        <form @submit.prevent="login" @keydown="form.onKeydown($event)" class="login-form">
           <!-- Email -->
           <div class="mb-3 row">
             <label class="col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/phone.svg')" alt="username">  {{ $t('Phone') }}</label>
@@ -29,7 +32,7 @@
                 {{ $t('remember_me') }}
               </checkbox> -->
 
-              <router-link :to="{ name: 'password.request' }" class="small ms-auto my-auto">
+              <router-link :to="{ name: 'password.request' }" class="small ms-auto my-auto text-brand">
                 {{ $t('forgot_password') }}
               </router-link>
             </div>
@@ -148,4 +151,21 @@ export default {
   .round.btn-facebook img,.round.btn-google img {
     margin-left: 15px;
   }
+  div.logo {
+    height: 200px;
+  }
+  div.logo img {
+    position:absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+  }
+  .card {
+    border: none;
+  }
+
+  .login-form .form-control{
+    background: #EBEEF3;
+  }
+  
 </style>

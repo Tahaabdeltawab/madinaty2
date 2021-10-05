@@ -1,4 +1,5 @@
 @php
+app()->setLocale('ar');
 $config = [
     'appName' => config('app.name'),
     'locale' => ($locale = app()->getLocale()),
@@ -7,13 +8,13 @@ $config = [
     'googleAuth' => config('services.google.client_id'),
     'asset' => asset('')
 ];
-$appJs = asset('dist/js/app.a27183.js');
-$appCss = asset('dist/css/app.2b4f0f.css');
+$appJs = asset('dist/js/app.f113d3.js');
+$appCss = asset('dist/css/app.48ab55.css');
 // $appJs = mix('dist/js/app.js');
 // $appCss = mix('dist/css/app.css');
 @endphp
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" dir="rtl">
+<html lang="{{ $locale }}" dir="rtl">
 
 <head>
   <meta charset="utf-8">

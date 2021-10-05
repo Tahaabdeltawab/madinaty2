@@ -11,7 +11,7 @@
                   <div class="row">
                     <div v-for="place in places" :key="place.id" class="col-lg-12">
                       <div class="restaurent-product-list">
-                        <div class="restaurent-product-detail">
+                        <div class="restaurent-product-detail bg-white">
                           <router-link :to="{ name: 'place', params: { id: place.id } }">
                             <div class="restaurent-product-img">
                               <img :src="place.image" class="img-fluid" :alt="locale == 'ar' ? place.name_ar : place.name_en" />
