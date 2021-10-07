@@ -37,10 +37,11 @@
                               <span class="text-light-white">{{locale == 'ar' ? product.description_ar : product.description_en}}</span>
                             </div>
                             <div class="restaurent-tags-price">
-                              <div class="restaurent-product-price">
+                              <div class="restaurent-product-price title full-width">
                                 <h6 class="text-success fw-600 no-margin">
                                   {{ product.price }}
                                 </h6>
+                                  <span class="ml-3">{{product.created_at}}</span>
                               </div>
                             </div>
                           </div>

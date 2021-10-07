@@ -9,7 +9,7 @@
               <div class="card">
                 <div class="card-body no-padding">
                   <div class="row">
-                    <div v-for="place in places" :key="place.id" class="col-lg-12">
+                    <div v-for="place in places" :key="place.id" class="col-lg-12 wow animate__animated animate__fadeIn">
                       <div class="restaurent-product-list">
                         <div class="restaurent-product-detail bg-white">
                           <router-link :to="{ name: 'place', params: { id: place.id } }">

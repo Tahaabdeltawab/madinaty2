@@ -36,6 +36,7 @@ class AuthController extends Controller
             'phone.unique' => $lang == 'ar' ? 'رقم الهاتف موجود لدينا بالفعل' :"phone is already teken" ,
             'phone.min' => $lang == 'ar' ?  'رقم الهاتف يجب ان لا يقل عن 7 ارقام' :"The phone must be at least 7 numbers" ,
             'phone.numeric' => $lang == 'ar' ?  ' الهاتف يجب ان يكون رقما' :"The phone must be a number" ,
+            'phone.regex' => $lang == 'ar' ?  ' يجب أن يبدأ الهاتف ب صفر' :"The phone must start with 0" ,
             'password.min' => $lang == 'ar' ?  'كلمة السر يجب ان لا تقل عن 6 احرف' :"The password must be at least 6 character" ,       
             // 'email.required' => $lang == 'ar' ? 'من فضلك ادخل البريد الالكتروني' :"email is required"  ,
             'email.unique' => $lang == 'ar' ? 'هذا البريد الالكتروني موجود لدينا بالفعل' :"email is already token" ,
@@ -43,7 +44,7 @@ class AuthController extends Controller
         ];
         $validator = Validator::make($input, [
             // 'username' => 'required|unique:users',
-            'phone' => 'unique:users|numeric|min:7|regex:/(0)[0-9]{9}/',
+            'phone' => 'unique:users|numeric|min:7',/* |regex:/(0)[0-9]{9}/ */
             'password' => 'required|confirmed|min:6',
             //'city_id' => 'required',
             //'area_id' => 'required',

@@ -10,7 +10,8 @@
           <div class="mb-3 row">
             <label class="col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/phone.svg')" alt="username">  {{ $t('Phone') }}</label>
             <div class="col-md-7">
-              <input v-model="form.phone" :class="{ 'is-invalid': form.errors.has('phone') }" class="form-control round" type="text" name="phone" required>
+              <input v-model="form.phone" :class="{ 'is-invalid': form.errors.has('phone') }" class="form-control round p-relative" type="text" name="phone" required>
+              <span class="mobile-prefix">{{mobilePrefix}}</span>
               <has-error :form="form" field="phone" />
             </div>
           </div>
@@ -97,30 +98,32 @@ export default {
       phone: '',
       password: ''
     }),
-    remember: true
+    remember: true,
+    mobilePrefix: '+964',
   }),
 
   methods: {
     async login () {
       // Submit the form.
+      let purePhone = this.form.phone;
+      this.form.phone = this.mobilePrefix + purePhone;
       const { data } = await this.form.post('/api/app_login')
-      if(data.error == 0){  
-        const user = data.data;
-        // Save the token.
-        this.$store.dispatch('auth/saveToken', {
-          token: user.token,
-          remember: this.remember
-        })
+      if(data.error == 1){
+        this.form.phone = purePhone;
+        return alert(data.message);
+      }
+      const user = data.data;
+      // Save the token.
+      this.$store.dispatch('auth/saveToken', {
+        token: user.token,
+        remember: this.remember
+      })
 
-        // Fetch the user.
-        await this.$store.dispatch('auth/fetchUser', {user: user})
+      // Fetch the user.
+      await this.$store.dispatch('auth/fetchUser', {user: user})
 
-        // Redirect home.
-        this.redirect()
-        }
-        else{
-          alert(data.message);
-        }
+      // Redirect home.
+      this.redirect()
     },
 
     redirect () {
@@ -166,6 +169,14 @@ export default {
 
   .login-form .form-control{
     background: #EBEEF3;
+  }
+  .mobile-prefix {
+    position: absolute;
+    top: 9px;
+    left: 30px;
+    border-right: 2px solid #7E8FAD;
+    color: #7E8FAD;
+    padding-right: 3px;
   }
   
 </style>

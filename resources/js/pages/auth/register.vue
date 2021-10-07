@@ -38,7 +38,8 @@
           <div class="mb-3 row">
             <label class="pull-md-1 col-md-3 col-form-label text-md-end"><img :src="asset('images/registration/phone.svg')" alt="phone">  {{ $t('Phone') }}</label>
             <div class="col-md-10 m-auto">
-              <input v-model="form.phone" :class="{ 'is-invalid': form.errors.has('phone') }" class="form-control" name="phone" required>
+              <input v-model="form.phone" :class="{ 'is-invalid': form.errors.has('phone') }" class="form-control p-relative" name="phone" required>
+              <span class="mobile-prefix">{{mobilePrefix}}</span>
               <has-error :form="form" field="phone" />
             </div>
           </div>
@@ -104,14 +105,18 @@ export default {
       password: '',
       password_confirmation: ''
     }),
-    mustVerifyEmail: false
+    mustVerifyEmail: false,
+    mobilePrefix: '+964',
   }),
 
   methods: {
     async register () {
       // Register the user.
+      let purePhone = this.form.phone;
+      this.form.phone = this.mobilePrefix + purePhone;
       const { data } = await this.form.post('/api/registration')
       if (data.error == 1) {
+        this.form.phone = purePhone;
         return alert(data.message)
       }
       const user = data.data;
@@ -149,6 +154,14 @@ export default {
   .registration-forms .form-control{
     background: #EBEEF3;
     border-radius: 8px;
+  }
+  .mobile-prefix {
+    position: absolute;
+    top: 9px;
+    left: 30px;
+    border-right: 2px solid #7E8FAD;
+    color: #7E8FAD;
+    padding-right: 3px;
   }
   
   </style>
