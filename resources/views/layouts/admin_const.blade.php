@@ -136,6 +136,8 @@
             <li class="{{ Request::segment(1) === 'addPlaceAndUser' ? 'active' : null }}"><a
                 href="{{url('admin/addPlaceAndUser') }}"><i class="fa fa-bank"></i><span>إضافة المستخدم والمكان
                 </span></a></li>
+            <li class="{{ Request::segment(1) === 'places' ? 'active' : null }}"><a href="{{url('admin/myplaces') }}"><i
+                  class="fa fa-bank"></i><span>الاماكن </span></a></li>
             @endif
             @if(auth()->user()->isAdmin())
             <li class="{{ Request::segment(1) === 'users' ? 'active' : null }}">
@@ -157,6 +159,8 @@
 
             <li class="{{ Request::segment(1) === 'city' ? 'active' : null }}"><a href="{{url('admin/city') }}"><i
                   class=" icon-pointer"></i><span>المحافظات</span></a></li>
+            <li class="{{ Request::segment(1) === 'notification' ? 'active' : null }}"><a href="{{url('admin/notification') }}"><i
+                    class="fa fa-bell-o"></i><span>الإشعارات</span></a></li>
             <li class="{{ Request::segment(1) === 'policy' ? 'active' : null }}"><a href="{{url('admin/policy') }}"><i
                   class="icon-doc"></i><span>سياسه الخصوصية </span></a></li>
             <li class="{{ Request::segment(1) === 'agreement' ? 'active' : null }}"><a

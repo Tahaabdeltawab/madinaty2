@@ -7,18 +7,18 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <div class="wrapper">
-
+    
     <div id="main-content">
       <div class="container-fluid">
         <div class="block-header">
           <div class="row">
             <div class="col-lg-5 col-md-8 col-sm-12">
-              <h2 style="font-size: xx-large;"> اضافة مكان</h2>
+              <h2 style="font-size: xx-large;"> تعديل مكان</h2>
             </div>
             <div class="col-lg-7 col-md-4 col-sm-12">
               <ul class="breadcrumb justify-content-end">
                 <li class="breadcrumb-item"><a href="{{url('admin/home') }}"><i class="icon-home"></i></a></li>
-                <li class="breadcrumb-item">اضافة مكان </li>
+                <li class="breadcrumb-item">تعديل مكان </li>
               </ul>
             </div>
           </div>
@@ -28,17 +28,18 @@
           <div class="col-md-12">
             <div class="card">
               <div class="body">
-                <form id="basic-form" method="post" action="{{url('admin/add_place') }}" novalidate
+                <form id="basic-form" method="post" action="{{url('admin/update_place/'.$place->id) }}" novalidate
                   enctype="multipart/form-data">
                   {{ csrf_field() }}
+                  <input type="hidden" name="Is_super" value="{{$Is_super}}"> {{-- its just for redirect if false i will redirect to All places page else if true i will redirect to supervisor places page--}}
 
                   <div class="form-group">
-                    <label style="    font-size: large;">الأسم بالعربى</label>
-                    <input type="text" name='name_ar' class="form-control" required>
+                    <label style=" font-size: large;">الأسم بالعربى</label>
+                    <input type="text" name='name_ar' class="form-control" value="{{ $place->name_ar }}" required>
                   </div>
                   <div class="form-group">
                     <label style="    font-size: large;">الأسم بالكوردى</label>
-                    <input type="text" name='name_en' class="form-control" required>
+                    <input type="text" name='name_en' class="form-control" value="{{ $place->name_en }}" required>
                   </div>
 
                   <div class="form-group">
@@ -49,26 +50,26 @@
 
                   <div class="form-group">
                     <label style="    font-size: large;">الوصف بالعربى</label>
-                    <input type="text" name='description_ar' class="form-control" required>
+                    <input type="text" name='description_ar' class="form-control" value="{{ $place->description_ar }}" required>
                   </div>
 
                   <div class="form-group">
                     <label style="    font-size: large;">الوصف بالكوردى</label>
-                    <input type="text" name='description_en' class="form-control" required>
+                    <input type="text" name='description_en' class="form-control" value="{{ $place->description_en }}" required>
                   </div>
 
                   <div class="form-group">
                     <label style="    font-size: large;">رقم الهاتف</label>
-                    <input type="number" name='phone' class="form-control" required>
+                    <input type="number" name='phone' class="form-control" value="{{ $place->phone }}" required>
                   </div>
 
                   <div class="form-group">
                     <label style="    font-size: large;">القسم الرئيسى</label>
                     <select class="form-control formselect required" placeholder="Select Category" id="sub_category_name">
                       <option value="0" disabled selected>أختر القسم الرئيسى</option>
-                      @foreach ($data as $categories)
-                        <option value="{{ $categories->id }}">
-                          {{ $categories->name_ar }} -- {{ $categories->name_en }}</option>
+                      @foreach ($categories as $category)
+                        <option {{ $place_category['category_id'] == $category->id ? 'selected' : ''; }} value="{{ $category->id }}">
+                          {{ $category->name_ar }} -- {{ $category->name_en }}</option>
                       @endforeach
                     </select>
                   </div>
@@ -77,43 +78,55 @@
                     <label style="    font-size: large;">القسم الفرعى</label>
                     <select class="form-control formselect required" placeholder="أختر القسم الفرعى" id="sub_category"
                       name="subCategory_id">
+                      <option value="0" disabled selected>أختر القسم الفرعى</option>
+                      @foreach ($subCategories as $subCategory)
+                      <option {{ $place->subCategory_id == $subCategory->id ? 'selected' : ''; }} value="{{ $subCategory->id }}">
+                        {{ $subCategory->name_ar }} -- {{ $subCategory->name_en }}</option>
+                      @endforeach
+                    </div>
+
                     </select>
-                  </div>
+
+
 
                   <div class="form-group">
                     <label style="    font-size: large;">المحافظات</label>
                     <select class="form-control formselect required" placeholder="Select Category" id="city_data"
                       name="city_id">
                       <option value="0" disabled selected>أختر المحافظة</option>
-                      @foreach ($city as $citys)
-                        <option value="{{ $citys->id }}">
-                          {{ $citys->name_ar }} -- {{ $citys->name_en }}</option>
+                      @foreach ($cities as $city)
+                        <option {{ $place->city_id == $city->id ? 'selected' : ''; }} value="{{ $city->id }}">
+                          {{ $city->name_ar }} -- {{ $city->name_en }}</option>
                       @endforeach
                     </select>
                   </div>
                   <div class="form-group">
                     <label style="    font-size: large;">المدينة</label>
                     <select class="form-control formselect required" placeholder="أختر المدينة" id="area" name="area_id">
+                        <option value="0" disabled selected>أختر المدينة</option>
+                        @foreach ($areas as $area)
+                          <option {{ $place->area_id == $area->id ? 'selected' : ''; }} value="{{ $area->id }}">
+                            {{ $area->name_ar }} -- {{ $area->name_en }}</option>
+                        @endforeach
                     </select>
                   </div>
 
                   <div class="form-group">
                     <label style="    font-size: large;">FaceBook link</label>
-                    <input type="text" name='Facebook' class="form-control" required>
+                    <input type="text" name='Facebook' class="form-control" value="{{ $place->Facebook }}" required>
                   </div>
 
                   <div class="form-group">
                     <label style="    font-size: large;">Twitter link</label>
-                    <input type="text" name='Twitter' class="form-control" required>
+                    <input type="text" name='Twitter' class="form-control" value="{{ $place->Twitter }}" required>
                   </div>
                   <div class="form-group">
                     <label style="    font-size: large;">Instagram link</label>
-                    <input type="text" name='Instagram' class="form-control" required>
+                    <input type="text" name='Instagram' value="{{ $place->Instagram }}" class="form-control" required>
                   </div>
-
                   <div class="form-group">
                     <label style="    font-size: large;">الترتيب</label>
-                    <input type="number" name='ordering' class="form-control" required>
+                    <input type="number" name='ordering' value="{{ $place->ordering }}" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label style="    font-size: x-large;">المستخدمين</label>
@@ -122,7 +135,7 @@
                       <option style="display:none">أختر صاحب المكان</option>
 
                       @foreach ($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->username }}</option>
+                        <option {{ $place->user_id == $user->id ? 'selected' : ''; }} value="{{ $user->id }}">{{ $user->username }}</option>
                       @endforeach
 
                     </select>
@@ -143,9 +156,9 @@
   </div>
 
 
-  {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> --}}
-  <script src="{{asset('assets/vendor/jquery/jquery.min.js')}}"></script>
+  {{-- <script src="http://code.jquery.com/jquery-3.4.1.js"></script> --}}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
     integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -161,7 +174,7 @@
         $('#sub_category').append(`<option value="0" disabled selected>Processing...</option>`);
         $.ajax({
           type: 'GET',
-          url: 'myformAjax/' + id,
+          url: '/admin/myformAjax/' + id,
           success: function(response) {
             var response = JSON.parse(response);
             console.log(response);

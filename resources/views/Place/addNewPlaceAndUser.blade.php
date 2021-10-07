@@ -249,6 +249,13 @@
                         <div class="error text-danger">{{ $errors->first('Twitter') }}</div>
                       @endif
                     </div>
+                    <div class="form-group col-md-6">
+                        <label>Instagram link</label>
+                        <input type="text" name='Instagram' value="{{ old('Instagram') }}" class="form-control">
+                        @if ($errors->has('Instagram'))
+                            <div class="error text-danger">{{ $errors->first('Instagram') }}</div>
+                        @endif
+                  </div>
                   </div>
                   <br>
                   <button type="submit" class="btn btn-primary" style="margin-right: 556px;font-size: 22px;">حفظ</button>

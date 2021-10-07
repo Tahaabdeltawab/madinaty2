@@ -122,6 +122,8 @@ Route::group([
     // my place ::
    
     Route::post('update_myPlace' , [PlaceController::class , 'update_myPlace']);
+    
+    Route ::get( 'search', [PlaceController::class , 'search']);
 
 
 });

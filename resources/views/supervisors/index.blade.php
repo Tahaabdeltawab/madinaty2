@@ -48,6 +48,7 @@
                         <th>رقم الهاتف</th>
                         <th>عدد الأماكن</th>
                         <th>نشط</th>
+                        <th>الأجراءات</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -57,7 +58,7 @@
                           <td>{{ $sup->username }}</td>
                           <td>{{ $sup->email }}</td>
                           <td>{{ $sup->phone }}</td>
-                        <td>{{ $sup->places->count() }}</td>
+                         <td><a href="{{url('/admin/supervisors/'.$sup->id.'/places')}}">{{ $sup->places->count() }}</a></td>
                           <td>
                             <div class="form-group">
                               <select class="supervisor_status" data-user_id="{{ $sup->id }}">
@@ -65,6 +66,29 @@
                                 <option value="0" {{ !$sup->status ? 'selected' : '' }}>غير نشط</option>
                               </select>
                             </div>
+                          </td>
+                         <td>
+
+                            <form action="{{url('/admin/supervisors/'.$sup->id.'/edit')}}" method="GET"  id="edit_{{$sup->id}}" enctype="multipart/form-data" style="display:inline;">
+                                                    
+                              {{ csrf_field() }}
+                              
+                              <a  onclick="$('#edit_{{$sup->id}}').submit();">
+                               <button class="btn btn-primary" data-toggle="tooltip" data-original-title="تعديل">
+                                       <i class="fa fa-edit" aria-hidden="true"></i>
+                               </button>
+                              </a>
+                            </form>
+                            <form action="{{url('/admin/supervisors/'.$sup->id)}}" method="POST"  id="delete_{{$sup->id}}" enctype="multipart/form-data" style="display:inline;">
+                                {{ csrf_field() }}
+                               
+                                {{-- <input type="hidden" name="place_id" value="{{$cat->id}}"> --}}
+                                <a  onclick="$('#delete_{{$sup->id}}').submit();">
+                                 <button class="btn btn-danger" data-toggle="tooltip" data-original-title="حذف">
+                                         <i class="icon-trash" aria-hidden="true"></i>
+                                 </button>
+                                </a>
+                            </form>
                           </td>
                         </tr>
                       @endforeach

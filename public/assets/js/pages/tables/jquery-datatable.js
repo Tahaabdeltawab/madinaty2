@@ -1,5 +1,7 @@
 $(function () {
-    $('.js-basic-example').DataTable();
+    $('.js-basic-example').DataTable({
+        "ordering": false
+    });
 
     //Exportable table
     $('.js-exportable').DataTable({

@@ -34,6 +34,7 @@ class CreatePlacesTable extends Migration
             $table->integer('popular_section')->nullable()->default(0); // 0=> not appear.... 1=> appear
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('ordering')->nullable();
             $table->timestamps();
         });
     }

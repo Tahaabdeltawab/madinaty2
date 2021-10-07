@@ -20,8 +20,7 @@ class CreateNotificationTable extends Migration
             $table->string('body_en')->nullable();
             $table->string('body_ar')->nullable();
             $table->string('image')->nullable();
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->date('expire_date')->nullable();
             $table->timestamps();
         });
     }

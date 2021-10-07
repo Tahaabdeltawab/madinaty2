@@ -29,4 +29,9 @@ class Place extends Model
         return $this->hasMany(Place_product::class, 'place_id');
     }
 
+
+    public function scopeIdDescending($query)
+{
+        return $query->orderBy('id','ASC');
+}
 }

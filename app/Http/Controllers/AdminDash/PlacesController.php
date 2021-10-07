@@ -33,8 +33,8 @@ class PlacesController extends Controller
     public function show_place_data()
     {
 
-        $data = Place::all();
-
+        $data = Place::orderBy(DB::raw('ISNULL(ordering), ordering'), 'ASC')->get();
+        
         return view('Place.show', ['data' => $data]);
     }
 
@@ -229,6 +229,85 @@ class PlacesController extends Controller
         }catch(\Throwable $th){
             return response()->json(['success'=> '0']);
         }
+    }
+    
+        public function update_popular_section(Request $request)
+    {
+        try{
+            $place = Place::find($request->place_id);
+            $place->popular_section = $request->popular_section;
+            $place->save();
+            return response()->json(['success'=> '1']);
+        }catch(\Throwable $th){
+            return response()->json(['success'=> '0']);
+        }
+    }
+    
+    public function edit_place(Request $request, $place_id)
+    {
+      
+        $place = Place::find($place_id);
+        $categories = category::all();
+        $cities = City::all();
+        $users = User::where('role', 2)->get();
+
+        $place_category = subCategory::where('id', $place->subCategory_id)->get('category_id')->first();
+        $subCategories = subCategory::where('category_id',$place_category['category_id'] )->get();
+
+        $areas = Area::where('city_id', $place->city_id)->get();
+
+        $Is_super = $request->Is_super;
+
+        return view('Place.edit_place', compact('place', 'categories','place_category', 'subCategories', 'cities', 'areas', 'users', 'Is_super'));
+    
+    }
+
+    public function update_place(Request $request, $place_id)
+    {
+        $place = Place::where('id', $place_id);
+
+        $data = $request->validate([
+
+            'name_ar'                   => 'required',
+            'name_en'                   => 'required',
+            'description_ar'            => 'required',
+            'description_en'            => 'required',
+            'phone'                     => 'required',
+            'subCategory_id'            => 'required|numeric',
+            'city_id'                   => 'required|numeric',
+            'area_id'                   => 'required|numeric',
+            'Facebook'                  => 'sometimes|nullable',
+            'Twitter'                   => 'sometimes|nullable',
+            'Instagram'                 => 'sometimes|nullable',
+            'ordering'                  => 'sometimes|nullable',
+            'user_id'                   => 'required|numeric'
+
+        ]);
+
+        if($request->image)
+            $data['image'] = BaseController::saveImage("places", $request->file('image'));
+
+        $updated = $place->update($data);
+
+        if ($updated == true) {
+
+            return $request->Is_super == 'true' ? redirect('admin/supervisors/' . $place->first()->supervisor_id . '/places')->with('success', __('success')) : redirect('admin/places')->with('success', __('success'));
+        
+        } else {
+            echo "<script>alert('يوجد خطأ حاول مره أخرى');"
+                . "window.location.replace('places')"
+                . "</script>";
+        }
+
+        
+    }
+    
+    public function get_supervisor_places($id)
+    {
+        $supervisor_places = User::find($id)->places;
+
+        return view('Place.supervisor_places', compact('supervisor_places'));
+       
     }
 
 }

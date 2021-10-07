@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Notification;
+use App\Models\User;
 use App\Http\Resources\notifyResources;
 
 class NotificationController extends Controller
@@ -16,7 +17,9 @@ class NotificationController extends Controller
         $lang = $request->header('lang');
         
         if(auth()->User()){
-            $data = Notification::where('user_id' , auth()->user()->id)->get();
+            
+            $data = User::find(auth()->user()->id)->notifications;
+            //$data = Notification::where('user_id' , auth()->user()->id)->get();
 
             return $this->apiResponseData( notifyResources::collection($data) , "all Notification data");
 

@@ -155,9 +155,14 @@ Route::prefix('admin')->group(function () {
             Route::get('/places', [PlacesController::class, 'show_place_data']);
             Route::get('/newPlace', [PlacesController::class, 'show_addPage']);
             Route::post('/add_place', [PlacesController::class, 'add_place']);
-            Route::get('/placeDetails', [PlacesController::class, 'show_placeDetails']);
-            Route::post('/places_status', [PlacesController::class, 'updateStatus']);
-            Route::delete('/places_delete/{id}', [PlacesController::class, 'destroy']);
+            //Route::get('/placeDetails', [PlacesController::class, 'show_placeDetails']);
+            //Route::post('/places_status', [PlacesController::class, 'updateStatus']);
+            //Route::delete('/places_delete/{id}', [PlacesController::class, 'destroy']);
+            
+            
+            Route::get('/supervisors/{id}/places', [PlacesController::class, 'get_supervisor_places']);
+            Route::get('/places/{place_id}/edit', [PlacesController::class, 'edit_place']);
+            Route::post('/update_place/{id}', [PlacesController::class, 'update_place']);
 
             //supervisors
             Route::get('/supervisors', [SupervisorController::class, 'index']);
@@ -165,18 +170,38 @@ Route::prefix('admin')->group(function () {
             Route::get('/supervisors_show/{id}', [SupervisorController::class, 'show']);
             Route::post('/supervisors_status', [SupervisorController::class, 'updateStatus']);
             Route::post('/supervisors_store', [SupervisorController::class, 'store']);
+            
+            Route::get('/supervisors/{id}/edit', [SupervisorController::class, 'edit']);
+            Route::post('/supervisors_update/{id}', [SupervisorController::class, 'update']);
+            Route::post('/supervisors/{id}', [SupervisorController::class, 'destroy']);
 
             //notification ::
 
             Route::get('/notify', [NotifyController::class, 'show_notifyPage']);
             Route::post('/notify_user', [NotifyController::class, 'notify_user']);
             Route::post('/notify_alluser', [NotifyController::class, 'notify_alluser']);
+            
+            Route::post('/notify_user_city', [NotifyController::class, 'notify_user_city']);
+            Route::get('/notification', [NotifyController::class, 'get_all_notification']);
+            Route::delete('/notifications/{id}', [NotifyController::class, 'destroy']);
         });
 
         Route::middleware('role:3')->group(function () {
             Route::get('/addPlaceAndUser', [PlacesController::class, 'add_place_and_user']);
             Route::post('/savePlaceAndUser', [PlacesController::class, 'save_place_and_user']);
+            
+            Route::get('/myplaces', [SupervisorController::class, 'my_places']);
+            Route::get('/myplaces/{place_id}/edit', [SupervisorController::class, 'edit_my_place']);
+            Route::post('/update_my_place/{id}', [SupervisorController::class, 'update_my_place']);
+
+
         });
+        
+               // Places::
+        Route::post('/places_status', [PlacesController::class, 'updateStatus']);
+        Route::post('/place_popular_section', [PlacesController::class, 'update_popular_section']);
+        Route::delete('/places_delete/{id}', [PlacesController::class, 'destroy']);
+        Route::get('/placeDetails', [PlacesController::class, 'show_placeDetails']);
 
         Route::get('/myformAjax/{id}', [PlacesController::class, 'myformAjax']);
         Route::get('/AreaData_byCityId/{id}', [PlacesController::class, 'AreaData_byCityId']);

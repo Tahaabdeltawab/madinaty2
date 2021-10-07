@@ -179,4 +179,28 @@ class PlaceController extends Controller
         return $this->apiResponseData( $all , "categories data");
 
     }
+    
+    public function search(Request $request)
+    {
+        $lang = $request->header('lang');
+        
+        if(auth()->User()){
+            $places = Place::where( function ( $query ) use ( $request ) {
+                $query -> where( 'name_ar', 'like', '%' . $request -> keyword . '%' )
+                    -> orWhere( 'name_en', 'like', '%' . $request -> keyword . '%' )
+                    -> orWhere( 'description_ar', 'like', '%' . $request -> keyword . '%' )
+                    -> orWhere( 'description_en', 'like', '%' . $request -> keyword . '%' );
+
+            } )-> latest()->get();
+
+            $msg = $lang == 'ar' ? "الاماكن" : "Places";
+
+            
+            return $this->apiResponseData( PlaceResource::collection($places) , $msg);
+        }else{
+            $msg = $lang == 'ar' ? " من فضلك سجل دخول" : "Token is not provided";
+
+            return $this->apiResponseMessage( 3, $msg);
+        }
+    }
 }

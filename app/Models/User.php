@@ -154,5 +154,11 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     public function places(){
         return $this->hasMany(Place::class, 'supervisor_id');
     }
+    
+    public function notifications()
+    {
+        return $this->belongsToMany(Notification::class, 'user_notifications');
+    }
+
 
 }

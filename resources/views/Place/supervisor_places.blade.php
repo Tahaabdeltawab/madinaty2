@@ -28,11 +28,11 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="header">
-
+                            <!--
                             <ul class="nav nav-tabs-new ">
                                 <li ><h2 style="font-size: xx-large;">الاقسام الرئيسية :</h2> </li> &nbsp;&nbsp;
                                 <li class="nav-item" style="margin-top: -5px;font-size: x-large;"><a class="nav-link"  href="{{url('admin/newPlace')}}">اضافة مكان</a></li>
-                            </ul>
+                            </ul>-->
                         </div>
                         <div class="body">
                             <div class="table-responsive">
@@ -54,41 +54,42 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       @foreach($data as $cat)
+                                       @foreach($supervisor_places as $place)
                                         <tr>
                                             <td>
-                                                <?php  $image = $cat->image;
+                                                <?php  $image = $place->image;
 
                                                   if( $image == '' && $image == NULL){
 
                                                   }else{?>
-                                                  <img src="{{asset('uploads/places/' . $cat->image)}}" width="80" height="80">
+                                                  <img src="{{asset('uploads/places/' . $place->image)}}" width="80" height="80">
                                                   <?php } ?>
                                             </td>
-                                            <td>{{$cat->name_ar}}</td>
-                                            <td>{{$cat->description_ar}}</td>
-                                            <td>{{$cat->phone}}</td>
+                                            <td>{{$place->name_ar}}</td>
+                                            <td>{{$place->description_ar}}</td>
+                                            <td>{{$place->phone}}</td>
+                                            
                                             <td>
-                                                <a href="http://maps.google.com/maps?q=".{{$cat->Latitude}}.",".{{$cat->Longitude}}."&ll=".{{$cat->Latitude}}.",".{{$cat->Longitude}}."&z=14" target="_blank">
+                                                <a href="http://maps.google.com/maps?q=".{{$place->Latitude}}.",".{{$place->Longitude}}."&ll=".{{$place->Latitude}}.",".{{$place->Longitude}}."&z=14" target="_blank">
                                                     <i class="icon-pointer" style="    font-size: x-large;  "> </i>
                                                 </a>
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <select class="place_popular_section" data-place_id="{{ $cat->id }}">
-                                                      <option value="1" {{ $cat->popular_section ? 'selected' : '' }}>فعال</option>
-                                                      <option value="0" {{ !$cat->popular_section ? 'selected' : '' }}>غير فعال</option>
+                                                    <select class="place_popular_section" data-place_id="{{ $place->id }}">
+                                                      <option value="1" {{ $place->popular_section ? 'selected' : '' }}>فعال</option>
+                                                      <option value="0" {{ !$place->popular_section ? 'selected' : '' }}>غير فعال</option>
                                                     </select>
                                                 </div>
                                             </td>
                                             {{--  <td>
-                                                <form action="{{url('admin/subcategory')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data">
+                                                <form action="{{url('admin/subplaceegory')}}" method="GET"  id="sub_{{$place->id}}" enctype="multipart/form-data">
 
                                                     {{ csrf_field() }}
 
-                                                    <input type="hidden" name="category_id" value="{{$cat->id}}">
+                                                    <input type="hidden" name="placeegory_id" value="{{$place->id}}">
 
-                                                    <a  onclick="$('#sub_{{$cat->id}}').submit();">
+                                                    <a  onclick="$('#sub_{{$place->id}}').submit();">
 
                                                         <button class="btn btn-outline-secondary" data-toggle="tooltip" data-original-title="الى الاقسام الفرعيه">
                                                             أقسام فرعية
@@ -99,40 +100,41 @@
                                               </td>  --}}
                                               <td>
                                                 <div class="form-group">
-                                                  <select class="place_status" data-place_id="{{ $cat->id }}">
-                                                    <option value="1" {{ $cat->status ? 'selected' : '' }}>نشط</option>
-                                                    <option value="0" {{ !$cat->status ? 'selected' : '' }}>غير نشط</option>
+                                                  <select class="place_status" data-place_id="{{ $place->id }}">
+                                                    <option value="1" {{ $place->status ? 'selected' : '' }}>نشط</option>
+                                                    <option value="0" {{ !$place->status ? 'selected' : '' }}>غير نشط</option>
                                                   </select>
                                                 </div>
                                               </td>
-                                            <td>{{$cat->ordering}}</td>
-                                            <td>{{$cat->created_at}}</td>
+                                            <td>{{$place->ordering}}</td>
+                                            <td>{{$place->created_at}}</td>
                                             <td>
 
-                                                <form action="{{url('admin/placeDetails')}}" method="GET"  id="sub_{{$cat->id}}" enctype="multipart/form-data" style="display:inline;">
+                                                <form action="{{url('admin/placeDetails')}}" method="GET"  id="sub_{{$place->id}}" enctype="multipart/form-data" style="display:inline;">
                                                     {{ csrf_field() }}
-                                                    <input type="hidden" name="place_id" value="{{$cat->id}}">
-                                                    <a  onclick="$('#sub_{{$cat->id}}').submit();">
+                                                    <input type="hidden" name="place_id" value="{{$place->id}}">
+                                                    <a  onclick="$('#sub_{{$place->id}}').submit();">
                                                      <button class="btn btn-info" data-toggle="tooltip" data-original-title="التفاصيل">
                                                              <i class="icon-eye" aria-hidden="true"></i>
                                                      </button>
                                                     </a>
                                                 </form>
-                                                <form action="{{url('admin/places_delete/'.$cat->id)}}" method="POST"  id="delete_{{$cat->id}}" enctype="multipart/form-data" style="display:inline;">
+                                                <form action="{{url('admin/places_delete/'.$place->id)}}" method="POST"  id="delete_{{$place->id}}" enctype="multipart/form-data" style="display:inline;">
                                                     {{ csrf_field() }}
                                                     @method('delete')
-                                                    {{-- <input type="hidden" name="place_id" value="{{$cat->id}}"> --}}
-                                                    <a  onclick="$('#delete_{{$cat->id}}').submit();">
+                                                    {{-- <input type="hidden" name="place_id" value="{{$place->id}}"> --}}
+                                                    <a  onclick="$('#delete_{{$place->id}}').submit();">
                                                      <button class="btn btn-danger" data-toggle="tooltip" data-original-title="حذف">
                                                              <i class="icon-trash" aria-hidden="true"></i>
                                                      </button>
                                                     </a>
                                                 </form>
-                                                <form action="{{url('admin/places/'.$cat->id.'/edit')}}" method="GET"  id="edit_{{$cat->id}}" enctype="multipart/form-data" style="display:inline;">
+                                                <form action="{{url('admin/places/'.$place->id.'/edit')}}" method="GET"  id="edit_{{$place->id}}" enctype="multipart/form-data" style="display:inline;">
                                                     
                                                     {{ csrf_field() }}
-                                                    <input type="hidden" name="Is_super" value="false"> {{-- its just for redirect, if false i will redirect to All places page else if true i will redirect to supervisor places page--}}
-                                                    <a  onclick="$('#edit_{{$cat->id}}').submit();">
+                                                    <input type="hidden" name="Is_super" value="true"> {{-- its just for redirect if false i will redirect to All places page else if true i will redirect to supervisor places page--}}
+
+                                                    <a  onclick="$('#edit_{{$place->id}}').submit();">
                                                      <button class="btn btn-primary" data-toggle="tooltip" data-original-title="تعديل">
                                                              <i class="fa fa-edit" aria-hidden="true"></i>
                                                      </button>
@@ -169,7 +171,7 @@
             $.ajax({
               type: 'POST',
               data: {"place_id": place_id, "status": status},
-              url: 'places_status',
+              url: '/admin/places_status',
               success: function(response) {
                 if (response.success == '1' ) {
                   Swal.fire({
@@ -196,8 +198,7 @@
                 }
             });
           });
-          });
-              $(document).on('change', '.place_popular_section', function() {
+          $(document).on('change', '.place_popular_section', function() {
             let popular_section = $(this).val();
             let place_id = $(this).data('place_id');
             $.ajax({
@@ -229,6 +230,7 @@
                     console.log(msg);
                 }
             });
+          });
           });
 
   </script>
