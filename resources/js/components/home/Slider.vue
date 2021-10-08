@@ -69,6 +69,11 @@ export default {
     font-size: 15px!important;
 }
 .about-us-slider .slide-item {
-    height: 500px;
+    height: 450px;
+}
+@media (max-width: 564px){
+  .about-us-slider .slide-item {
+      height: 300px;
+  }
 }
 </style>

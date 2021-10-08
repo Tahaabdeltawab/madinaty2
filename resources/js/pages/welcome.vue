@@ -3,7 +3,7 @@
     <slider :sliders="home.sliders" class="wow animate__animated animate__fadeIn" />
     <category-slider :categories="home.categories" />
     <popular :populars="home.populars" />
-    <hr style="border-top:1px solid rgba(0,0,0,0.15)">
+    <hr style="margin:0; border-top:1px solid rgba(0,0,0,0.15)">
     <categories :categories="home.categories" />
   </div>
 </template>
@@ -66,5 +66,8 @@ export default {
 .swiper-button-prev {
   width: 30px !important;
   height: 30px !important;
+}
+.section-padding {
+  padding: 40px 0;
 }
 </style>

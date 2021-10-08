@@ -91,6 +91,11 @@ export const actions = {
             commit(types.FETCH_PLACE_SUCCESS, { place: data.data })
         } catch (e) {}
     },
+    async setPlace({ commit }, { place }) {
+        try {
+            commit(types.FETCH_PLACE_SUCCESS, { place: place })
+        } catch (e) {}
+    },
     async toggleFav({ commit }, { id }) {
         try {
             // commit(types.TOGGLE_FAV_SUCCESS)

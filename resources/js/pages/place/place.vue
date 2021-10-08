@@ -99,9 +99,7 @@ export default {
   // this.$route.params.id
   methods: {
     async fetchPlace(id) {
-      await this.$store.dispatch("place/fetchPlace", {
-        id: id,
-      });
+      await this.$store.dispatch("place/fetchPlace", { id: id });
       this.$store.dispatch("general/changeWait", { wait: false });
     },
     isActive(menuItem) {

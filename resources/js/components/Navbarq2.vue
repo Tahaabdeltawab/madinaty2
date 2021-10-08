@@ -26,10 +26,7 @@
           <!-- navigation links -->
           
           <!-- search -->
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" :placeholder="$t('Search')">
-            <button class="btn btn-brand search-button my-2 my-sm-0" type="submit"> <b-icon icon="search" fixed-width></b-icon></button>
-          </form>
+          <search />
           <!-- search -->
 
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -59,11 +56,12 @@
 
 <script>
 import { mapGetters } from "vuex";
-import Auth from './nav/Auth.vue';
-import Links from './nav/Links.vue';
-import LocaleDropdown from "./nav/LocaleDropdown";
-import NotificationsDropdown from "./nav/NotificationsDropdown";
-import LocationModal from "./nav/LocationModal";
+import Auth from '~/components/nav/Auth.vue';
+import Links from '~/components/nav/Links.vue';
+import LocaleDropdown from "~/components/nav/LocaleDropdown";
+import NotificationsDropdown from "~/components/nav/NotificationsDropdown";
+import LocationModal from "~/components/nav/LocationModal";
+import Search from '~/components/nav/Search.vue';
 
 export default {
   components: {
@@ -72,6 +70,7 @@ export default {
     LocationModal,
     Auth,
     Links,
+    Search,
   },
 
   data: () => ({
