@@ -15,14 +15,18 @@
     >
     <div v-if="isFocused" id="results">
         <div class="coupon_results">
-            <router-link @ v-for="place in places" :key="place.id" :to="{ name: 'place', params: { id: place.id } }" >
+            <router-link v-for="place in places" :key="place.id" :to="{ name: 'place', params: { id: place.id } }" data-name="search">
                 <div class='coupon_item'>
                     <div class='img'>
                         <img :src="place.image">
                     </div>
                     <div class='item_detail'>
-                        <h5>{{place.name_ar}}</h5>
-                        <p>{{place.description_ar.length > 40 ? place.description_ar.substring(0,40)+".." : place.description_ar }}</p>
+                        <h5>{{locale == 'ar' ? place.name_ar : place.name_en}}</h5>
+                        <p v-if="(locale == 'ar' && place.description_ar) || (locale == 'en' && place.description_en)">
+                            {{locale == 'ar' ? 
+                            (place.description_ar.length > 40 ? place.description_ar.substring(0,40)+".." : place.description_ar) :
+                            (place.description_en.length > 40 ? place.description_en.substring(0,40)+".." : place.description_en) }}
+                        </p>
                     </div>
                 </div>
             </router-link>
@@ -35,6 +39,7 @@
 
 <script>
 import axios from 'axios';
+import { mapGetters } from 'vuex'
 
 export default {
   data() {
@@ -45,6 +50,9 @@ export default {
           isFocused: false,
       }
   },
+    computed: mapGetters({
+    locale: 'lang/locale',
+  }),
     watch:{
     $route (to, from){
        this.reset();
@@ -52,7 +60,7 @@ export default {
     } ,
   methods: {
     blurred(e){
-        if(!(e && e.relatedTarget && e.relatedTarget.firstElementChild.className === 'coupon_item'))
+        if(!(e && e.relatedTarget && e.relatedTarget.dataset.name === 'search'))
         this.reset(e);
     },
     reset(){

@@ -114,7 +114,8 @@ export default {
     this.modalReady = true; // to let place fully loaded from the store
   },
   metaInfo() {
-    return { title: this.$t('Place') };
+    let title = this.locale == 'ar' ? this.place.details.name_ar : this.place.details.name_en
+    return { title: title };
   },
   data() {
     let tabs = [
