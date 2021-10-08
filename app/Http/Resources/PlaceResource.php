@@ -37,6 +37,7 @@ class PlaceResource extends JsonResource
             "isFavorite" => $fav,
             "Facebook" => $this->Facebook,
             "Twitter" => $this->Twitter,
+            'Instagram'=> $this->Instagram,
             "my_place" => $my_place, 
         ];
     }

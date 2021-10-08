@@ -37,7 +37,7 @@ class PlaceController extends Controller
                 return $check;
             }else{
                 
-                $places = Place::select('id', 'name_ar','name_en', 'image', 'description_ar','description_en', 'phone','Longitude', 'Latitude','Facebook','Twitter', 'user_id')->where('subCategory_id' ,$subcat_id)->get();
+                $places = Place::select('id', 'name_ar','name_en', 'image', 'description_ar','description_en', 'phone','Longitude', 'Latitude','Facebook','Twitter', 'Instagram','user_id')->where('subCategory_id' ,$subcat_id)->where('status',1)->get();
                 $msg = $lang == 'ar' ? " الاماكن فى هذا القسم" : "places with this category";
 
                 return $this->apiResponseData( PlaceResource::collection($places) , $msg);
@@ -59,11 +59,11 @@ class PlaceController extends Controller
             $place_id = $request->place_id;
 
 
-            $place =   Place::select('id', 'name_ar','name_en', 'image', 'description_ar','description_en', 'phone','Longitude', 'Latitude','Facebook','Twitter', 'user_id')->where('id' ,$place_id)->get();
+            $place =   Place::select('id', 'name_ar','name_en', 'image', 'description_ar','description_en', 'phone','Longitude', 'Latitude','Facebook','Twitter', 'Instagram','user_id')->where('id' ,$place_id)->get();
 
             $services = Place_service::select('id' , 'details_ar', 'details_en')->where('place_id' , $place_id)->get();
         
-            $products = Place_product::select('id' , 'name_ar','name_en' ,'image', 'description_ar', 'description_en' , 'price')->where('place_id' , $place_id)->get();
+            $products = Place_product::select('id' , 'name_ar','name_en' ,'image', 'description_ar', 'description_en' , 'price', 'created_at')->where('place_id' , $place_id)->get();
 
             $offers = Place_offer::select('id' , 'title_ar','title_en' , 'code' , 'present')->where('place_id' , $place_id)->get();
 
@@ -109,6 +109,7 @@ class PlaceController extends Controller
             $phone = $request->has('phone') && $request->phone != NULL ? $request->phone : $place_data->phone;
             $Facebook = $request->has('Facebook') && $request->Facebook != NULL ? $request->Facebook : $place_data->Facebook;
             $Twitter = $request->has('Twitter') && $request->Twitter != NULL ? $request->Twitter : $place_data->Twitter;
+            $Instagram = $request->has('Instagram') && $request->Instagram != NULL ? $request->Instagram : $place_data->Instagram;
             $image = $request->has('image')
              && $request->image != NULL 
              ? BaseController::saveImage("places" , $request->file('image')) 
@@ -123,6 +124,7 @@ class PlaceController extends Controller
                                                                 "image" => $image,
                                                                 "Facebook" => $Facebook,
                                                                 "Twitter" => $Twitter,
+                                                                "Instagram" => $Instagram,
                                                                 "updated_at" => $dateTime,
                                                                 ]);
 

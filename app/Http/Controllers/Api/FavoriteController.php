@@ -56,7 +56,7 @@ class FavoriteController extends Controller
 
             
             $get_favorites = Favorite_place::select('places.id', 'places.name_en','places.name_ar', 'places.image', 'places.description_en','places.description_ar', 
-                                                    'places.phone','places.Longitude', 'places.Latitude','places.Facebook','places.Twitter')
+                                                    'places.phone','places.Longitude', 'places.Latitude','places.Facebook','places.Twitter', 'places.Instagram')
                                             ->join('places' , 'favorite_places.place_id' ,'=' ,'places.id')
                                             ->where('favorite_places.user_id' , auth()->user()->id)->get();
         

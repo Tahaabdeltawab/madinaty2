@@ -46,6 +46,7 @@ class PlaceDataResources extends JsonResource
             "isFavorite" => $fav,
             "Facebook" => $this->Facebook,
             "Twitter" => $this->Twitter,
+            "Instagram"=> $this->Instagram,
             "my_place" => $my_place, 
             "place_services" => ServicesResource::collection(Place_service::where('place_id' , $this->id)->get()),
             "place_products" => ProductsResource::collection(Place_product::where('place_id' , $this->id)->get()),
