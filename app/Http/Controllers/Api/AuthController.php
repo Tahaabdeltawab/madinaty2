@@ -103,6 +103,7 @@ class AuthController extends Controller
             $user->save();
             $token = JWTAuth::fromUser($user);
             $user['userToken'] = $token;
+            $user['lang'] = $lang;
 
 
             $msg = $lang=='ar' ? 'تم تسجيل الدخول بنجاح':'Welcome, you are login successfull' ;

@@ -85,7 +85,7 @@ Route::get('allCategory_places' , [PlaceController::class , 'allCategory_places'
 
 
 Route::group([
-    'middleware' => 'auth:api', 
+    // 'middleware' => 'auth:api', // commented because these checks happens inside the controller method
 ], function($router) {
 
     Route::get('show_user_ByID' , [AuthController::class , 'show_user_ByID']);
@@ -125,53 +125,49 @@ Route::group([
     
     Route ::get( 'search', [PlaceController::class , 'search']);
 
+    
+    Route::group([
+        'prefix'  => "Product"
+    ], function($router) {
+    
+        Route::post('update_product' , [ProductsController::class , 'update_product']);
+        Route::post('add_product' , [ProductsController::class , 'add_product']);
+        Route::get('delete_product' , [ProductsController::class , 'delete_product']);
+    
+    });
+    
+    
+    Route::group([
+        'prefix'  => "Service"
+    ], function($router) {
+    
+        Route::post('update_services' , [ServicesController::class , 'update_services']);
+        Route::post('add_services' , [ServicesController::class , 'add_services']);
+        Route::get('delete_service' , [ServicesController::class , 'delete_service']);
+    
+    });
+    
+    
+    Route::group([
+        'prefix'  => "Offer"
+    ], function($router) {
+    
+        Route::post('update_offers' , [OffersController::class , 'update_offers']);
+        Route::post('add_offers' , [OffersController::class , 'add_offers']);
+        Route::get('delete_Offer' , [OffersController::class , 'delete_Offer']);
+    
+    });
+    
+    
+    Route::group([
+        'prefix'  => "AboutUs"
+    ], function($router) {
+    
+        Route::post('update_place_aboutUs' , [PlaceAboutUsController::class , 'update_place_aboutUs']);
+        Route::post('add_place_aboutUS' , [PlaceAboutUsController::class , 'add_place_aboutUS']);
+        Route::get('delete_aboutUS' , [PlaceAboutUsController::class , 'delete_aboutUS']);
+    
+    });
 
 });
 
-
-Route::group([
-    'middleware' => 'auth:api', 
-    'prefix'  => "Product"
-], function($router) {
-
-    Route::post('update_product' , [ProductsController::class , 'update_product']);
-    Route::post('add_product' , [ProductsController::class , 'add_product']);
-    Route::get('delete_product' , [ProductsController::class , 'delete_product']);
-
-});
-
-
-Route::group([
-    'middleware' => 'auth:api', 
-    'prefix'  => "Service"
-], function($router) {
-
-    Route::post('update_services' , [ServicesController::class , 'update_services']);
-    Route::post('add_services' , [ServicesController::class , 'add_services']);
-    Route::get('delete_service' , [ServicesController::class , 'delete_service']);
-
-});
-
-
-Route::group([
-    'middleware' => 'auth:api', 
-    'prefix'  => "Offer"
-], function($router) {
-
-    Route::post('update_offers' , [OffersController::class , 'update_offers']);
-    Route::post('add_offers' , [OffersController::class , 'add_offers']);
-    Route::get('delete_Offer' , [OffersController::class , 'delete_Offer']);
-
-});
-
-
-Route::group([
-    'middleware' => 'auth:api', 
-    'prefix'  => "AboutUs"
-], function($router) {
-
-    Route::post('update_place_aboutUs' , [PlaceAboutUsController::class , 'update_place_aboutUs']);
-    Route::post('add_place_aboutUS' , [PlaceAboutUsController::class , 'add_place_aboutUS']);
-    Route::get('delete_aboutUS' , [PlaceAboutUsController::class , 'delete_aboutUS']);
-
-});
