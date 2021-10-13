@@ -8,10 +8,10 @@ $config = [
     'googleAuth' => config('services.google.client_id'),
     'asset' => asset('')
 ];
-$appJs = asset('dist/js/app.cd84e0.js');
-$appCss = asset('dist/css/app.589245.css');
-// $appJs = mix('dist/js/app.js');
-// $appCss = mix('dist/css/app.css');
+// $appJs = asset('dist/js/app.cd84e0.js');
+// $appCss = asset('dist/css/app.589245.css');
+$appJs = mix('dist/js/app.js');
+$appCss = mix('dist/css/app.css');
 @endphp
 <!DOCTYPE html>
 <html lang="{{ $locale }}" dir="rtl">
