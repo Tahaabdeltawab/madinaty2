@@ -103,11 +103,13 @@ export const actions = {
             commit(types.TOGGLE_FAV_SUCCESS)
         } catch (e) {}
     },
-    async updatePlaceDetails({ commit }, { form }) {
+    async updatePlaceDetails({ commit, dispatch }, { form }) {
         try {
             const { data } = await form.post('/api/update_myPlace')
-            if (data.error == 0)
-                commit(types.UPDATE_PLACE_SUCCESS, { place: form })
+            if (data.error == 0) {
+                dispatch('fetchPlace', { id: form.place_id });
+                // commit(types.UPDATE_PLACE_SUCCESS, { place: form })
+            }
         } catch (e) {}
     },
     async addPlaceService({ commit }, { form }) {

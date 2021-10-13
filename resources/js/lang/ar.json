@@ -143,6 +143,7 @@
     "Add Service": "إضافة خدمة",
     "Twitter": "تويتر",
     "Facebook": "فيسبوك",
+    "Instagram": "إنستجرام",
     "Description en": "الوصف بالكردية",
     "Description ar": "الوصف بالعربية",
     "Name en": "الاسم بالكردية",
@@ -150,5 +151,8 @@
     "Edit Place": "تعديل بيانات المكان",
     "Category": "القسم",
     "Search": "البحث",
-    "discount": "خصم"
+    "discount": "خصم",
+    "Image": "الصورة",
+    "Longitude": "خط الطول",
+    "Latitude": "دائرة العرض"
 }
