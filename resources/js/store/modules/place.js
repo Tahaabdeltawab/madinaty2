@@ -135,9 +135,9 @@ export const actions = {
     },
 
     // category place
-    async fetchCategoryPlaces({ commit }, { id }) {
+    async fetchCategoryPlaces({ commit }, { id, area_id }) {
         try {
-            const { data } = await axios.get('/api/show_places_BySubcatId?subcat_id=' + id)
+            const { data } = await axios.get(`/api/show_places_BySubcatId?subcat_id=${id}&area_id=${area_id}`)
             commit(types.FETCH_CATEGORY_PLACES_SUCCESS, { categoryPlaces: data.data })
         } catch (e) {}
     },
