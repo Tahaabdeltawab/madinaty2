@@ -68,6 +68,10 @@ export default {
 .swiper-button-next::after, .swiper-button-prev::after {
     font-size: 15px!important;
 }
+
+.about-us-slider .slide-item img {
+    object-fit: fill;
+}
 .about-us-slider .slide-item {
     height: 450px;
 }

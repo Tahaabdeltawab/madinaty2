@@ -70,4 +70,8 @@ export default {
 .section-padding {
   padding: 40px 0;
 }
+
+.container {
+  max-width: 1350px;
+}
 </style>
